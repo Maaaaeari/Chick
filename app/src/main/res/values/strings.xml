@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Chick</string>
+    <string name="tab_main">메인</string>
+    <string name="tab_progress">복용률</string>
+    <string name="tab_mypage">마이페이지</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
