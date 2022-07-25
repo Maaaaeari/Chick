@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/serak/project/Chick/app/src/main/res/drawable/menu_select_color.xml" value="0.1795" />
         <entry key="..\:/Users/serak/project/Chick/app/src/main/res/layout/activity_main.xml" value="0.24947916666666667" />
+        <entry key="..\:/Users/serak/project/Chick/app/src/main/res/layout/fragment_main.xml" value="0.24947916666666667" />
+        <entry key="..\:/Users/serak/project/Chick/app/src/main/res/layout/fragment_mypage.xml" value="0.23489583333333333" />
+        <entry key="..\:/Users/serak/project/Chick/app/src/main/res/layout/fragment_progress.xml" value="0.23489583333333333" />
+        <entry key="..\:/Users/serak/project/Chick/app/src/main/res/menu/menu_bottom.xml" value="0.2484375" />
       </map>
     </option>
   </component>
