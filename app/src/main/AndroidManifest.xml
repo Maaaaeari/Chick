@@ -14,9 +14,13 @@
         android:theme="@style/Theme.Chick"
         tools:targetApi="31">
         <activity
-            android:name=".EditAlarmActivity"
-            android:parentActivityName=".MainActivity"
+            android:name=".MedAlarmActivity"
             android:exported="false" />
+        <activity
+            android:name=".EditAlarmActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
