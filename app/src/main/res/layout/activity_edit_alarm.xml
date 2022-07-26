@@ -7,10 +7,6 @@
     android:orientation="vertical"
     tools:context=".EditAlarmActivity">
 
-    <include
-        layout="@layout/edit_alarm_toolbar"
-        android:id="@+id/editAlarmToolbar" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -26,7 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="30dp"
                 android:text="무슨 약인가요?"
                 android:textColor="#000000"
                 android:textSize="16sp" />
@@ -67,7 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="25dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="20dp"
                     android:fontFamily="sans-serif"
                     android:text="몇 시에 복용하나요?"
                     android:textColor="#000000"
@@ -78,7 +74,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="20dp"
                     android:fontFamily="sans-serif"
                     android:text="복용 시간에 알람이 울려요"
                     android:textColor="#7B7B7B"
@@ -139,7 +135,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="sans-serif"
                 android:text="언제마다 복용하나요?"
                 android:textColor="#000000"
@@ -165,7 +161,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="sans-serif"
                 android:text="1회당 몇 정씩 복용하나요?"
                 android:textColor="#000000"
@@ -191,7 +187,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="sans-serif"
                 android:text="총 목표 복용 개수는 몇 정인가요?"
                 android:textColor="#000000"
