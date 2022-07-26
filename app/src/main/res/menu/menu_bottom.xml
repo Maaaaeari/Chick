@@ -4,13 +4,13 @@
     <item
         android:id="@+id/tab_main"
         android:title="@string/tab_main"
-        android:icon="@drawable/ic_tab_main"/>
+        android:icon="@drawable/ic_main"/>
     <item
         android:id="@+id/tab_progress"
         android:title="@string/tab_progress"
-        android:icon="@drawable/ic_tab_progress"/>
+        android:icon="@drawable/ic_progress"/>
     <item
         android:id="@+id/tab_mypage"
         android:title="@string/tab_mypage"
-        android:icon="@drawable/ic_tab_mypage"/>
+        android:icon="@drawable/ic_mypage"/>
 </menu>
