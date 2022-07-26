@@ -50,35 +50,29 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="8"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="70dp"
-                    android:layout_height="80dp"
-                    android:layout_gravity="bottom"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:scaleType="fitEnd"
-                    android:src="@drawable/ic_main_chick" />
+                android:layout_weight="9">
 
                 <LinearLayout
+                    android:id="@+id/linearLayoutMain1"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="-10dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_toStartOf="@+id/imageView3"
+                    android:layout_toEndOf="@+id/imageView2"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:orientation="vertical">
 
-                    <LinearLayout
-                        android:id="@+id/linearLayoutMain1"
+                    <RelativeLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:orientation="vertical">
+                        android:layout_height="wrap_content">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -116,44 +110,61 @@
                                 android:textSize="16sp" />
                         </LinearLayout>
 
-                        <LinearLayout
+                        <ImageView
+                            android:id="@+id/imageView"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_below="@+id/null"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginTop="25dp"
+                            android:layout_marginRight="5dp"
+                            android:src="@drawable/ic_main_alaram" />
+
+                        <TextView
+                            android:id="@+id/txtMainBannerTime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center_horizontal|center_vertical"
-                            android:orientation="horizontal">
+                            android:layout_below="@+id/null"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="25dp"
+                            android:layout_toEndOf="@+id/imageView"
+                            android:fontFamily="@font/jejugothic"
+                            android:gravity="center_vertical"
+                            android:text="오후 3시"
+                            android:textColor="#7B7B7B"
+                            android:textSize="16sp" />
+                    </RelativeLayout>
 
-                            <ImageView
-                                android:id="@+id/imageView"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_marginRight="5dp"
-                                android:src="@drawable/ic_main_alaram" />
-
-                            <TextView
-                                android:id="@+id/txtMainBannerTime"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/jejugothic"
-                                android:gravity="center_vertical"
-                                android:text="오후 3시"
-                                android:textColor="#7B7B7B"
-                                android:textSize="16sp" />
-                        </LinearLayout>
-
-                    </LinearLayout>
                 </LinearLayout>
 
                 <ImageView
                     android:id="@+id/imageView3"
-                    android:layout_width="30dp"
+                    android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
                     android:layout_gravity="bottom"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginRight="30dp"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
                     android:src="@drawable/ic_main_drug" />
 
-            </LinearLayout>
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="90dp"
+                    android:layout_height="80dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="bottom"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitEnd"
+                    android:src="@drawable/ic_main_chick" />
+            </RelativeLayout>
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
