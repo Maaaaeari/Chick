@@ -61,8 +61,9 @@
                     android:layout_width="70dp"
                     android:layout_height="80dp"
                     android:layout_gravity="bottom"
+                    android:layout_marginLeft="10dp"
                     android:layout_weight="1"
-                    android:scaleType="centerInside"
+                    android:scaleType="fitEnd"
                     android:src="@drawable/ic_main_chick" />
 
                 <LinearLayout
@@ -147,7 +148,7 @@
                     android:layout_width="30dp"
                     android:layout_height="50dp"
                     android:layout_gravity="bottom"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginRight="20dp"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
                     android:src="@drawable/ic_main_drug" />
