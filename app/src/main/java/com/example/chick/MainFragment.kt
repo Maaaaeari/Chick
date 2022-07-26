@@ -17,7 +17,7 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //var view = LayoutInflater.from(activity).inflate(R.layout.fragment_main, container, false)
+        var view = LayoutInflater.from(activity).inflate(R.layout.fragment_main, container, false)
 
         /*
         btnPlus = th.findViewById(R.id.btnDelete)
@@ -28,9 +28,9 @@ class MainFragment : Fragment() {
         }
 */
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        //return inflater.inflate(R.layout.fragment_main, container, false)
 
-        //return view
+        return view
     }
 
 
