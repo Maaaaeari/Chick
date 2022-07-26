@@ -6,9 +6,6 @@
     android:orientation="vertical"
     tools:context=".ProgressFragment">
 
-    <!--리니어-->
-    <!--리사이클러블-->
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="120dp"
@@ -68,152 +65,24 @@
             android:progressDrawable="@drawable/design_progressbar" />
     </RelativeLayout>
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:fillViewport="true">
 
-
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="130dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/shape_roundrectangle">
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:orientation="vertical"
+            android:paddingTop="20dp">
 
-            <androidx.constraintlayout.utils.widget.ImageFilterView
-                android:id="@+id/medicon"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="15dp"
-
-                android:padding="5dp"
-                android:src="@drawable/ic_pill" />
-
-            <TextView
-                android:id="@+id/medname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="20dp"
-                android:layout_toRightOf="@+id/medicon"
-                android:text="비타민C"
-                android:textColor="#000000"
-                android:textSize="24dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:text="50%"
-                android:textColor="#000000"
-                android:textSize="25dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/medcounttime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/medname"
-                android:layout_marginStart="68dp"
-
-                android:layout_marginTop="10dp"
-                android:text="매일"
-                android:textColor="#7B7B7B"
-                android:textSize="16dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/medname"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="10dp"
-
-                android:layout_toRightOf="@+id/medcounttime"
-                android:text="1회1정"
-                android:textColor="#7B7B7B"
-                android:textSize="16dp"
-                android:textStyle="bold" />
-
-            <ProgressBar
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="16dp"
-
-                android:layout_below="@+id/medname"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="175dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="20dp"
-
-                android:layout_toRightOf="@+id/medcounttime"
-
-                android:max="100"
-                android:progress="70"
-                android:progressDrawable="@drawable/design_medprogressbar" />
-
-            <ImageView
-                android:id="@+id/medclockic"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_below="@+id/medcounttime"
-
-                android:layout_marginStart="68dp"
-                android:layout_marginTop="9dp"
-                android:src="@drawable/ic_clock" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/medcounttime"
-                android:layout_marginStart="4dp"
-
-                android:layout_marginTop="8dp"
-                android:layout_toRightOf="@+id/medclockic"
-
-                android:text="오전"
-                android:textColor="#7B7B7B"
-                android:textSize="16dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/medcounttime"
-                android:layout_marginStart="41dp"
-
-                android:layout_marginTop="8dp"
-                android:layout_toRightOf="@+id/medclockic"
-
-                android:text="10시"
-                android:textColor="#7B7B7B"
-                android:textSize="16dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="15dp"
-
-                android:text="10/20정 복용"
-                android:textColor="#7B7B7B"
-                android:textSize="18dp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-    </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewMain"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>
