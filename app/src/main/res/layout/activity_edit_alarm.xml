@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".EditAlarmActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/medNameQ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="30dp"
+                android:text="무슨 약인가요?"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <EditText
+                    android:id="@+id/medName"
+                    android:layout_width="290dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="8dp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/yellow_rounding_box"
+                    android:hint="약 이름" />
+
+                <ImageButton
+                    android:id="@+id/medChoice"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/yellow_circle"
+                    app:srcCompat="@drawable/ic_button_pills" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/medTimeQ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="sans-serif"
+                    android:text="몇 시에 복용하나요?"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/medTimeH"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="sans-serif"
+                    android:text="복용 시간에 알람이 울려요"
+                    android:textColor="#7B7B7B"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/choiceAmPm"
+                    android:layout_width="68dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/yellow_rounding_box"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"
+                    android:text="오전"
+                    android:textColor="#BABABA"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/choiceTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="25dp"
+                    android:background="@drawable/yellow_rounding_box"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:text="9:00"
+                    android:textColor="#BABABA"
+                    android:textSize="18dp" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/TimePlus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="25dp"
+                android:background="#00FFFFFF"
+                android:fontFamily="sans-serif"
+                android:text="시간추가"
+                android:textColor="#7B7B7B"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/medWhenQ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="sans-serif"
+                android:text="언제마다 복용하나요?"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/choiceWhen"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/yellow_rounding_box"
+                android:fontFamily="sans-serif"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:text="매일"
+                android:textColor="#BABABA"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/medEatNumberQ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="sans-serif"
+                android:text="1회당 몇 정씩 복용하나요?"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/choiceEatNumber"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/yellow_rounding_box"
+                android:fontFamily="sans-serif"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:text="1"
+                android:textColor="#BABABA"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/medTotalNumberQ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="sans-serif"
+                android:text="총 목표 복용 개수는 몇 정인가요?"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/choiceTotalNumber"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/yellow_rounding_box"
+                android:fontFamily="sans-serif"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:text="1"
+                android:textColor="#BABABA"
+                android:textSize="18dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <android.widget.Button
+            android:id="@+id/medEditCancel"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="25dp"
+            android:text="취소"
+            android:textSize="18dp"
+            android:textColor="@color/white"
+            android:background="@drawable/cancel_box" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <android.widget.Button
+            android:id="@+id/medEditConfirm"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/confirm_box"
+            android:text="확인"
+            android:textColor="@color/white"
+            android:textSize="18dp" />
+
+    </LinearLayout>
+
+</LinearLayout>
