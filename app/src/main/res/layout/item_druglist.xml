@@ -102,7 +102,7 @@
                 android:paddingTop="10dp">
 
                 <ImageButton
-                    android:id="@+id/imageButton"
+                    android:id="@+id/btnMainEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
@@ -110,7 +110,7 @@
                     app:srcCompat="@drawable/ic_main_editbtn" />
 
                 <ImageButton
-                    android:id="@+id/imageButton2"
+                    android:id="@+id/btnMainEat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
