@@ -3,15 +3,15 @@
     <item android:id="@+id/prgress_background">
         <shape>
             <corners android:radius="10dp" />
-            <solid android:color="#D9D9D9" />
+            <solid android:color="#ffffff" />
         </shape>
     </item>
     <item android:id="@+id/progress_fill">
-        <clip>
+        <scale android:scaleWidth="100%">
             <shape>
-                <corners android:radius="10dp" />
-                <solid android:color="#45A6FF" />
+                <corners android:radius="8dp"/>
+                <solid android:color="#45A6FF"/>
             </shape>
-        </clip>
+        </scale>
     </item>
 </layer-list>
