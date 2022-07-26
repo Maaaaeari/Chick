@@ -9,12 +9,15 @@ class EditAlarmActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_alarm)
         
-        supportActionBar?.setDisplayShowTitleEnabled(false)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        //supportActionBar?.setDisplayShowTitleEnabled(false)
+        //supportActionBar!!.setDisplayHomeAsUpEnabled(true)
     }
 
+    /*
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_edit_alarm, menu)
         return true
     }
+
+     */
 }

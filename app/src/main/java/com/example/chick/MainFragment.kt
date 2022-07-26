@@ -8,10 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.core.content.ContextCompat
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainFragment : Fragment() {
 
-    lateinit var btnPlus : Button
+    lateinit var btnPlus : FloatingActionButton
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -19,14 +20,15 @@ class MainFragment : Fragment() {
     ): View? {
         var view = LayoutInflater.from(activity).inflate(R.layout.fragment_main, container, false)
 
-        /*
-        btnPlus = th.findViewById(R.id.btnDelete)
+
+
+        btnPlus = view.findViewById(R.id.btnMainAdd)
 
         btnPlus.setOnClickListener{
             val intent = Intent(activity, EditAlarmActivity::class.java)
             startActivity(intent)
         }
-*/
+
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_main, container, false)
 
