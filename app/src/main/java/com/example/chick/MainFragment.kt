@@ -17,18 +17,20 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var view = LayoutInflater.from(activity).inflate(R.layout.fragment_main, container, false)
-        btnPlus = view.findViewById(R.id.btnDelete)
+        //var view = LayoutInflater.from(activity).inflate(R.layout.fragment_main, container, false)
+
+        /*
+        btnPlus = th.findViewById(R.id.btnDelete)
 
         btnPlus.setOnClickListener{
-            //val intent = Intent(activity, SharePostActivity::class.java)
-            //startActivity(intent)
+            val intent = Intent(activity, EditAlarmActivity::class.java)
+            startActivity(intent)
         }
-
+*/
         // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_main, container, false)
+        return inflater.inflate(R.layout.fragment_main, container, false)
 
-        return view
+        //return view
     }
 
 
