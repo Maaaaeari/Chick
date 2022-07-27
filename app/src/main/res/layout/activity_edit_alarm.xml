@@ -113,7 +113,7 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="25dp"
                     android:fontFamily="@font/jejugothic"
-                    android:text="복용 시간에 알람이 울려요"
+                    android:text="복용 시간에 알람이 울려요."
                     android:textColor="#7B7B7B"
                     android:textSize="14sp" />
 
@@ -149,8 +149,7 @@
                 android:layout_gravity="center_vertical|right"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="25dp"
-                android:background="#FFFFFF"
-                android:backgroundTint="#00FFFFFF"
+                android:background="@null"
                 android:drawableLeft="@drawable/size_ic_alarm_plus"
                 android:fontFamily="@font/jejugothic"
                 android:foregroundTint="#FFFFFF"
