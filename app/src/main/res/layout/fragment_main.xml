@@ -54,6 +54,33 @@
                 android:layout_height="match_parent"
                 android:layout_weight="9">
 
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="bottom"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_main_drug" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="90dp"
+                    android:layout_height="80dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="bottom"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitEnd"
+                    android:src="@drawable/ic_main_chick" />
+
                 <LinearLayout
                     android:id="@+id/linearLayoutMain1"
                     android:layout_width="wrap_content"
@@ -126,44 +153,17 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/mainbannerlinear"
-                            android:layout_marginStart="10dp"
+                            android:layout_marginStart="8dp"
                             android:layout_marginTop="2dp"
                             android:layout_toEndOf="@+id/imageView"
                             android:fontFamily="@font/jejugothic"
                             android:gravity="center_vertical"
-                            android:text="오후 3시"
+                            android:text="오후 3:00"
                             android:textColor="#7B7B7B"
                             android:textSize="16sp" />
                     </RelativeLayout>
 
                 </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_gravity="bottom"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_main_drug" />
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="90dp"
-                    android:layout_height="80dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_gravity="bottom"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginBottom="0dp"
-                    android:layout_weight="1"
-                    android:scaleType="fitEnd"
-                    android:src="@drawable/ic_main_chick" />
             </RelativeLayout>
 
             <androidx.core.widget.NestedScrollView
