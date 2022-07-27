@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MedAlarmActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/EditToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txtToolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/jejugothic"
+            android:text="삐약삐약 약 알람"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="173dp"
+            tools:layout_editor_absoluteY="16dp" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_alarm_logo"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"/>
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/ic_alarm_logo2"
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="비타민C"
+            android:fontFamily="@font/jejugothic"
+            android:textSize="22dp"
+            android:textColor="#BE9700"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="복용할 시간이에요!"
+            android:fontFamily="@font/jejugothic"
+            android:textSize="22dp"
+            android:textColor="#000000"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center" >
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_main_alaram" />
+
+        <TextView
+            android:id="@+id/alarmAmPm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="오후"
+            android:fontFamily="@font/jejugothic"
+            android:textSize="22dp"
+            android:textColor="#7B7B7B"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"/>
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="2dp" />
+
+        <TextView
+            android:id="@+id/alarmH"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:fontFamily="@font/jejugothic"
+            android:textSize="22dp"
+            android:textColor="#7B7B7B"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=":"
+            android:fontFamily="@font/jejugothic"
+            android:textSize="22dp"
+            android:textColor="#7B7B7B"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/alarmM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00"
+            android:fontFamily="@font/jejugothic"
+            android:textSize="22dp"
+            android:textColor="#7B7B7B"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="130dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_gravity="center">
+
+        <android.widget.Button
+            android:id="@+id/medAlarmCancel"
+            android:layout_width="165dp"
+            android:layout_height="65dp"
+            android:layout_gravity="center"
+            android:background="@drawable/cancel_box"
+            android:fontFamily="@font/jejugothic"
+            android:text="나중에 먹기"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <android.widget.Button
+            android:id="@+id/medAlarmConfirm"
+            android:layout_width="165dp"
+            android:layout_height="65dp"
+            android:layout_gravity="center"
+            android:background="@drawable/confirm_box"
+            android:fontFamily="@font/jejugothic"
+            android:text="복용 완료"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

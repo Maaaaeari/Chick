@@ -1,12 +1,11 @@
 package com.example.chick
 
-import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 
-class EditAlarmActivity : AppCompatActivity() {
+class MedAlarmActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit_alarm)
+        setContentView(R.layout.activity_med_alarm)
     }
 }
