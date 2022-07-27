@@ -5,6 +5,10 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.core.text.set
+import androidx.core.text.toSpannable
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -42,6 +46,4 @@ class MainActivity : AppCompatActivity() {
         val mainFragment = MainFragment()
         supportFragmentManager.beginTransaction().add(R.id.main_content, mainFragment).commit()
     }
-
-
 }
