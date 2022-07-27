@@ -43,15 +43,5 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().add(R.id.main_content, mainFragment).commit()
     }
 
-    // db 테이블 생성 및 변경
-    inner class myDBHelper(context: Context) : SQLiteOpenHelper(context, "drugDB", null, 1) {
-        override fun onCreate(db: SQLiteDatabase?) {
-            db!!.execSQL("CREATE TABLE drugDB ( medId INTEGER PRIMARY KEY, medName CHAR(20), ampm CHAR(10), alarmHour INTEGER, alarmMin INTEGER, daysOfWeek CHAR(10), eatNumber INTEGER, totalNumber INTEGER, currentNumber INTEGER, medIcon INTEGER);")
-        }
-        override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-            db!!.execSQL("DROP TABLE IF EXISTS drugDB")
-            onCreate(db)
-        }
-    }
 
 }
