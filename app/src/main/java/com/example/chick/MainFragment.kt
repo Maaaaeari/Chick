@@ -46,19 +46,9 @@ class MainFragment : Fragment() {
         // DB 생성
         dbManager = DBManager(requireContext(), "drugDB", null, 1)
 
-        // 약 알람 리스트
+        // 약 알람 리스트 불러오기
         drugAllList = arrayListOf<DrugAll>()
         selectDrug()
-        // 전체 약 리스트 불러오기
-        // drugAllList.addAll(selectDrug())
-//        drugAllList = arrayListOf<DrugAll>(
-//            DrugAll(1, "vitamin", "오전", 2, 30 ,"월수", 2, 1) ,
-//            DrugAll(2, "d이노시톨", "오후", 4, 30 ,"금토일", 1, 8),
-//            DrugAll(3, "유산균", "오전", 2, 0,"화수목" ,3 ,2),
-//            DrugAll(4, "vitamin", "오후", 8, 30, "월수", 4, 3),
-//            DrugAll(5, "하하하", "오전", 2, 30, "월화수목금토일", 2, 4),
-//            DrugAll(6, "vitamin", "오전", 10, 30 ,"월수", 2, 6)
-//        )
 
         // 레이아웃 매니저 등록
         recyclerViewDrugAll.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
@@ -87,17 +77,17 @@ class MainFragment : Fragment() {
         //읽기전용 데이터베이스 변수
         sqlDB = dbManager.readableDatabase
         //데이터를 받아줌
-        var cursor = sqlDB.rawQuery("select * from drugTBL where done=0;",null)
+        var cursor = sqlDB.rawQuery("select * from drugTBL where goalDone=0;",null)
 
 //        sqlDB = dbManager.writableDatabase
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (1, '비타민c','오전', 9,00,'월수금',1,50,10,1,0)")
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (2, '이노시톨','오후', 3,30,'월화수목금토일',2,100,60,2,0)")
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (3, '마그네슘','오전', 4,40,'화목',3,300,150,3,0)")
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (4, '철분','오후', 5,50,'수',1,100,10,4,0)")
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (5, '유산균','오전', 9,10,'월화수목금토일',2,400,380,5,0)")
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (6, '텐텐','오후', 8,05,'월수금',4,400,10,6,0)")
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (7, '글루콤','오후', 11,20,'월화수목금토일',1,30,30,7,1)")
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (8, '비타민d','오전', 10,00,'금토일',2,40,40,8,1)")
+//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (1, '비타민c','오전', 9,00,'월수금',1,50,10,1,0,0)")
+//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (2, '이노시톨','오후', 3,30,'월화수목금토일',2,100,60,2,0,0)")
+//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (3, '마그네슘','오전', 4,40,'화목',3,300,150,3,0,0)")
+//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (4, '철분','오후', 5,50,'수',1,100,10,4,0,0)")
+//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (5, '유산균','오전', 9,10,'월화수목금토일',2,400,380,5,0,0)")
+//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (6, '텐텐','오후', 8,05,'월수금',4,400,10,6,0,0)")
+//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (7, '글루콤','오후', 11,20,'월화수목금토일',1,30,30,7,0,1)")
+//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (8, '비타민d','오전', 10,00,'금토일',2,40,40,8,0,1)")
 
 
         //반복문을 사용하여 list 에 데이터를 넘겨 줍시다.
