@@ -25,12 +25,12 @@
 
             <ImageView
                 android:id="@+id/icMainDrug"
-                android:layout_width="26dp"
-                android:layout_height="25dp"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="25dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="23dp"
                 app:srcCompat="@drawable/ic_drugs_1" />
 
             <TextView
