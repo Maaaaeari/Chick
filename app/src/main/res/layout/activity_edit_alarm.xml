@@ -75,17 +75,21 @@
                     android:background="@drawable/yellow_rounding_box"
                     android:fontFamily="@font/jejugothic"
                     android:hint="약 이름"
-                    android:paddingLeft="10dp"
+                    android:paddingLeft="14dp"
                     android:textSize="20sp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
 
                 <ImageButton
                     android:id="@+id/medChoice"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginLeft="15dp"
+                    android:gravity="center_vertical|right"
                     android:layout_marginTop="8dp"
                     android:layout_marginRight="25dp"
-                    android:layout_weight="1"
                     android:background="@drawable/yellow_circle"
                     app:srcCompat="@drawable/ic_button_pills" />
 
@@ -123,21 +127,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <Spinner
+                <Button
                     android:id="@+id/choiceAmPm"
-                    android:layout_width="68dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/yellow_rounding_box" />
-
-                <Spinner
-                    android:id="@+id/choiceTime"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginRight="25dp"
+                    android:stateListAnimator="@null"
                     android:background="@drawable/yellow_rounding_box" />
 
             </LinearLayout>
@@ -168,14 +165,120 @@
                 android:textColor="#000000"
                 android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/choiceWhen"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="25dp"
-                android:background="@drawable/yellow_rounding_box" />
+                android:layout_marginRight="25dp">
+
+                <Button
+                    android:id="@+id/btnMon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:text="월"
+                    android:textColor="#BABABA"
+                    android:textSize="20sp"
+                    android:stateListAnimator="@null"
+                    android:background="@drawable/week_c_back" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btnTue"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:text="화"
+                    android:textColor="#BABABA"
+                    android:textSize="20sp"
+                    android:stateListAnimator="@null"
+                    android:background="@drawable/week_c_back" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btnWed"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:text="수"
+                    android:textColor="#BABABA"
+                    android:textSize="20sp"
+                    android:stateListAnimator="@null"
+                    android:background="@drawable/week_c_back" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btnThu"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:text="목"
+                    android:textColor="#BABABA"
+                    android:textSize="20sp"
+                    android:stateListAnimator="@null"
+                    android:background="@drawable/week_c_back" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btnFri"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:text="금"
+                    android:textColor="#BABABA"
+                    android:textSize="20sp"
+                    android:stateListAnimator="@null"
+                    android:background="@drawable/week_c_back" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btnSat"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:text="토"
+                    android:textColor="#BABABA"
+                    android:textSize="20sp"
+                    android:stateListAnimator="@null"
+                    android:background="@drawable/week_c_back" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btnSun"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:text="일"
+                    android:textColor="#BABABA"
+                    android:textSize="20sp"
+                    android:stateListAnimator="@null"
+                    android:background="@drawable/week_c_back" />
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/medEatNumberQ"
@@ -188,7 +291,7 @@
                 android:textColor="#000000"
                 android:textSize="18sp" />
 
-            <TextView
+            <Spinner
                 android:id="@+id/choiceEatNumber"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -208,14 +311,19 @@
                 android:textColor="#000000"
                 android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/choiceTotalNumber"
+            <EditText
+                android:id="@+id/editTotalNumber"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginLeft="25dp"
+                android:layout_marginStart="25dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginRight="25dp"
-                android:background="@drawable/yellow_rounding_box" />
+                android:layout_marginEnd="25dp"
+                android:inputType="number"
+                android:background="@drawable/yellow_rounding_box"
+                android:fontFamily="@font/jejugothic"
+                android:hint="1"
+                android:paddingLeft="14dp"
+                android:textSize="20sp" />
 
         </LinearLayout>
 
