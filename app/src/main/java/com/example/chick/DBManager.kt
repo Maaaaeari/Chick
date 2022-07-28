@@ -3,9 +3,10 @@ package com.example.chick
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.view.View
 
 class DBManager(
-    context: Context?,
+    context: Context,
     name: String?,
     factory: SQLiteDatabase.CursorFactory?,
     version: Int
