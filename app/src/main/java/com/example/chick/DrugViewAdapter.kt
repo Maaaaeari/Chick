@@ -1,10 +1,17 @@
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.ClipData
+import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import android.view.ViewParent
+import android.widget.*
+import androidx.appcompat.view.menu.MenuView
+import androidx.appcompat.widget.AppCompatButton
+import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chick.DrugAll
 import com.example.chick.R
@@ -34,19 +41,28 @@ class DrugViewAdapter(val drugAllList: ArrayList<DrugAll>): RecyclerView.Adapter
         }
     }
     // 뷰 홀더의 뷰에 데이터 호출 (실제 데이터 출력)
+    @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: DrugViewAdapter.DrugViewHolder, position: Int) {
+
         // 뷰에 데이터 출력 (리사이클러 뷰 아이템 정보)
-        holder.txtName.text = drugAllList!![position].medName
-        if(drugAllList!![position].daysOfWeek=="월화수목금토일"){
+        holder.txtName.text = drugAllList!![position].medName       // 약 이름
+        if(drugAllList!![position].daysOfWeek=="월화수목금토일"){      // 약 주기
             holder.txtRotation.text = "매일" + "  1회 "+drugAllList!![position].eatNumber+"정"
         }else{
             holder.txtRotation.text = drugAllList!![position].daysOfWeek + "  1회 "+drugAllList!![position].eatNumber+"정"
         }
         var time = drugAllList!![position].ampm + " "+drugAllList!![position].alarmHour+":"+drugAllList!![position].alarmMin
-        holder.txtTime.text = time
+        holder.txtTime.text = time      // 약 복용시간
 
-        // 복용 여부에 따른 색상 변경
-
+        // 복용 여부에 따른 카드뷰 색상 변경
+        var eatDone = drugAllList!![position].eatDone
+        if (eatDone == 0){
+            holder.card.setBackgroundResource(R.drawable.bg_drug_gray)
+            holder.btnEat.setBackgroundResource(R.drawable.ic_main_eatbtn1)
+        }else{
+            holder.card.setBackgroundResource(R.drawable.bg_drug_blue)
+            holder.btnEat.setBackgroundResource(R.drawable.ic_main_eatbtn2)
+        }
 
         // 약 아이콘 변경
         var img = drugAllList!![position].medIcon
@@ -80,12 +96,13 @@ class DrugViewAdapter(val drugAllList: ArrayList<DrugAll>): RecyclerView.Adapter
 
     // 뷰 홀더
     class DrugViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        val card : RelativeLayout = itemView.findViewById(R.id.mainCardLayout)      // 카드뷰
         val txtName : TextView = itemView.findViewById(R.id.txtMainDrugName)    // 약이름
         val txtRotation : TextView = itemView.findViewById(R.id.txtMainDrugRotation)    // 복용주기
         val txtTime : TextView = itemView.findViewById(R.id.txtMainDrugTime)    // 복용시간
         val icDrug : ImageView = itemView.findViewById(R.id.icMainDrug)     // 약 아이콘
         val btnEdit : ImageButton = itemView.findViewById(R.id.btnMainEdit)     // 알람 수정 버튼
-        val btnEat : Button = itemView.findViewById(R.id.btnMainEat)        // 복용 버튼
+        val btnEat : AppCompatButton = itemView.findViewById(R.id.btnMainEat)        // 복용 버튼
     }
 
 }

@@ -8,10 +8,10 @@
     android:foregroundTint="#00FFFFFF">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/mainCard"
         android:layout_width="match_parent"
         android:layout_height="135dp"
         android:layout_marginTop="20dp"
-        app:cardBackgroundColor="#F5F5F5"
         app:cardCornerRadius="25dp"
         app:cardElevation="@null"
         app:cardMaxElevation="@null"
@@ -20,8 +20,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
+            android:id="@+id/mainCardLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_drug_gray">
 
             <ImageView
                 android:id="@+id/icMainDrug"
@@ -106,7 +108,7 @@
                 app:srcCompat="@drawable/ic_main_editbtn"
                 tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnMainEat"
                 android:layout_width="155dp"
                 android:layout_height="42dp"
@@ -115,8 +117,7 @@
                 android:layout_marginEnd="18dp"
                 android:layout_marginBottom="18dp"
                 android:layout_weight="1"
-                android:backgroundTint="#00FFFFFF"
-                android:foreground="@drawable/ic_main_eatbtn1"
+                android:background="@drawable/ic_main_eatbtn1"
                 android:scaleType="centerCrop"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         </RelativeLayout>
