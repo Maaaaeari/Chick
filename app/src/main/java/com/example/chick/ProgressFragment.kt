@@ -44,8 +44,14 @@ class ProgressFragment : Fragment() {
         // 리사이클러 뷰 어댑터 연결
         recyclerViewDrugAll.adapter = ProgressAdapter(drugProList)
 
+
+        // 목표개수 변경
+
+
         return view
     }
+
+
 
     @SuppressLint("Range")
     private fun selectDrug() {

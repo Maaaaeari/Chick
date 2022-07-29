@@ -1,5 +1,6 @@
 package com.example.chick
 
+import android.graphics.drawable.LayerDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.res.TypedArrayUtils.getDrawable
 import androidx.core.content.res.TypedArrayUtils.getResourceId
 import androidx.recyclerview.widget.RecyclerView
+import org.w3c.dom.Text
 
 class ProgressAdapter(val druglist:ArrayList<ProDrugAll>) : RecyclerView.Adapter<ProgressAdapter.ProViewHolder>(){
 
@@ -89,8 +91,11 @@ class ProgressAdapter(val druglist:ArrayList<ProDrugAll>) : RecyclerView.Adapter
         // 100%일 경우 1.카드 및 프로그레스바 색 변화 2. 제일 하단으로 이동
         if(percent == 100) {
             holder.cardPro.setBackgroundResource(R.drawable.shape_round_darkyellow) //카드 색 변화
+
+            //프로그레스바 색 변화
             //holder.prbbar.setProgressDrawable("@drawable/design_medprogressbar_100")
 
+            //아이텐 위치 변경
         }
         else{
 
@@ -101,7 +106,7 @@ class ProgressAdapter(val druglist:ArrayList<ProDrugAll>) : RecyclerView.Adapter
 
     //복용률_뷰홀더
     class ProViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val txtProName : TextView = itemView.findViewById(R.id.txtProDrugName)    // 약이름
+        val txtProName : TextView = itemView.findViewById(R.id.txtProDrugName)    // 약 이름
         val txtProRotation : TextView = itemView.findViewById(R.id.txtProDrugRotation)    // 복용주기
         val txtProTime : TextView = itemView.findViewById(R.id.txtProDrugTime)    // 복용시간
         val icProDrug : ImageView = itemView.findViewById(R.id.Promedicon1)     // 약 아이콘

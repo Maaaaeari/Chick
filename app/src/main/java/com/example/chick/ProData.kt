@@ -12,6 +12,5 @@ data class ProDrugAll(
     var medIcon :  Int? =  null,
     var currentNumber : Int? = null,
     var totalNumber : Int? = null,
-    var eatDone : Int? = null
-    //var GoalDone : Int? = null
+    var eatDone : Int? = null,
 )

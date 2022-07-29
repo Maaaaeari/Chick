@@ -6,7 +6,7 @@
             <solid android:color="#ffffff" />
         </shape>
     </item>
-    <item android:id="@+id/progress_fill">
+    <item android:id="@+id/progress_fill1">
         <scale android:scaleWidth="100%">
             <shape>
                 <corners android:radius="10dp"/>
@@ -14,4 +14,17 @@
             </shape>
         </scale>
     </item>
+    <!--
+    <item android:id="@+id/progress_fill2">
+        <scale android:scaleWidth="100%">
+            <shape>
+                <corners android:radius="10dp"/>
+                <gradient
+                    android:type="linear"
+                    android:angle="-90"
+                    android:startColor="#FD948E"
+                    android:endColor="#E27C48"/>
+            </shape>
+        </scale>
+    </item>-->
 </layer-list>
