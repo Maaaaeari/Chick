@@ -11,8 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="135dp"
         android:layout_marginTop="20dp"
-        app:cardBackgroundColor="#F5F5F5"
-        app:cardCornerRadius="25dp"
+        android:backgroundTint="@drawable/shape_roundrectangle"
         app:cardElevation="@null"
         app:cardMaxElevation="@null"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,8 +28,8 @@
                 android:layout_height="23dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="23dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="25dp"
                 app:srcCompat="@drawable/ic_drugs_1" />
 
             <TextView
@@ -91,34 +90,45 @@
                     android:textSize="16sp" />
             </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/btnMainEdit"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_alignParentTop="true"
+            <TextView
+                android:id="@+id/txtProPercent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_gravity="right"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_weight="1"
-                android:backgroundTint="#00FFFFFF"
-                android:scaleType="centerInside"
-                app:srcCompat="@drawable/ic_main_editbtn"
-                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="30dp"
+                android:fontFamily="@font/jejugothic"
+                android:text="50%"
+                android:textColor="#000000"
+                android:textSize="20sp" />
 
-            <Button
-                android:id="@+id/btnMainEat"
-                android:layout_width="155dp"
-                android:layout_height="42dp"
+            <ProgressBar
+                android:id="@+id/MedprogressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="165dp"
+                android:layout_height="16dp"
+                android:layout_below="@+id/txtProPercent"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginEnd="18dp"
-                android:layout_marginBottom="18dp"
-                android:layout_weight="1"
-                android:backgroundTint="#00FFFFFF"
-                android:foreground="@drawable/ic_main_eatbtn1"
-                android:scaleType="centerCrop"
-                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="30dp"
+                android:max="100"
+                android:progress="50"
+                android:progressDrawable="@drawable/design_medprogressbar" />
+
+            <TextView
+                android:id="@+id/txtProCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/MedprogressBar"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="12"
+
+                android:fontFamily="@font/jejugothic"
+                android:text="100/200정 복용"
+                android:textSize="16sp"
+                android:textColor="#7B7B7B"/>
+
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

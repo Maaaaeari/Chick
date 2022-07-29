@@ -33,78 +33,63 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="100dp"
         android:background="#FAFAFA">
 
         <TextView
-            android:id="@+id/texttotal"
+            android:id="@+id/txtTop1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
-            android:gravity="center"
-            android:text="전체 복용률 프로그레스"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/imgTop"
+            android:paddingTop="6dp"
+            android:text="총 약 복용"
             android:textColor="#000000"
-            android:textSize="19dp"
+            android:textSize="18dp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/txtProTopPercent"
+            android:id="@+id/txtTopGoal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="30dp"
-            android:layout_toRightOf="@+id/texttotal"
-            android:gravity="center"
 
-            android:text="70%"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@+id/txtTop1"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="25개"
             android:textColor="#E9C128"
-            android:textSize="30dp"
+            android:textSize="35dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtTop2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingTop="6dp"
+            android:layout_toRightOf="@+id/txtTopGoal"
+
+            android:text="목표 달성!"
+            android:textColor="#000000"
+            android:textSize="18dp"
             android:textStyle="bold" />
 
         <ImageView
-            android:layout_width="65dp"
-            android:layout_height="65dp"
-            android:layout_centerHorizontal="true"
+            android:id="@+id/imgTop"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_toLeftOf="@+id/texttotal"
-            android:gravity="center"
-
             android:src="@drawable/ic_drugprogress" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:paddingTop="2dp"
-                android:layout_marginStart="22dp"
-                android:layout_marginEnd="22dp"
-                android:src="@drawable/img_progressbarshadow"
-                tools:ignore="MissingConstraints" />
-
-            <ProgressBar
-                android:id="@+id/progressBar"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="18dp"
-                android:layout_marginStart="25dp"
-                android:layout_marginEnd="25dp"
-                android:max="100"
-                android:progress="70"
-                android:progressDrawable="@drawable/design_progressbar"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
+            android:layout_alignParentBottom="true" />
     </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -125,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
-                android:paddingBottom="100dp"/>
+                android:paddingBottom="100dp" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
