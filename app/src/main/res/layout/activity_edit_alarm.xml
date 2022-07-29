@@ -7,6 +7,7 @@
     android:backgroundTint="#ffffff"
     android:foregroundTint="#FFFFFF"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".EditAlarmActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -44,7 +45,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/white"
         android:layout_weight="7">
 
         <LinearLayout
@@ -136,6 +136,9 @@
                     android:layout_marginEnd="25dp"
                     android:layout_marginTop="8dp"
                     android:stateListAnimator="@null"
+                    android:fontFamily="@font/jejugothic"
+                    android:textSize="20dp"
+                    android:textColor="#E9C128"
                     android:background="@drawable/yellow_rounding_box" />
 
             </LinearLayout>
@@ -178,10 +181,10 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="8dp"
                     android:text="월"
-                    android:textColor="#BABABA"
+                    android:textColor="@drawable/confirm_btn_week_text"
                     android:textSize="20sp"
                     android:stateListAnimator="@null"
-                    android:background="@drawable/week_c_back" />
+                    android:background="@drawable/confirm_btn_week" />
 
                 <View
                     android:layout_width="0dp"
@@ -194,10 +197,10 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="8dp"
                     android:text="화"
-                    android:textColor="#BABABA"
+                    android:textColor="@drawable/confirm_btn_week_text"
                     android:textSize="20sp"
                     android:stateListAnimator="@null"
-                    android:background="@drawable/week_c_back" />
+                    android:background="@drawable/confirm_btn_week" />
 
                 <View
                     android:layout_width="0dp"
@@ -210,10 +213,10 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="8dp"
                     android:text="수"
-                    android:textColor="#BABABA"
+                    android:textColor="@drawable/confirm_btn_week_text"
                     android:textSize="20sp"
                     android:stateListAnimator="@null"
-                    android:background="@drawable/week_c_back" />
+                    android:background="@drawable/confirm_btn_week" />
 
                 <View
                     android:layout_width="0dp"
@@ -226,10 +229,10 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="8dp"
                     android:text="목"
-                    android:textColor="#BABABA"
+                    android:textColor="@drawable/confirm_btn_week_text"
                     android:textSize="20sp"
                     android:stateListAnimator="@null"
-                    android:background="@drawable/week_c_back" />
+                    android:background="@drawable/confirm_btn_week" />
 
                 <View
                     android:layout_width="0dp"
@@ -242,10 +245,10 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="8dp"
                     android:text="금"
-                    android:textColor="#BABABA"
+                    android:textColor="@drawable/confirm_btn_week_text"
                     android:textSize="20sp"
                     android:stateListAnimator="@null"
-                    android:background="@drawable/week_c_back" />
+                    android:background="@drawable/confirm_btn_week" />
 
                 <View
                     android:layout_width="0dp"
@@ -258,10 +261,10 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="8dp"
                     android:text="토"
-                    android:textColor="#BABABA"
+                    android:textColor="@drawable/confirm_btn_week_text"
                     android:textSize="20sp"
                     android:stateListAnimator="@null"
-                    android:background="@drawable/week_c_back" />
+                    android:background="@drawable/confirm_btn_week" />
 
                 <View
                     android:layout_width="0dp"
@@ -274,10 +277,10 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="8dp"
                     android:text="일"
-                    android:textColor="#BABABA"
+                    android:textColor="@drawable/confirm_btn_week_text"
                     android:textSize="20sp"
                     android:stateListAnimator="@null"
-                    android:background="@drawable/week_c_back" />
+                    android:background="@drawable/confirm_btn_week" />
 
             </LinearLayout>
 
@@ -292,14 +295,19 @@
                 android:textColor="#000000"
                 android:textSize="18sp" />
 
-            <Spinner
+            <EditText
                 android:id="@+id/choiceEatNumber"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginLeft="25dp"
+                android:layout_marginStart="25dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginRight="25dp"
-                android:background="@drawable/yellow_rounding_box" />
+                android:layout_marginEnd="25dp"
+                android:inputType="number"
+                android:background="@drawable/yellow_rounding_box"
+                android:fontFamily="@font/jejugothic"
+                android:hint="1"
+                android:paddingLeft="14dp"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/medTotalNumberQ"
