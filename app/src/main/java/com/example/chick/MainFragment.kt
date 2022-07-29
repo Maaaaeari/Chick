@@ -2,18 +2,15 @@ package com.example.chick
 
 import DrugViewAdapter
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -107,6 +104,45 @@ class MainFragment : Fragment() {
         cursor.close()
         sqlDB.close()
     }
+
+//    companion object{
+//        // 복용 완료 update 메소드
+//        fun eatDrug(medId : Int, preStatus : Int){
+//            var dbManager: DBManager=DBManager(this, "drugDB", null, 1)
+//            var sqlDB: SQLiteDatabase
+//
+//            // 복용완료
+//            val eatUpdate = "update drugTBL set eatDone=1 where medId="+medId+";"
+//            // 복용취소
+//            val unEatUpdate = "update drugTBL set eatDone=0 where medId="+medId+";"
+//            // 쓰기전용 데이터베이스 변수
+//            sqlDB = dbManager.writableDatabase
+//            // 데이터 수정
+//            if(preStatus==0){
+//                sqlDB.execSQL(eatUpdate)
+//            }else{
+//                sqlDB.execSQL(unEatUpdate)
+//            }
+//
+//        }
+//    }
+
+//    // 복용 완료 update 메소드
+//    fun eatDrug(medId : Int, preStatus : Int){
+//        // 복용완료
+//        val eatUpdate = "update drugTBL set eatDone=1 where medId="+medId+";"
+//        // 복용취소
+//        val unEatUpdate = "update drugTBL set eatDone=0 where medId="+medId+";"
+//        // 쓰기전용 데이터베이스 변수
+//        sqlDB = dbManager.writableDatabase
+//        // 데이터 수정
+//        if(preStatus==0){
+//            sqlDB.execSQL(eatUpdate)
+//        }else{
+//            sqlDB.execSQL(unEatUpdate)
+//        }
+//
+//    }
 
 
 }

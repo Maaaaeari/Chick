@@ -2,6 +2,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ClipData
 import android.content.Context
+import android.database.sqlite.SQLiteDatabase
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,9 +12,12 @@ import android.widget.*
 import androidx.appcompat.view.menu.MenuView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.chick.DBManager
 import com.example.chick.DrugAll
+import com.example.chick.MainFragment
 import com.example.chick.R
 
 
@@ -27,6 +31,8 @@ class DrugViewAdapter(val drugAllList: ArrayList<DrugAll>): RecyclerView.Adapter
 
     // 뷰 홀더 준비
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrugViewAdapter.DrugViewHolder {
+
+
         var view =
             LayoutInflater.from(parent.context).inflate(R.layout.item_new_druglist, parent, false)
         return DrugViewHolder(view).apply {
@@ -36,8 +42,12 @@ class DrugViewAdapter(val drugAllList: ArrayList<DrugAll>): RecyclerView.Adapter
             }
             // 복용 버튼
             btnEat.setOnClickListener {
-
+//                val curPos : Int = adapterPosition      // 터치된 어댑터의 포지션
+//                val drug : DrugAll = drugAllList.get(curPos)        // 터치된 위치의 데이터 가져오기
+//                MainFragment?.eatDrug(drug.medId!!, drug.eatDone!!)
+//                //eatDrug(drug.medId, drug.eatDone)
             }
+
         }
     }
     // 뷰 홀더의 뷰에 데이터 호출 (실제 데이터 출력)
