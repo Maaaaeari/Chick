@@ -23,22 +23,35 @@ class ProgressAdapter(val druglist:ArrayList<ProDrugAll>) : RecyclerView.Adapter
     override fun onBindViewHolder(holder: ProViewHolder, position: Int) {
         //리사이클러뷰 약 이름 데이터 출력
         holder.txtProName.text = druglist!![position].medName
+
         //리사이클러뷰 주기 및 요일, 시간 데이터 출력
         if(druglist!![position].daysOfWeek=="월화수목금토일"){
             holder.txtProRotation.text = "매일" + "  1회 "+druglist!![position].eatNumber+"정"
         }else{
             holder.txtProRotation.text = druglist!![position].daysOfWeek + "  1회 "+druglist!![position].eatNumber+"정"
         }
+
         //리사이클러뷰 복용 시간 데이터 출력
-        var time = druglist!![position].ampm + " "+druglist!![position].alarmHour+":"+druglist!![position].alarmMin
-        holder.txtProTime.text = time
+        if(druglist!![position].alarmMin!! < 10 ){
+            var time = druglist!![position].ampm + " "+druglist!![position].alarmHour+":"+ "0" + druglist!![position].alarmMin
+            holder.txtProTime.text = time
+        }
+        else{
+            var time = druglist!![position].ampm + " "+druglist!![position].alarmHour+":"+ druglist!![position].alarmMin
+            holder.txtProTime.text = time
+        }
+
         //리사이클러뷰 복용 퍼센트 출력
-        var percent = "" + (druglist!![position].currentNumber!! / druglist!![position].totalNumber!!)*100 + "%"
-        holder.txtProPercent.text = percent
+        var cNumber  = druglist!![position].currentNumber.toString().toDouble()
+        var tNumber  = druglist!![position].totalNumber.toString().toDouble()
+        var percent  = ((cNumber!! / tNumber!!) * 100).toInt()
+        holder.txtProPercent.text = percent.toString() + "%"
+
         //리사이클러뷰 프로그레스바 출력
 
         //리사이클러뷰 복용 개수 데이터 출력
         holder.txtProCount.text = "" + druglist!![position].currentNumber + "/" + druglist!![position].totalNumber + "정 복용"
+
         // 약 아이콘 변경
         var img = druglist!![position].medIcon
         when(img){

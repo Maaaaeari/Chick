@@ -54,7 +54,7 @@ class ProgressFragment : Fragment() {
         //읽기전용 데이터베이스 변수
         sqlDB = dbManager.readableDatabase
         //데이터를 받아줌
-        var cursor = sqlDB.rawQuery("select * from drugTBL where goalDone=0;",null)
+        var cursor = sqlDB.rawQuery("select * from drugTBL;",null)
 
         //반복문을 사용하여 list 에 데이터를 넘겨 줍시다.
         while(cursor.moveToNext()){
@@ -68,8 +68,9 @@ class ProgressFragment : Fragment() {
             var medIcon = cursor.getInt(cursor.getColumnIndex("medIcon"))
             var currentNumber = cursor.getInt(cursor.getColumnIndex("currentNumber"))
             var totalNumber = cursor.getInt(cursor.getColumnIndex("totalNumber"))
+            var eatDone = cursor.getInt(cursor.getColumnIndex("eatDone"))
 
-            drugProList.add(ProDrugAll(medId,medName,ampm,alarmHour,alarmMin,daysOfWeek,eatNumber,medIcon, currentNumber, totalNumber))
+            drugProList.add(ProDrugAll(medId,medName,ampm,alarmHour,alarmMin,daysOfWeek,eatNumber,medIcon, currentNumber, totalNumber, eatDone))
         }
         cursor.close()
         sqlDB.close()

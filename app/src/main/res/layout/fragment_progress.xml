@@ -123,7 +123,9 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewPro"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingBottom="100dp"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
