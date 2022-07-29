@@ -28,7 +28,7 @@ class ProgressFragment : Fragment() {
         var view = LayoutInflater.from(activity).inflate(R.layout.fragment_progress, container, false)
 
         // 바인딩
-        txtProGoal = view.findViewById(R.id.texttotal)
+        txtProGoal = view.findViewById(R.id.txtTopGoal)
         recyclerViewDrugAll = view.findViewById(R.id.recyclerViewPro)
 
         // DB 생성

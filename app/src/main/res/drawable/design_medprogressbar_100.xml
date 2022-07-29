@@ -10,7 +10,11 @@
         <scale android:scaleWidth="100%">
             <shape>
                 <corners android:radius="10dp"/>
-                <solid android:color="#45A6FF"/>
+                <gradient
+                    android:type="linear"
+                    android:angle="-90"
+                    android:startColor="#FD948E"
+                    android:endColor="#E27C48"/>
             </shape>
         </scale>
     </item>

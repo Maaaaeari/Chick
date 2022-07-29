@@ -5,8 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.view.menu.ActionMenuItemView
+import androidx.cardview.widget.CardView
+import androidx.core.content.res.TypedArrayUtils.getDrawable
+import androidx.core.content.res.TypedArrayUtils.getResourceId
 import androidx.recyclerview.widget.RecyclerView
 
 class ProgressAdapter(val druglist:ArrayList<ProDrugAll>) : RecyclerView.Adapter<ProgressAdapter.ProViewHolder>(){
@@ -82,7 +86,18 @@ class ProgressAdapter(val druglist:ArrayList<ProDrugAll>) : RecyclerView.Adapter
             }
         }
 
+        // 100%일 경우 1.카드 및 프로그레스바 색 변화 2. 제일 하단으로 이동
+        if(percent == 100) {
+            holder.cardPro.setBackgroundResource(R.drawable.shape_round_darkyellow) //카드 색 변화
+            //holder.prbbar.setProgressDrawable("@drawable/design_medprogressbar_100")
+
+        }
+        else{
+
+        }
+
     }
+
 
     //복용률_뷰홀더
     class ProViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -93,6 +108,7 @@ class ProgressAdapter(val druglist:ArrayList<ProDrugAll>) : RecyclerView.Adapter
         val txtProPercent : TextView = itemView.findViewById(R.id.txtProPercent)   // 약 퍼센트
         val prbbar : ProgressBar = itemView.findViewById(R.id.MedprogressBar)    // 약 프로그레스바
         val txtProCount : TextView = itemView.findViewById(R.id.txtProCount)    // 약 복용 개수(20/100정)
+        val cardPro : RelativeLayout = itemView.findViewById(R.id.cardPro)  // 카드 색
 
     }
 }
