@@ -55,6 +55,7 @@
             android:layout_height="wrap_content"
 
             android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/txtTop1"
             android:gravity="center"
             android:paddingLeft="10dp"
