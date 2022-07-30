@@ -1,29 +1,33 @@
 package com.example.chick
 
-import android.app.Application
+import android.R.attr.button
 import android.app.Dialog
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.database.sqlite.SQLiteDatabase
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.icu.util.Calendar
 import android.os.Build
 import android.os.Bundle
-import android.provider.ContactsContract
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.WindowManager
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 
+
 class EditAlarmActivity : AppCompatActivity() {
+    //editText 입력여부
+    var isEditName: Int = 0
+    var isEditEat: Int = 0
+    var isEditTotal: Int = 0
+
     //아이디
     var medId: Long = 0
     //무슨 약인가요?
@@ -157,6 +161,54 @@ class EditAlarmActivity : AppCompatActivity() {
         btnSun?.setOnClickListener {
             btnSun?.isSelected = btnSun?.isSelected != true
         }
+
+        //editText 입력여부
+        medNameData.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+            override fun afterTextChanged(editable: Editable) {
+                if (editable.length > 0) {
+                    isEditName = 1
+                } else {
+                    isEditName = 0
+                }
+            }
+        })
+        eatNumberData.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+            override fun afterTextChanged(editable: Editable) {
+                if (editable.length > 0) {
+                    isEditEat = 1
+                } else {
+                    isEditEat = 0
+                }
+            }
+        })
+        totalNumberData.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+            override fun afterTextChanged(editable: Editable) {
+                if (editable.length > 0) {
+                    isEditTotal = 1
+                } else {
+                    isEditTotal = 0
+                }
+            }
+        })
+
+//        if(isEditName == 0) {
+//            medEditConfirm.setEnabled(false)
+//        } else if(ampm == "") {
+//            medEditConfirm.setEnabled(false)
+//        } else if(isEditEat == 0) {
+//            medEditConfirm.setEnabled(false)
+//        } else if(isEditTotal == 0) {
+//            medEditConfirm.setEnabled(false)
+//        } else {
+//            medEditConfirm.setEnabled(true)
+//        }
+
         //확인 버튼
         medEditConfirm.setOnClickListener {
             //아이디
@@ -222,10 +274,11 @@ class EditAlarmActivity : AppCompatActivity() {
             } else if(eatNumber > totalNumber) {
 
             } else {
+                val allTime = alarmHour.toString()+alarmMin.toString()
                 //DB 생성
                 dbManager = DBManager(this, "drugDB", null, 1)
                 sqlDB = dbManager.writableDatabase
-                sqlDB.execSQL("INSERT INTO drugTBL VALUES ('"+medId+"', '"+medName+"','"+ampm+"','"+alarmHour+"','"+alarmMin+"','"+daysOfWeek+"','"+eatNumber+"','"+totalNumber+"',0,'"+medIcon+"',0,0);")
+                sqlDB.execSQL("INSERT INTO drugTBL VALUES ('"+medId+"','"+medName+"','"+ampm+"','"+allTime+"','"+alarmHour+"','"+alarmMin+"','"+daysOfWeek+"','"+eatNumber+"','"+totalNumber+"',0,'"+medIcon+"',0,0);")
                 sqlDB.close()
 
                 //화면 전환
