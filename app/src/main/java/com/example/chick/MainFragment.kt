@@ -91,8 +91,8 @@ class MainFragment : Fragment() {
     @SuppressLint("Range")
     private fun selectDrug(){
 
-//        sqlDB = dbManager.writableDatabase
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (13, '비타민민민', '오전', 11, 3, 30, '월수금', 3, 30, 28, 4, 0, 0)")
+/*        sqlDB = dbManager.writableDatabase
+        sqlDB.execSQL("INSERT INTO drugTBL VALUES (13, '비타민민민', '오전', 11, 3, 30, '월수금', 3, 30, 28, 4, 0, 0)")*/
 
         // 알람 조회
         val selectAll = "select * from drugTBL where goalDone=0;"

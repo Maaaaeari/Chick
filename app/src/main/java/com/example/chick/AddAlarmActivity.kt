@@ -223,11 +223,11 @@ class AddAlarmActivity : AppCompatActivity() {
             } else if(eatNumber > totalNumber) {
 
             } else {
+                alarmTime = (alarmHour.toString()+alarmMin.toString()).toInt()
 
                 if(alarmHour>=13){
                     alarmHour = alarmHour-12
                 }
-                alarmTime = (alarmHour.toString()+alarmMin.toString()).toInt()
 
                 //DB 생성
                 dbManager = DBManager(this, "drugDB", null, 1)
