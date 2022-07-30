@@ -18,6 +18,8 @@ class ProgressFragment : Fragment() {
     lateinit var dbManager: DBManager
     lateinit var sqlDB: SQLiteDatabase
 
+    var goalDoneData : Int = 1
+
     // ProData에 있는 ProDrugAll
     lateinit var drugProList: ArrayList<ProDrugAll>
 
@@ -44,13 +46,34 @@ class ProgressFragment : Fragment() {
         // 리사이클러 뷰 어댑터 연결
         recyclerViewDrugAll.adapter = ProgressAdapter(drugProList)
 
-
         // 목표개수 변경
-
+        selectGoal()
+        if(goalDoneData == 1){
+            goalDoneData += 1
+        }
+        txtProGoal.text = goalDoneData.toString() + "개"
 
         return view
     }
 
+
+    @SuppressLint("Range")
+    private fun selectGoal(){
+        //전체 조회
+        val selectAll = "select * from drugTBL;"
+        //읽기전용 데이터베이스 변수
+        sqlDB = dbManager.readableDatabase
+        //데이터 받기
+        var cursor = sqlDB.rawQuery("select * from drugTBL;",null)
+
+        if(cursor.moveToNext()){
+            goalDoneData = cursor.getInt(cursor.getColumnIndex("goalDone"))
+        }
+
+        cursor.close()
+        sqlDB.close()
+        dbManager.close()
+    }
 
 
     @SuppressLint("Range")
@@ -75,8 +98,9 @@ class ProgressFragment : Fragment() {
             var currentNumber = cursor.getInt(cursor.getColumnIndex("currentNumber"))
             var totalNumber = cursor.getInt(cursor.getColumnIndex("totalNumber"))
             var eatDone = cursor.getInt(cursor.getColumnIndex("eatDone"))
+            var goalDone = cursor.getInt(cursor.getColumnIndex("goalDone"))
 
-            drugProList.add(ProDrugAll(medId,medName,ampm,alarmHour,alarmMin,daysOfWeek,eatNumber,medIcon, currentNumber, totalNumber, eatDone))
+            drugProList.add(ProDrugAll(medId,medName,ampm,alarmHour,alarmMin,daysOfWeek,eatNumber,medIcon, currentNumber, totalNumber, eatDone, goalDone))
         }
         cursor.close()
         sqlDB.close()
