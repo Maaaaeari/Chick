@@ -2,6 +2,6 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:drawable="@drawable/ic_drugs_4"
-        android:width="45dp"
-        android:height="45dp" />
+        android:width="35dp"
+        android:height="35dp" />
 </layer-list>

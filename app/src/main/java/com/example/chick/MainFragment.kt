@@ -89,7 +89,6 @@ class MainFragment : Fragment() {
 //        sqlDB.execSQL("INSERT INTO drugTBL VALUES (7, '글루콤','오후', 11,20,'월화수목금토일',1,30,30,7,0,1)")
 //        sqlDB.execSQL("INSERT INTO drugTBL VALUES (8, '비타민d','오전', 10,00,'금토일',2,40,40,8,0,1)")
 
-
         //반복문을 사용하여 list 에 데이터를 넘겨 줍시다.
         while(cursor.moveToNext()){
             var medId = cursor.getInt(cursor.getColumnIndex("medId"))

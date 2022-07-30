@@ -40,6 +40,7 @@
             android:textSize="20sp"
             tools:layout_editor_absoluteX="173dp"
             tools:layout_editor_absoluteY="16dp" />
+
     </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
@@ -92,7 +93,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginRight="25dp"
                     android:background="@drawable/yellow_circle"
-                    app:srcCompat="@drawable/ic_button_pills" />
+                    android:src="@drawable/size_drugs_b_1" />
 
             </LinearLayout>
 

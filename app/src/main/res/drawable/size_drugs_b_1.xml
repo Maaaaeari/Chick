@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:drawable="@drawable/ic_drugs_5"
-        android:width="24dp"
-        android:height="35dp" />
+        android:drawable="@drawable/ic_drugs_1"
+        android:width="18dp"
+        android:height="17dp" />
 </layer-list>
