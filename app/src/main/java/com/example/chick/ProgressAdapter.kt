@@ -59,6 +59,12 @@ class ProgressAdapter(val druglist:ArrayList<ProDrugAll>) : RecyclerView.Adapter
         var cNumber  = druglist!![position].currentNumber.toString().toDouble()
         var tNumber  = druglist!![position].totalNumber.toString().toDouble()
         var percent  = ((cNumber!! / tNumber!!) * 100).toInt()
+        if(percent > 100){
+            percent = 100
+        }
+        else if(percent <= 100){
+            percent
+        }
         holder.txtProPercent.text = percent.toString() + "%"
 
         //리사이클러뷰 프로그레스바 출력
