@@ -1,5 +1,6 @@
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.PendingIntent
 import android.content.ClipData
 import android.content.Context
 import android.content.Intent
@@ -10,13 +11,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewParent
 import android.widget.*
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.view.menu.MenuView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chick.*
+import kotlin.math.log
 
 
 // 뷰 어댑터
@@ -40,19 +44,27 @@ class DrugViewAdapter(val drugAllList: ArrayList<DrugAll>): RecyclerView.Adapter
             }
             // 복용 버튼
             btnEat.setOnClickListener {
-                val curPos : Int = adapterPosition      // 터치된 어댑터의 포지션
-                val drug : DrugAll = drugAllList.get(curPos)        // 터치된 위치의 데이터 가져오기
-                MainFragment?.eatDrug(drug.medId!!, drug.eatDone!!)
+                var curPos : Int = adapterPosition      // 터치된 어댑터의 포지션
+                var drug : DrugAll = drugAllList.get(curPos)        // 터치된 위치의 데이터 가져오기
+                MainFragment?.eatDrug(drug.medId!!, drug.eatDone!!, drug.currentNumber!!)
 
+//                curPos = adapterPosition
+//                drug = drugAllList.get(curPos)
+                //                Log.d("33333", prestatus.toString())
 
-                var eatDone = drug.eatDone
-                if (eatDone == 1){
-                    card.setBackgroundResource(R.drawable.bg_drug_gray)
-                    btnEat.setBackgroundResource(R.drawable.ic_main_eatbtn1)
-                }else{
-                    card.setBackgroundResource(R.drawable.bg_drug_blue)
-                    btnEat.setBackgroundResource(R.drawable.ic_main_eatbtn2)
-                }
+//                var prestatus = drug.eatDone
+//                if (prestatus == 1){
+//                    card.setBackgroundResource(R.drawable.bg_drug_gray)
+//                    btnEat.setBackgroundResource(R.drawable.ic_main_eatbtn1)
+//                }else if (prestatus == 0){
+//                    card.setBackgroundResource(R.drawable.bg_drug_blue)
+//                    btnEat.setBackgroundResource(R.drawable.ic_main_eatbtn2)
+//                }
+
+                val intent = Intent(MainFragment.ApplicationContext(), MainActivity::class.java)
+                intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                MainFragment.ApplicationContext().startActivity(intent)
+
 
             }
 
@@ -69,8 +81,16 @@ class DrugViewAdapter(val drugAllList: ArrayList<DrugAll>): RecyclerView.Adapter
         }else{
             holder.txtRotation.text = drugAllList!![position].daysOfWeek + "  1회 "+drugAllList!![position].eatNumber+"정"
         }
-        var time = drugAllList!![position].ampm + " "+drugAllList!![position].alarmHour+":"+drugAllList!![position].alarmMin
-        holder.txtTime.text = time      // 약 복용시간
+
+        //리사이클러뷰 복용 시간 데이터 출력
+        if(drugAllList!![position].alarmMin!! < 10 ){
+            var time = drugAllList!![position].ampm + " "+drugAllList!![position].alarmHour+":"+ "0" + drugAllList!![position].alarmMin
+            holder.txtTime.text = time  // 약 복용시간
+        }
+        else{
+            var time = drugAllList!![position].ampm + " "+drugAllList!![position].alarmHour+":"+ drugAllList!![position].alarmMin
+            holder.txtTime.text = time  // 약 복용시간
+        }
 
         // 복용 여부에 따른 카드뷰 색상 변경
         var eatDone = drugAllList!![position].eatDone

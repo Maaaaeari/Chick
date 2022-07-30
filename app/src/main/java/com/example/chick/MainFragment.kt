@@ -5,13 +5,16 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
+import android.os.Build.VERSION_CODES.M
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -58,14 +61,12 @@ class MainFragment : Fragment() {
         // 리사이클러 뷰 어댑터 연결
         recyclerViewDrugAll.adapter = DrugViewAdapter(drugAllList)
 
+
         // 알람생성 버튼
         btnPlus.setOnClickListener{
             val intent = Intent(activity, EditAlarmActivity::class.java)
             startActivity(intent)
         }
-
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_main, container, false)
 
         return view
     }
@@ -103,10 +104,11 @@ class MainFragment : Fragment() {
             var alarmMin = cursor.getInt(cursor.getColumnIndex("alarmMin"))
             var daysOfWeek = cursor.getString(cursor.getColumnIndex("daysOfWeek")).toString()
             var eatNumber = cursor.getInt(cursor.getColumnIndex("eatNumber"))
+            var currentNumber = cursor.getInt(cursor.getColumnIndex("currentNumber"))
             var medIcon = cursor.getInt(cursor.getColumnIndex("medIcon"))
             var eatDone = cursor.getInt(cursor.getColumnIndex("eatDone"))
 
-            drugAllList.add(DrugAll(medId,medName,ampm,alarmHour,alarmMin,daysOfWeek,eatNumber,medIcon,eatDone))
+            drugAllList.add(DrugAll(medId,medName,ampm,alarmHour,alarmMin,daysOfWeek,eatNumber,currentNumber,medIcon,eatDone))
         }
         cursor.close()
         sqlDB.close()
@@ -115,31 +117,32 @@ class MainFragment : Fragment() {
     companion object{
 
         lateinit var instance: MainFragment
+
         fun ApplicationContext() : Context {
             return instance.requireContext()
         }
 
         // 복용 완료 update 메소드
-        fun eatDrug(medId : Int, preStatus : Int){
+        fun eatDrug(medId : Int, preStatus : Int, preNumber : Int){
             var dbManager: DBManager=DBManager(MainFragment.ApplicationContext(), "drugDB", null, 1)
             var sqlDB: SQLiteDatabase
-            //var recyclerViewDrugAll = MainFragment.ApplicationContext().findViewById(R.id.recyclerViewMain)
+            var preNum : Int
 
             // 복용완료
-            val eatUpdate = "update drugTBL set eatDone=1 where medId="+medId+";"
+            preNum = preNumber+1
+            val eatUpdate = "update drugTBL set eatDone=1, currentNumber=${preNum} where medId="+medId+";"
             // 복용취소
-            val unEatUpdate = "update drugTBL set eatDone=0 where medId="+medId+";"
+            preNum = preNumber-1
+            val unEatUpdate = "update drugTBL set eatDone=0, currentNumber=${preNum} where medId="+medId+";"
             // 쓰기전용 데이터베이스 변수
             sqlDB = dbManager.writableDatabase
             // 데이터 수정
             if(preStatus==0){
                 sqlDB.execSQL(eatUpdate)
-            }else{
+            }else if(preStatus==1){
                 sqlDB.execSQL(unEatUpdate)
             }
 
-            //아이템이 추가되고 UI가 바뀐걸 업데이트해주는코드
-            //recyclerViewDrugAll.adapter?.notifyDataSetChanged()
 
         }
     }

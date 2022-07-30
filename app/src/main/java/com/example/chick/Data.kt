@@ -9,6 +9,7 @@ data class DrugAll(
     var alarmMin :  Int? =  null,
     var daysOfWeek :  String? =  null,
     var eatNumber :  Int? =  null,
+    var currentNumber : Int? = null,
     var medIcon :  Int? =  null,
     var eatDone : Int? = null
 )

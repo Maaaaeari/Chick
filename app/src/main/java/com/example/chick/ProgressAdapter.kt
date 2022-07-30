@@ -1,5 +1,7 @@
 package com.example.chick
 
+import android.content.res.Resources
+import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
 import android.view.LayoutInflater
 import android.view.View
@@ -93,7 +95,8 @@ class ProgressAdapter(val druglist:ArrayList<ProDrugAll>) : RecyclerView.Adapter
             holder.cardPro.setBackgroundResource(R.drawable.shape_round_darkyellow) //카드 색 변화
 
             //프로그레스바 색 변화
-            //holder.prbbar.setProgressDrawable("@drawable/design_medprogressbar_100")
+            //holder.prbbar.setBackgroundColor(R.color)
+            //holder.prbbar.indeterminateDrawable.setColorFilter(0xE27C48,android.graphics.PorterDuff.Mode.MULTIPLY)
 
             //아이텐 위치 변경
         }
@@ -116,4 +119,12 @@ class ProgressAdapter(val druglist:ArrayList<ProDrugAll>) : RecyclerView.Adapter
         val cardPro : RelativeLayout = itemView.findViewById(R.id.cardPro)  // 카드 색
 
     }
+}
+
+private fun Drawable.colorFilter(black: Int) {
+
+}
+
+private fun Resources.setBackgroundColor(purple200: Int) {
+
 }
