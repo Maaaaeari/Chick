@@ -2,6 +2,7 @@ package com.example.chick
 
 import DrugViewAdapter
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
@@ -27,6 +28,10 @@ class MainFragment : Fragment() {
 
     // Data에 있는 DrugAll
     lateinit var drugAllList: ArrayList<DrugAll>
+
+    init{
+        instance = this
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -105,27 +110,37 @@ class MainFragment : Fragment() {
         sqlDB.close()
     }
 
-//    companion object{
-//        // 복용 완료 update 메소드
-//        fun eatDrug(medId : Int, preStatus : Int){
-//            var dbManager: DBManager=DBManager(this, "drugDB", null, 1)
-//            var sqlDB: SQLiteDatabase
-//
-//            // 복용완료
-//            val eatUpdate = "update drugTBL set eatDone=1 where medId="+medId+";"
-//            // 복용취소
-//            val unEatUpdate = "update drugTBL set eatDone=0 where medId="+medId+";"
-//            // 쓰기전용 데이터베이스 변수
-//            sqlDB = dbManager.writableDatabase
-//            // 데이터 수정
-//            if(preStatus==0){
-//                sqlDB.execSQL(eatUpdate)
-//            }else{
-//                sqlDB.execSQL(unEatUpdate)
-//            }
-//
-//        }
-//    }
+    companion object{
+
+        lateinit var instance: MainFragment
+        fun ApplicationContext() : Context {
+            return instance.requireContext()
+        }
+
+        // 복용 완료 update 메소드
+        fun eatDrug(medId : Int, preStatus : Int){
+            var dbManager: DBManager=DBManager(MainFragment.ApplicationContext(), "drugDB", null, 1)
+            var sqlDB: SQLiteDatabase
+            //var recyclerViewDrugAll = MainFragment.ApplicationContext().findViewById(R.id.recyclerViewMain)
+
+            // 복용완료
+            val eatUpdate = "update drugTBL set eatDone=1 where medId="+medId+";"
+            // 복용취소
+            val unEatUpdate = "update drugTBL set eatDone=0 where medId="+medId+";"
+            // 쓰기전용 데이터베이스 변수
+            sqlDB = dbManager.writableDatabase
+            // 데이터 수정
+            if(preStatus==0){
+                sqlDB.execSQL(eatUpdate)
+            }else{
+                sqlDB.execSQL(unEatUpdate)
+            }
+
+            //아이템이 추가되고 UI가 바뀐걸 업데이트해주는코드
+            //recyclerViewDrugAll.adapter?.notifyDataSetChanged()
+
+        }
+    }
 
 //    // 복용 완료 update 메소드
 //    fun eatDrug(medId : Int, preStatus : Int){

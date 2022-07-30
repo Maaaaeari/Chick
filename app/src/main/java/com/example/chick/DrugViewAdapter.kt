@@ -2,6 +2,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ClipData
 import android.content.Context
+import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,10 +16,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.chick.DBManager
-import com.example.chick.DrugAll
-import com.example.chick.MainFragment
-import com.example.chick.R
+import com.example.chick.*
 
 
 // 뷰 어댑터
@@ -42,10 +40,20 @@ class DrugViewAdapter(val drugAllList: ArrayList<DrugAll>): RecyclerView.Adapter
             }
             // 복용 버튼
             btnEat.setOnClickListener {
-//                val curPos : Int = adapterPosition      // 터치된 어댑터의 포지션
-//                val drug : DrugAll = drugAllList.get(curPos)        // 터치된 위치의 데이터 가져오기
-//                MainFragment?.eatDrug(drug.medId!!, drug.eatDone!!)
-//                //eatDrug(drug.medId, drug.eatDone)
+                val curPos : Int = adapterPosition      // 터치된 어댑터의 포지션
+                val drug : DrugAll = drugAllList.get(curPos)        // 터치된 위치의 데이터 가져오기
+                MainFragment?.eatDrug(drug.medId!!, drug.eatDone!!)
+
+
+//                var eatDone = drug.eatDone
+//                if (eatDone == 1){
+//                    card.setBackgroundResource(R.drawable.bg_drug_gray)
+//                    btnEat.setBackgroundResource(R.drawable.ic_main_eatbtn1)
+//                }else{
+//                    card.setBackgroundResource(R.drawable.bg_drug_blue)
+//                    btnEat.setBackgroundResource(R.drawable.ic_main_eatbtn2)
+//                }
+
             }
 
         }
