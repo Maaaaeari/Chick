@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="#ffffff"
+    android:foregroundTint="#FFFFFF"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".EditAlarmActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/EditToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/menu_top_delete">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:background="@null"
+            android:src="@drawable/size_ic_back" />
+
+        <TextView
+            android:id="@+id/txtToolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/jejugothic"
+            android:text="약 알람 수정"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="173dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/medNameQ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="35dp"
+                android:fontFamily="@font/jejugothic"
+                android:text="무슨 약인가요?"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/medName"
+                    android:layout_width="290dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/yellow_rounding_box"
+                    android:fontFamily="@font/jejugothic"
+                    android:hint="약 이름"
+                    android:paddingLeft="14dp"
+                    android:textSize="20sp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:id="@+id/medChoice"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical|right"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="25dp"
+                    android:background="@drawable/yellow_circle"
+                    android:src="@drawable/size_drugs_b_1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/medTimeQ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="25dp"
+                    android:fontFamily="@font/jejugothic"
+                    android:text="몇 시에 복용하나요?"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/medTimeH"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="25dp"
+                    android:fontFamily="@font/jejugothic"
+                    android:text="복용 시간에 알람이 울려요."
+                    android:textColor="#7B7B7B"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/choiceAmPm"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginTop="8dp"
+                    android:stateListAnimator="@null"
+                    android:fontFamily="@font/jejugothic"
+                    android:textSize="20dp"
+                    android:textColor="#E9C128"
+                    android:background="@drawable/yellow_rounding_box" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnMainVideo"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="25dp"
+                android:background="@null"
+                android:drawableLeft="@drawable/size_ic_alarm_plus"
+                android:fontFamily="@font/jejugothic"
+                android:foregroundTint="#FFFFFF"
+                android:text="시간추가"
+                android:textColor="#7B7B7B"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/medWhenQ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/jejugothic"
+                android:text="언제마다 복용하나요?"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp">
+
+                <Button
+                    android:id="@+id/btnMon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:text="월"
+                    android:textColor="@drawable/confirm_btn_week_text"
+                    android:textSize="20sp"
+                    android:stateListAnimator="@null"
+                    android:background="@drawable/confirm_btn_week" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btnTue"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:text="화"
+                    android:textColor="@drawable/confirm_btn_week_text"
+                    android:textSize="20sp"
+                    android:stateListAnimator="@null"
+                    android:background="@drawable/confirm_btn_week" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btnWed"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:text="수"
+                    android:textColor="@drawable/confirm_btn_week_text"
+                    android:textSize="20sp"
+                    android:stateListAnimator="@null"
+                    android:background="@drawable/confirm_btn_week" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btnThu"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:text="목"
+                    android:textColor="@drawable/confirm_btn_week_text"
+                    android:textSize="20sp"
+                    android:stateListAnimator="@null"
+                    android:background="@drawable/confirm_btn_week" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btnFri"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:text="금"
+                    android:textColor="@drawable/confirm_btn_week_text"
+                    android:textSize="20sp"
+                    android:stateListAnimator="@null"
+                    android:background="@drawable/confirm_btn_week" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btnSat"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:text="토"
+                    android:textColor="@drawable/confirm_btn_week_text"
+                    android:textSize="20sp"
+                    android:stateListAnimator="@null"
+                    android:background="@drawable/confirm_btn_week" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btnSun"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:text="일"
+                    android:textColor="@drawable/confirm_btn_week_text"
+                    android:textSize="20sp"
+                    android:stateListAnimator="@null"
+                    android:background="@drawable/confirm_btn_week" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/medEatNumberQ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/jejugothic"
+                android:text="1회당 몇 정씩 복용하나요?"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/choiceEatNumber"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="25dp"
+                android:inputType="number"
+                android:background="@drawable/yellow_rounding_box"
+                android:fontFamily="@font/jejugothic"
+                android:hint="1"
+                android:paddingLeft="14dp"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/medTotalNumberQ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/jejugothic"
+                android:text="총 목표 복용 개수는 몇 정인가요?"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/editTotalNumber"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="25dp"
+                android:inputType="number"
+                android:background="@drawable/yellow_rounding_box"
+                android:fontFamily="@font/jejugothic"
+                android:hint="1"
+                android:paddingLeft="14dp"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <android.widget.Button
+            android:id="@+id/medEditCancel"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="25dp"
+            android:background="@drawable/cancel_box"
+            android:fontFamily="@font/jejugothic"
+            android:text="취소"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <android.widget.Button
+            android:id="@+id/medEditConfirm"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/confirm_box"
+            android:fontFamily="@font/jejugothic"
+            android:text="저장"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

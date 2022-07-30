@@ -23,7 +23,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-class EditAlarmActivity : AppCompatActivity() {
+class AddAlarmActivity : AppCompatActivity() {
     //아이디
     var medId: Long = 0
     //무슨 약인가요?
@@ -63,7 +63,7 @@ class EditAlarmActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit_alarm)
+        setContentView(R.layout.activity_add_alarm)
 
         //무슨 약인가요?
         medNameData = findViewById<EditText>(R.id.medName)
@@ -87,11 +87,11 @@ class EditAlarmActivity : AppCompatActivity() {
         medEditConfirm = findViewById<Button>(R.id.medEditConfirm)
 
         //약 아이콘
-        val dialog = CustomDialogEdit(this)
+        val dialog = CustomDialogAdd(this)
         medChoice.setOnClickListener {
             dialog.myDig()
         }
-        dialog.setOnClickedListener(object : CustomDialogEdit.ButtonClickListener {
+        dialog.setOnClickedListener(object : CustomDialogAdd.ButtonClickListener {
             override fun onClicked(myName: Int) {
                 when(myName) {
                     1 -> medChoice.setImageResource(R.drawable.size_drugs_b_1)
@@ -236,7 +236,7 @@ class EditAlarmActivity : AppCompatActivity() {
     }
 }
 
-class CustomDialogEdit(context: Context) {
+class CustomDialogAdd(context: Context) {
     private val dialog = Dialog(context)
 
     fun myDig() {
