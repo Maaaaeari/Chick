@@ -95,7 +95,7 @@ class MainFragment : Fragment() {
 //        sqlDB.execSQL("INSERT INTO drugTBL VALUES (13, '비타민민민', '오전', 11, 3, 30, '월수금', 3, 30, 28, 4, 0, 0)")
 
         // 알람 조회
-        val selectAll = "select * from drugTBL where goalDone=0;"
+        val selectAll = "select * from drugTBL where goalDone=0 order by alarmTime;"
         // 읽기전용 데이터베이스 변수
         sqlDB = dbManager.readableDatabase
         // 데이터를 받아줌
