@@ -101,12 +101,6 @@ class ProgressAdapter(val druglist:ArrayList<ProDrugAll>) : RecyclerView.Adapter
             //druglist!![position].goalDone
             holder.cardPro.setBackgroundResource(R.drawable.shape_round_darkyellow) //카드 색 변화
 
-            //프로그레스바 색 변화
-            //val meddrawable = ContextCompat.getDrawable(,R.drawable.design_medprogressbar_100)
-            //holder.prbbar.progressDrawable = meddrawable
-            //holder.prbbar.setBackgroundColor(R.color)
-            //holder.prbbar.indeterminateDrawable.setColorFilter(0xE27C48,android.graphics.PorterDuff.Mode.MULTIPLY)
-
             //아이템 순서 변경
         }
         else{
