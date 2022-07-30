@@ -1,5 +1,8 @@
 package com.example.chick
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.graphics.drawable.Drawable
 import android.content.res.Resources
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
@@ -10,8 +13,11 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.content.res.TypedArrayUtils.getDrawable
 import androidx.core.content.res.TypedArrayUtils.getResourceId
 import androidx.recyclerview.widget.RecyclerView
@@ -28,6 +34,7 @@ class ProgressAdapter(val druglist:ArrayList<ProDrugAll>) : RecyclerView.Adapter
         return ProViewHolder(view)
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onBindViewHolder(holder: ProViewHolder, position: Int) {
         //리사이클러뷰 약 이름 데이터 출력
         holder.txtProName.text = druglist!![position].medName
@@ -92,13 +99,16 @@ class ProgressAdapter(val druglist:ArrayList<ProDrugAll>) : RecyclerView.Adapter
 
         // 100%일 경우 1.카드 및 프로그레스바 색 변화 2. 제일 하단으로 이동
         if(percent == 100) {
+            //druglist!![position].goalDone
             holder.cardPro.setBackgroundResource(R.drawable.shape_round_darkyellow) //카드 색 변화
 
             //프로그레스바 색 변화
+            //val meddrawable = ContextCompat.getDrawable(,R.drawable.design_medprogressbar_100)
+            //holder.prbbar.progressDrawable = meddrawable
             //holder.prbbar.setBackgroundColor(R.color)
             //holder.prbbar.indeterminateDrawable.setColorFilter(0xE27C48,android.graphics.PorterDuff.Mode.MULTIPLY)
 
-            //아이텐 위치 변경
+            //아이템 순서 변경
         }
         else{
 
@@ -119,12 +129,4 @@ class ProgressAdapter(val druglist:ArrayList<ProDrugAll>) : RecyclerView.Adapter
         val cardPro : RelativeLayout = itemView.findViewById(R.id.cardPro)  // 카드 색
 
     }
-}
-
-private fun Drawable.colorFilter(black: Int) {
-
-}
-
-private fun Resources.setBackgroundColor(purple200: Int) {
-
 }
