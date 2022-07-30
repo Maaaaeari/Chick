@@ -113,7 +113,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/jejugothic"
-                                android:text="곧 "
+                                android:text="병아리가 먹는 약은?"
                                 android:textColor="#000000"
                                 android:textSize="16sp" />
 
@@ -122,7 +122,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/jejugothic"
-                                android:text="비타민C"
                                 android:textColor="@color/purple_700"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
@@ -132,13 +131,12 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/jejugothic"
-                                android:text="를 복용할 시간이에요."
                                 android:textColor="#000000"
                                 android:textSize="16sp" />
                         </LinearLayout>
 
                         <ImageView
-                            android:id="@+id/imageView"
+                            android:id="@+id/imgMainBanner"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_below="@+id/mainbannerlinear"
@@ -146,7 +144,8 @@
                             android:layout_marginStart="0dp"
                             android:layout_marginTop="2dp"
                             android:layout_marginRight="5dp"
-                            android:src="@drawable/ic_main_alaram" />
+                            android:src="@drawable/ic_main_alaram"
+                            android:visibility="visible" />
 
                         <TextView
                             android:id="@+id/txtMainBannerTime"
@@ -155,10 +154,10 @@
                             android:layout_below="@+id/mainbannerlinear"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="2dp"
-                            android:layout_toEndOf="@+id/imageView"
+                            android:layout_toEndOf="@+id/imgMainBanner"
                             android:fontFamily="@font/jejugothic"
                             android:gravity="center_vertical"
-                            android:text="오후 3:00"
+                            android:text="삐약삐약"
                             android:textColor="#7B7B7B"
                             android:textSize="16sp" />
                     </RelativeLayout>

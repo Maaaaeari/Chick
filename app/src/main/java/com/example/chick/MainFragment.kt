@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.os.Build.VERSION_CODES.M
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +16,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
+import androidx.core.view.isInvisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -25,6 +27,9 @@ import kotlin.collections.ArrayList
 class MainFragment : Fragment() {
 
     lateinit var btnPlus : FloatingActionButton
+    lateinit var txtMainBannerContent1 : TextView
+    lateinit var txtMainBannerContent2 : TextView
+    lateinit var imgMainBanner : ImageView
     lateinit var txtBannerName : TextView
     lateinit var txtBannerTime : TextView
     lateinit var recyclerViewDrugAll : RecyclerView
@@ -47,6 +52,9 @@ class MainFragment : Fragment() {
 
         // 바인딩
         btnPlus = view.findViewById(R.id.btnMainAdd)
+        txtMainBannerContent1 = view.findViewById(R.id.txtMainBannerContent1)
+        txtMainBannerContent2 = view.findViewById(R.id.txtMainBannerContent2)
+        imgMainBanner = view.findViewById(R.id.imgMainBanner)
         txtBannerName = view.findViewById(R.id.txtMainBannerName)
         txtBannerTime = view.findViewById(R.id.txtMainBannerTime)
         recyclerViewDrugAll = view.findViewById(R.id.recyclerViewMain)
@@ -123,8 +131,13 @@ class MainFragment : Fragment() {
         val tMM_dateFormat = SimpleDateFormat("mm", Locale("ko", "KR"))
         // 현재 시간을 dateFormat 에 선언한 형태의 String 으로 변환
         val tDaysOfWeek = tDaysOfWeek_dateFormat.format(t_date)     // 요일
-        val tKK = tKK_dateFormat.format(t_date)     // 시간
-        val tMM = tMM_dateFormat.format(t_date)     // 분
+        val tKKString = tKK_dateFormat.format(t_date)  // 시간
+        val tMMString = tMM_dateFormat.format(t_date)    // 분
+        val tKKMMString = tKKString+tMMString
+        val tKKMM = tKKMMString.toInt()
+
+        Log.d("44444", tKKMMString)
+
 
         // 현재 요일의 알람 조회
         val selectAll = "select * from drugTBL where goalDone=0 AND daysOfWeek LIKE '%${tDaysOfWeek}%';"
@@ -132,6 +145,12 @@ class MainFragment : Fragment() {
         sqlDB = dbManager.readableDatabase
         // 데이터를 받아줌
         var cursor = sqlDB.rawQuery(selectAll,null)
+
+        var gapHour : Int = 24
+        var gapMin : Int = 60
+
+        var gapAlaram : Int = 2500
+        var doEatName : String = ""
 
         //반복문을 사용하여 list 에 데이터를 넘겨 줍시다.
         while(cursor.moveToNext()){
@@ -141,22 +160,73 @@ class MainFragment : Fragment() {
             var alarmHour = cursor.getInt(cursor.getColumnIndex("alarmHour"))
             var alarmMin = cursor.getInt(cursor.getColumnIndex("alarmMin"))
 
+            // 알람 시간분
+            var alaramHourMinString = alarmHour.toString()+alarmMin.toString()
+            var alaramHourMin = alaramHourMinString.toInt()
+
+            Log.d("44444", alaramHourMinString)
+
             // 오후라면 시간에 12 더함
             if(ampm == "pm") {alarmHour = alarmHour+12}
 
+            if(tKKMM<=alaramHourMin){
+                // 현재 시간보다 알람이 후라면
+                if(gapAlaram>=(alaramHourMin-tKKMM)){
+                    // 기존 시간 갭보다 작다면
+                    // 배너 이름 변경
+                    txtMainBannerContent1.text = "곧"
+                    txtBannerName.text = medName
+                    txtMainBannerContent1.text = "를 복용할 시간이에요."
+                    // 배너 시간 변경
+                    var allTime : String
+                    if(alarmMin < 10 ){
+                        allTime = ampm+" "+alarmHour+":0"+alarmMin
+                    }
+                    else{
+                        allTime = ampm+" "+alarmHour+":"+alarmMin
+                    }
+                    txtBannerTime.text = allTime
+                }
+            }else{
+                txtMainBannerContent1.text = "오늘은 복용할 약이 없어요."
+                txtBannerName.text = ""
+                txtMainBannerContent2.text = ""
+                txtBannerTime.text=""
+            }
 
 
-            // 배너 이름 변경
-                txtBannerName.text = medName
-            // 배너 시간 변경
-            var allTime : String
-            if(alarmMin < 10 ){
-                allTime = ampm+" "+alarmHour+":0"+alarmMin
-            }
-            else{
-                allTime = ampm+" "+alarmHour+":"+alarmMin
-            }
-            txtBannerTime.text = allTime
+
+//            if(gapHour-alarmHour < 24){
+//                // 알람이 있다면
+//                if(tKK <= alarmHour){
+//                    // 현재 시간보다 알람이 후라면
+//                    if(gapHour>(alarmHour - tKK)){
+//                        // 기존 시간 갭보다 작다면
+//                        gapHour = alarmHour - tKK
+//                    }else if(gapHour==(alarmHour - tKK)){
+//                        // 기존 시간 갭과 같다면
+//                        if(tMM <= alarmMin){
+//                            // 현재 분보다 알람이 후라면
+//                        }
+//                    }else{
+//                        // 기존 시간 갭보다 크다면
+//                        gapHour = gapHour
+//                    }
+//                }
+//            }
+
+
+//            // 배너 이름 변경
+//            txtBannerName.text = medName
+//            // 배너 시간 변경
+//            var allTime : String
+//            if(alarmMin < 10 ){
+//                allTime = ampm+" "+alarmHour+":0"+alarmMin
+//            }
+//            else{
+//                allTime = ampm+" "+alarmHour+":"+alarmMin
+//            }
+//            txtBannerTime.text = allTime
         }
 
 
