@@ -18,6 +18,9 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MainFragment : Fragment() {
 
@@ -55,6 +58,9 @@ class MainFragment : Fragment() {
         drugAllList = arrayListOf<DrugAll>()
         selectDrug()
 
+        // 배너 업데이트
+        updateBanner()
+
         // 레이아웃 매니저 등록
         recyclerViewDrugAll.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         recyclerViewDrugAll.setHasFixedSize(true)
@@ -64,7 +70,7 @@ class MainFragment : Fragment() {
 
         // 알람생성 버튼
         btnPlus.setOnClickListener{
-            val intent = Intent(activity, EditAlarmActivity::class.java)
+            val intent = Intent(activity, AddAlarmActivity::class.java)
             startActivity(intent)
         }
 
@@ -75,25 +81,13 @@ class MainFragment : Fragment() {
     // select 메소드
     @SuppressLint("Range")
     private fun selectDrug(){
+
         // 알람 조회
         val selectAll = "select * from drugTBL where goalDone=0;"
         // 읽기전용 데이터베이스 변수
         sqlDB = dbManager.readableDatabase
         // 데이터를 받아줌
         var cursor = sqlDB.rawQuery(selectAll,null)
-
-        //SQL 삽입
-//        sqlDB = dbManager.writableDatabase
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (1, '비타민c','오전', 9,00,'월수금',1,50,10,1,0,0)")
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (2, '이노시톨','오후', 3,30,'월화수목금토일',2,100,60,2,0,0)")
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (3, '마그네슘','오전', 4,40,'화목',3,300,150,3,1,0)")
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (4, '철분','오후', 5,50,'수',1,100,10,4,0,0)")
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (5, '유산균','오전', 9,10,'월화수목금토일',2,400,380,5,1,0)")
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (6, '텐텐','오후', 8,05,'월수금',4,400,10,6,1,0)")
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (5, '유산균','오전', 9,10,'월화수목금토일',2,400,380,5,0,0)")
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (6, '텐텐','오후', 8, 05,'월수금',4,400,400,6,0,0)")
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (7, '글루콤','오후', 11,20,'월화수목금토일',1,30,30,7,0,1)")
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (8, '비타민d','오전', 10,00,'금토일',2,40,40,8,0,1)")
 
         //반복문을 사용하여 list 에 데이터를 넘겨 줍시다.
         while(cursor.moveToNext()){
@@ -110,6 +104,63 @@ class MainFragment : Fragment() {
 
             drugAllList.add(DrugAll(medId,medName,ampm,alarmHour,alarmMin,daysOfWeek,eatNumber,currentNumber,medIcon,eatDone))
         }
+
+        cursor.close()
+        sqlDB.close()
+    }
+
+    // 배너 변경 메소드
+    @SuppressLint("Range")
+    private fun updateBanner(){
+
+        // 현재시간을 가져오기
+        val long_now = System.currentTimeMillis()
+        // 현재 시간을 Date 타입으로 변환
+        val t_date = Date(long_now)
+        // 날짜, 시간을 가져오고 싶은 형태 선언
+        val tDaysOfWeek_dateFormat = SimpleDateFormat("E", Locale("ko", "KR"))
+        val tKK_dateFormat = SimpleDateFormat("kk", Locale("ko", "KR"))
+        val tMM_dateFormat = SimpleDateFormat("mm", Locale("ko", "KR"))
+        // 현재 시간을 dateFormat 에 선언한 형태의 String 으로 변환
+        val tDaysOfWeek = tDaysOfWeek_dateFormat.format(t_date)     // 요일
+        val tKK = tKK_dateFormat.format(t_date)     // 시간
+        val tMM = tMM_dateFormat.format(t_date)     // 분
+
+        // 현재 요일의 알람 조회
+        val selectAll = "select * from drugTBL where goalDone=0 AND daysOfWeek LIKE '%${tDaysOfWeek}%';"
+        // 읽기전용 데이터베이스 변수
+        sqlDB = dbManager.readableDatabase
+        // 데이터를 받아줌
+        var cursor = sqlDB.rawQuery(selectAll,null)
+
+        //반복문을 사용하여 list 에 데이터를 넘겨 줍시다.
+        while(cursor.moveToNext()){
+            var medId = cursor.getLong(cursor.getColumnIndex("medId"))
+            var medName = cursor.getString(cursor.getColumnIndex("medName")).toString()
+            var ampm = cursor.getString(cursor.getColumnIndex("ampm"))
+            var alarmHour = cursor.getInt(cursor.getColumnIndex("alarmHour"))
+            var alarmMin = cursor.getInt(cursor.getColumnIndex("alarmMin"))
+
+            // 오후라면 시간에 12 더함
+            if(ampm == "pm") {alarmHour = alarmHour+12}
+
+
+
+            // 배너 이름 변경
+                txtBannerName.text = medName
+            // 배너 시간 변경
+            var allTime : String
+            if(alarmMin < 10 ){
+                allTime = ampm+" "+alarmHour+":0"+alarmMin
+            }
+            else{
+                allTime = ampm+" "+alarmHour+":"+alarmMin
+            }
+            txtBannerTime.text = allTime
+        }
+
+
+
         cursor.close()
         sqlDB.close()
     }
@@ -146,23 +197,6 @@ class MainFragment : Fragment() {
 
         }
     }
-
-//    // 복용 완료 update 메소드
-//    fun eatDrug(medId : Int, preStatus : Int){
-//        // 복용완료
-//        val eatUpdate = "update drugTBL set eatDone=1 where medId="+medId+";"
-//        // 복용취소
-//        val unEatUpdate = "update drugTBL set eatDone=0 where medId="+medId+";"
-//        // 쓰기전용 데이터베이스 변수
-//        sqlDB = dbManager.writableDatabase
-//        // 데이터 수정
-//        if(preStatus==0){
-//            sqlDB.execSQL(eatUpdate)
-//        }else{
-//            sqlDB.execSQL(unEatUpdate)
-//        }
-//
-//    }
 
 
 }

@@ -40,7 +40,12 @@ class DrugViewAdapter(val drugAllList: ArrayList<DrugAll>): RecyclerView.Adapter
         return DrugViewHolder(view).apply {
             // 편집 버튼
             btnEdit.setOnClickListener{
+                var curPos : Int = adapterPosition      // 터치된 어댑터의 포지션
+                var drug : DrugAll = drugAllList.get(curPos)        // 터치된 위치의 데이터 가져오기
 
+                val intent = Intent(MainFragment.ApplicationContext(), EditAlarmActivity::class.java)
+                intent.putExtra("intent_id", drug.medId)
+                MainFragment.ApplicationContext().startActivity(intent)
             }
             // 복용 버튼
             btnEat.setOnClickListener {
