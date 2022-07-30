@@ -257,11 +257,15 @@ class MainFragment : Fragment() {
             // 복용취소
             preNum = preNumber-1
             val unEatUpdate = "update drugTBL set eatDone=0, currentNumber=${preNum} where medId="+medId+";"
+            // 목표달성
+            val goalUpdate = "update drugTBL set goalDone=1 where medId="+medId+" AND totalNumber==currentNumber;"
+
             // 쓰기전용 데이터베이스 변수
             sqlDB = dbManager.writableDatabase
             // 데이터 수정
             if(preStatus==0){
                 sqlDB.execSQL(eatUpdate)
+                sqlDB.execSQL(goalUpdate)
             }else if(preStatus==1){
                 sqlDB.execSQL(unEatUpdate)
             }
