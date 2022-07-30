@@ -55,7 +55,7 @@
                     android:id="@+id/drugs3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="28dp"
+                    android:layout_marginLeft="20dp"
                     android:src="@drawable/size_drugs_3"
                     android:layout_gravity="center"
                     android:background="@null"/>
@@ -64,7 +64,7 @@
                     android:id="@+id/drugs4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="28dp"
+                    android:layout_marginLeft="20dp"
                     android:src="@drawable/size_drugs_4"
                     android:layout_gravity="center"
                     android:background="@null"/>
@@ -92,7 +92,7 @@
                     android:id="@+id/drugs6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="29dp"
+                    android:layout_marginLeft="20dp"
                     android:src="@drawable/size_drugs_6"
                     android:layout_gravity="center"
                     android:background="@null"/>
@@ -101,7 +101,7 @@
                     android:id="@+id/drugs7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="23dp"
+                    android:layout_marginLeft="20dp"
                     android:src="@drawable/size_drugs_7"
                     android:layout_gravity="center"
                     android:background="@null"/>
