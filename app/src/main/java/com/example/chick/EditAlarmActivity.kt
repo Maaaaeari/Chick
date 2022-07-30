@@ -197,18 +197,6 @@ class EditAlarmActivity : AppCompatActivity() {
             }
         })
 
-//        if(isEditName == 0) {
-//            medEditConfirm.setEnabled(false)
-//        } else if(ampm == "") {
-//            medEditConfirm.setEnabled(false)
-//        } else if(isEditEat == 0) {
-//            medEditConfirm.setEnabled(false)
-//        } else if(isEditTotal == 0) {
-//            medEditConfirm.setEnabled(false)
-//        } else {
-//            medEditConfirm.setEnabled(true)
-//        }
-
         //확인 버튼
         medEditConfirm.setOnClickListener {
             //아이디
@@ -218,34 +206,6 @@ class EditAlarmActivity : AppCompatActivity() {
             val numberTime = curTime.replace("[^0-9]".toRegex(), "")
             Log.d("testtttt", numberTime)
             medId = numberTime.toLong()
-            //무슨 약인가요?
-            medName = medNameData.text.toString()
-            //언제마다 복용하나요?
-            if(btnMon.isSelected) {
-                daysOfWeek += "월"
-            } else{}
-            if(btnTue.isSelected) {
-                daysOfWeek += "화"
-            } else{}
-            if(btnWed.isSelected) {
-                daysOfWeek += "수"
-            } else{}
-            if(btnThu.isSelected) {
-                daysOfWeek += "목"
-            } else{}
-            if(btnFri.isSelected) {
-                daysOfWeek += "금"
-            } else{}
-            if(btnSat.isSelected) {
-                daysOfWeek += "토"
-            } else{}
-            if(btnSun.isSelected) {
-                daysOfWeek += "일"
-            } else{}
-            //1회당 몇 정씩 복용하나요?
-            eatNumber = Integer.parseInt(eatNumberData.text.toString())
-            //총 목표 복용 개수는 몇 정인가요?
-            totalNumber = Integer.parseInt(totalNumberData.text.toString())
 
             Log.d("testmedId", medId.toString())
             Log.d("testmedName", medName)
@@ -259,11 +219,7 @@ class EditAlarmActivity : AppCompatActivity() {
 
             if(medName == "") {
 
-            } else if(ampm == "") {
-
-            } else if(alarmHour == -1) {
-
-            } else if(alarmMin == -1) {
+            } else if(ampm == "" || alarmHour == -1 || alarmMin == -1) {
 
             } else if(daysOfWeek == "") {
 
@@ -274,16 +230,59 @@ class EditAlarmActivity : AppCompatActivity() {
             } else if(eatNumber > totalNumber) {
 
             } else {
-                val allTime = alarmHour.toString()+alarmMin.toString()
-                //DB 생성
-                dbManager = DBManager(this, "drugDB", null, 1)
-                sqlDB = dbManager.writableDatabase
-                sqlDB.execSQL("INSERT INTO drugTBL VALUES ('"+medId+"','"+medName+"','"+ampm+"','"+allTime+"','"+alarmHour+"','"+alarmMin+"','"+daysOfWeek+"','"+eatNumber+"','"+totalNumber+"',0,'"+medIcon+"',0,0);")
-                sqlDB.close()
+                //무슨 약인가요?
+                medName = medNameData.text.toString()
+                //언제마다 복용하나요?
+                if(btnMon.isSelected) {
+                    daysOfWeek += "월"
+                } else{}
+                if(btnTue.isSelected) {
+                    daysOfWeek += "화"
+                } else{}
+                if(btnWed.isSelected) {
+                    daysOfWeek += "수"
+                } else{}
+                if(btnThu.isSelected) {
+                    daysOfWeek += "목"
+                } else{}
+                if(btnFri.isSelected) {
+                    daysOfWeek += "금"
+                } else{}
+                if(btnSat.isSelected) {
+                    daysOfWeek += "토"
+                } else{}
+                if(btnSun.isSelected) {
+                    daysOfWeek += "일"
+                } else{}
+                //1회당 몇 정씩 복용하나요?
+                eatNumber = Integer.parseInt(eatNumberData.text.toString())
+                //총 목표 복용 개수는 몇 정인가요?
+                totalNumber = Integer.parseInt(totalNumberData.text.toString())
 
-                //화면 전환
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
+                if(medName == "") {
+
+                } else if(ampm == "" || alarmHour == -1 || alarmMin == -1) {
+
+                } else if(daysOfWeek == "") {
+
+                } else if(eatNumber == -1) {
+
+                } else if(totalNumber == -1) {
+
+                } else if(eatNumber > totalNumber) {
+
+                } else {
+                    val alarmTime = alarmHour.toString()+alarmMin.toString()
+                    //DB 생성
+                    dbManager = DBManager(this, "drugDB", null, 1)
+                    sqlDB = dbManager.writableDatabase
+                    sqlDB.execSQL("INSERT INTO drugTBL VALUES ('"+medId+"','"+medName+"','"+ampm+"','"+alarmTime+"','"+alarmHour+"','"+alarmMin+"','"+daysOfWeek+"','"+eatNumber+"','"+totalNumber+"',0,'"+medIcon+"',0,0);")
+                    sqlDB.close()
+
+                    //화면 전환
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
             }
         }
     }
