@@ -2,7 +2,7 @@ package com.example.chick
 
 // 전체 약 리스트
 data class DrugAll(
-    var medId :  Int? =  null,
+    var medId :  Long? =  null,
     var medName :  String? =  null,
     var ampm :  String? =  null,
     var alarmHour :  Int? =  null,

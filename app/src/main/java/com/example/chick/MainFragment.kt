@@ -97,7 +97,7 @@ class MainFragment : Fragment() {
 
         //반복문을 사용하여 list 에 데이터를 넘겨 줍시다.
         while(cursor.moveToNext()){
-            var medId = cursor.getInt(cursor.getColumnIndex("medId"))
+            var medId = cursor.getLong(cursor.getColumnIndex("medId"))
             var medName = cursor.getString(cursor.getColumnIndex("medName")).toString()
             var ampm = cursor.getString(cursor.getColumnIndex("ampm")).toString()
             var alarmHour = cursor.getInt(cursor.getColumnIndex("alarmHour"))
@@ -123,7 +123,7 @@ class MainFragment : Fragment() {
         }
 
         // 복용 완료 update 메소드
-        fun eatDrug(medId : Int, preStatus : Int, preNumber : Int){
+        fun eatDrug(medId : Long, preStatus : Int, preNumber : Int){
             var dbManager: DBManager=DBManager(MainFragment.ApplicationContext(), "drugDB", null, 1)
             var sqlDB: SQLiteDatabase
             var preNum : Int
