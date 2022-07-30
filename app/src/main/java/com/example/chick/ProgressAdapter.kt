@@ -2,7 +2,6 @@ package com.example.chick
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.content.res.Resources
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
