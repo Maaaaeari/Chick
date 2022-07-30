@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.chick">
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -15,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Chick"
         tools:targetApi="31">
+        <activity
+            android:name=".AddAlarmActivity"
+            android:exported="false" />
         <activity
             android:name=".MedAlarmActivity"
             android:exported="false" />
