@@ -45,14 +45,14 @@ class DrugViewAdapter(val drugAllList: ArrayList<DrugAll>): RecyclerView.Adapter
                 MainFragment?.eatDrug(drug.medId!!, drug.eatDone!!)
 
 
-//                var eatDone = drug.eatDone
-//                if (eatDone == 1){
-//                    card.setBackgroundResource(R.drawable.bg_drug_gray)
-//                    btnEat.setBackgroundResource(R.drawable.ic_main_eatbtn1)
-//                }else{
-//                    card.setBackgroundResource(R.drawable.bg_drug_blue)
-//                    btnEat.setBackgroundResource(R.drawable.ic_main_eatbtn2)
-//                }
+                var eatDone = drug.eatDone
+                if (eatDone == 1){
+                    card.setBackgroundResource(R.drawable.bg_drug_gray)
+                    btnEat.setBackgroundResource(R.drawable.ic_main_eatbtn1)
+                }else{
+                    card.setBackgroundResource(R.drawable.bg_drug_blue)
+                    btnEat.setBackgroundResource(R.drawable.ic_main_eatbtn2)
+                }
 
             }
 
