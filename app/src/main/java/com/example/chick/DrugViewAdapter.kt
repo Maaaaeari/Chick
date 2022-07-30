@@ -51,28 +51,13 @@ class DrugViewAdapter(val drugAllList: ArrayList<DrugAll>): RecyclerView.Adapter
             btnEat.setOnClickListener {
                 var curPos : Int = adapterPosition      // 터치된 어댑터의 포지션
                 var drug : DrugAll = drugAllList.get(curPos)        // 터치된 위치의 데이터 가져오기
-                MainFragment?.eatDrug(drug.medId!!, drug.eatDone!!, drug.currentNumber!!)
-
-//                curPos = adapterPosition
-//                drug = drugAllList.get(curPos)
-                //                Log.d("33333", prestatus.toString())
-
-//                var prestatus = drug.eatDone
-//                if (prestatus == 1){
-//                    card.setBackgroundResource(R.drawable.bg_drug_gray)
-//                    btnEat.setBackgroundResource(R.drawable.ic_main_eatbtn1)
-//                }else if (prestatus == 0){
-//                    card.setBackgroundResource(R.drawable.bg_drug_blue)
-//                    btnEat.setBackgroundResource(R.drawable.ic_main_eatbtn2)
-//                }
+                MainFragment?.eatDrug(drug.medId!!, drug.eatDone!!,drug.eatNumber!!, drug.currentNumber!!)
 
                 val intent = Intent(MainFragment.ApplicationContext(), MainActivity::class.java)
                 intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 MainFragment.ApplicationContext().startActivity(intent)
 
-
             }
-
         }
     }
     // 뷰 홀더의 뷰에 데이터 호출 (실제 데이터 출력)

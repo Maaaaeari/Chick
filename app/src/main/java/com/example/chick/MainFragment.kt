@@ -20,6 +20,7 @@ import androidx.core.view.isInvisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.lang.reflect.Executable
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -90,6 +91,9 @@ class MainFragment : Fragment() {
     @SuppressLint("Range")
     private fun selectDrug(){
 
+//        sqlDB = dbManager.writableDatabase
+//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (3, '삐약', '오전', 3, 30, '월수금', 1, 30, 29, 4, 0, 0)")
+
         // 알람 조회
         val selectAll = "select * from drugTBL where goalDone=0;"
         // 읽기전용 데이터베이스 변수
@@ -146,11 +150,7 @@ class MainFragment : Fragment() {
         // 데이터를 받아줌
         var cursor = sqlDB.rawQuery(selectAll,null)
 
-        var gapHour : Int = 24
-        var gapMin : Int = 60
-
         var gapAlaram : Int = 2500
-        var doEatName : String = ""
 
         //반복문을 사용하여 list 에 데이터를 넘겨 줍시다.
         while(cursor.moveToNext()){
@@ -196,39 +196,6 @@ class MainFragment : Fragment() {
                 txtBannerTime.text="삐약삐약"
             }
 
-
-
-//            if(gapHour-alarmHour < 24){
-//                // 알람이 있다면
-//                if(tKK <= alarmHour){
-//                    // 현재 시간보다 알람이 후라면
-//                    if(gapHour>(alarmHour - tKK)){
-//                        // 기존 시간 갭보다 작다면
-//                        gapHour = alarmHour - tKK
-//                    }else if(gapHour==(alarmHour - tKK)){
-//                        // 기존 시간 갭과 같다면
-//                        if(tMM <= alarmMin){
-//                            // 현재 분보다 알람이 후라면
-//                        }
-//                    }else{
-//                        // 기존 시간 갭보다 크다면
-//                        gapHour = gapHour
-//                    }
-//                }
-//            }
-
-
-//            // 배너 이름 변경
-//            txtBannerName.text = medName
-//            // 배너 시간 변경
-//            var allTime : String
-//            if(alarmMin < 10 ){
-//                allTime = ampm+" "+alarmHour+":0"+alarmMin
-//            }
-//            else{
-//                allTime = ampm+" "+alarmHour+":"+alarmMin
-//            }
-//            txtBannerTime.text = allTime
         }
 
 
@@ -246,16 +213,16 @@ class MainFragment : Fragment() {
         }
 
         // 복용 완료 update 메소드
-        fun eatDrug(medId : Long, preStatus : Int, preNumber : Int){
+        fun eatDrug(medId : Long, preStatus : Int, eatNumber: Int, preNumber : Int){
             var dbManager: DBManager=DBManager(MainFragment.ApplicationContext(), "drugDB", null, 1)
             var sqlDB: SQLiteDatabase
             var preNum : Int
 
             // 복용완료
-            preNum = preNumber+1
+            preNum = preNumber+eatNumber
             val eatUpdate = "update drugTBL set eatDone=1, currentNumber=${preNum} where medId="+medId+";"
             // 복용취소
-            preNum = preNumber-1
+            preNum = preNumber-eatNumber
             val unEatUpdate = "update drugTBL set eatDone=0, currentNumber=${preNum} where medId="+medId+";"
             // 목표달성
             val goalUpdate = "update drugTBL set goalDone=1 where medId="+medId+" AND totalNumber==currentNumber;"
