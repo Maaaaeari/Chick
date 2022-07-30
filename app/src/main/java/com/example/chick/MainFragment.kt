@@ -170,13 +170,14 @@ class MainFragment : Fragment() {
             if(ampm == "pm") {alarmHour = alarmHour+12}
 
             if(tKKMM<=alaramHourMin){
-                // 현재 시간보다 알람이 후라면
+                // 현재 시간 이후의 알람이 있으면
                 if(gapAlaram>=(alaramHourMin-tKKMM)){
+                    gapAlaram=alaramHourMin-tKKMM
                     // 기존 시간 갭보다 작다면
                     // 배너 이름 변경
-                    txtMainBannerContent1.text = "곧"
+                    txtMainBannerContent1.text = "곧 "
                     txtBannerName.text = medName
-                    txtMainBannerContent1.text = "를 복용할 시간이에요."
+                    txtMainBannerContent2.text = "를 복용할 시간이에요."
                     // 배너 시간 변경
                     var allTime : String
                     if(alarmMin < 10 ){
@@ -188,10 +189,11 @@ class MainFragment : Fragment() {
                     txtBannerTime.text = allTime
                 }
             }else{
-                txtMainBannerContent1.text = "오늘은 복용할 약이 없어요."
+                // 현재 시간 이후의 알람이 없으면
+                txtMainBannerContent1.text = "병아리가 먹는 약은?"
                 txtBannerName.text = ""
                 txtMainBannerContent2.text = ""
-                txtBannerTime.text=""
+                txtBannerTime.text="삐약삐약"
             }
 
 
