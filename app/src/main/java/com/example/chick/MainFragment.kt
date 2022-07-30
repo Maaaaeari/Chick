@@ -92,7 +92,7 @@ class MainFragment : Fragment() {
     private fun selectDrug(){
 
 //        sqlDB = dbManager.writableDatabase
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (3, '삐약', '오전', 3, 30, '월수금', 1, 30, 29, 4, 0, 0)")
+//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (8, '비타민민민', '오전', 3, 30, '월수금', 3, 30, 28, 4, 0, 0)")
 
         // 알람 조회
         val selectAll = "select * from drugTBL where goalDone=0;"
@@ -225,7 +225,7 @@ class MainFragment : Fragment() {
             preNum = preNumber-eatNumber
             val unEatUpdate = "update drugTBL set eatDone=0, currentNumber=${preNum} where medId="+medId+";"
             // 목표달성
-            val goalUpdate = "update drugTBL set goalDone=1 where medId="+medId+" AND totalNumber==currentNumber;"
+            val goalUpdate = "update drugTBL set goalDone=1 where medId="+medId+" AND totalNumber<=currentNumber;"
 
             // 쓰기전용 데이터베이스 변수
             sqlDB = dbManager.writableDatabase

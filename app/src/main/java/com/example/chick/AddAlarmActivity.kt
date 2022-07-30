@@ -34,6 +34,7 @@ class AddAlarmActivity : AppCompatActivity() {
     lateinit var medChoice: ImageButton
     //몇 시에 복용하나요?
     var ampm: String =""
+    var alarmTime : Int = 0
     var alarmHour: Int = -1
     var alarmMin: Int = -1
     lateinit var choiceAmPm: Button
@@ -222,10 +223,17 @@ class AddAlarmActivity : AppCompatActivity() {
             } else if(eatNumber > totalNumber) {
 
             } else {
+
+                if(alarmHour>=13){
+                    alarmHour = alarmHour-12
+                }
+                alarmTime = (alarmHour.toString()+alarmMin.toString()).toInt()
+
                 //DB 생성
                 dbManager = DBManager(this, "drugDB", null, 1)
                 sqlDB = dbManager.writableDatabase
-                sqlDB.execSQL("INSERT INTO drugTBL VALUES ('"+medId+"', '"+medName+"','"+ampm+"','"+alarmHour+"','"+alarmMin+"','"+daysOfWeek+"','"+eatNumber+"','"+totalNumber+"',0,'"+medIcon+"',0,0);")
+                sqlDB.execSQL("INSERT INTO drugTBL VALUES ('"+medId+"', '"+medName+"','"+ampm+"','"+alarmTime+"','"+alarmHour+"','"+alarmMin+"','"+daysOfWeek+"','"+eatNumber+"','"+totalNumber+"',0,'"+medIcon+"',0,0);")
+                //sqlDB.execSQL("INSERT INTO drugTBL VALUES ('${medId}', '${medName}', '${ampm}', ${alarmTime}, ${alarmHour}, ${alarmMin}, '${daysOfWeek}', ${eatNumber}, ${totalNumber}, 0, ${medIcon}, 0, 0")
                 sqlDB.close()
 
                 //화면 전환
