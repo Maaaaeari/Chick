@@ -13,7 +13,7 @@
         android:paddingBottom="5dp"
         android:paddingLeft="28dp"
         android:paddingRight="22dp"
-        android:background="@drawable/shape_roundrectangle"
+        android:background="@drawable/shape_round_yellow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
