@@ -83,17 +83,18 @@ class MainFragment : Fragment() {
         var cursor = sqlDB.rawQuery(selectAll,null)
 
         //SQL 삽입
-//        sqlDB = dbManager.writableDatabase
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (1, '비타민c','오전', 9,00,'월수금',1,50,10,1,0,0)")
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (2, '이노시톨','오후', 3,30,'월화수목금토일',2,100,60,2,0,0)")
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (3, '마그네슘','오전', 4,40,'화목',3,300,150,3,1,0)")
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (4, '철분','오후', 5,50,'수',1,100,10,4,0,0)")
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (5, '유산균','오전', 9,10,'월화수목금토일',2,400,380,5,1,0)")
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (6, '텐텐','오후', 8,05,'월수금',4,400,10,6,1,0)")
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (5, '유산균','오전', 9,10,'월화수목금토일',2,400,380,5,0,0)")
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (6, '텐텐','오후', 8, 05,'월수금',4,400,400,6,0,0)")
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (7, '글루콤','오후', 11,20,'월화수목금토일',1,30,30,7,0,1)")
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (8, '비타민d','오전', 10,00,'금토일',2,40,40,8,0,1)")
+//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (3, '삐약', '오전', 3, 30, '월수금', 1, 30, 30, 4, 0, 1)")
+/*        sqlDB = dbManager.writableDatabase
+        sqlDB.execSQL("INSERT INTO drugTBL VALUES (1, '비타민c','오전', 9,00,'월수금',1,50,10,1,0,0)")
+        sqlDB.execSQL("INSERT INTO drugTBL VALUES (2, '이노시톨','오후', 3,30,'월화수목금토일',2,100,60,2,0,0)")
+        sqlDB.execSQL("INSERT INTO drugTBL VALUES (3, '마그네슘','오전', 4,40,'화목',3,300,150,3,1,0)")
+        sqlDB.execSQL("INSERT INTO drugTBL VALUES (4, '철분','오후', 5,50,'수',1,100,10,4,0,0)")
+        sqlDB.execSQL("INSERT INTO drugTBL VALUES (5, '유산균','오전', 9,10,'월화수목금토일',2,400,380,5,1,0)")
+        sqlDB.execSQL("INSERT INTO drugTBL VALUES (6, '텐텐','오후', 8,05,'월수금',4,400,10,6,1,0)")
+        sqlDB.execSQL("INSERT INTO drugTBL VALUES (5, '유산균','오전', 9,10,'월화수목금토일',2,400,380,5,0,0)")
+        sqlDB.execSQL("INSERT INTO drugTBL VALUES (6, '텐텐','오후', 8, 05,'월수금',4,400,399,6,0,0)")
+        sqlDB.execSQL("INSERT INTO drugTBL VALUES (7, '글루콤','오후', 11,20,'월화수목금토일',1,30,30,7,0,1)")
+        sqlDB.execSQL("INSERT INTO drugTBL VALUES (8, '비타민d','오전', 10,00,'금토일',2,40,40,8,0,1)")*/
 
         //반복문을 사용하여 list 에 데이터를 넘겨 줍시다.
         while(cursor.moveToNext()){
