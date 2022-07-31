@@ -97,9 +97,7 @@ class MainFragment : Fragment() {
     // select 메소드
     @SuppressLint("Range")
     private fun selectDrug(){
-
-//        sqlDB = dbManager.writableDatabase
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (5, '바바ㅏㅂ', '오전', 11, 3, 30, '월수금', 3, 30, 28, 4, 0, 0)")
+유산
 
         // 알람 조회
         val selectAll = "select * from drugTBL where goalDone=0 order by alarmTime;"
