@@ -92,7 +92,9 @@ class MainFragment : Fragment() {
     private fun selectDrug(){
 
 /*        sqlDB = dbManager.writableDatabase
-        sqlDB.execSQL("INSERT INTO drugTBL VALUES (13, '비타민민민', '오전', 11, 3, 30, '월수금', 3, 30, 28, 4, 0, 0)")*/
+        sqlDB.execSQL("INSERT INTO drugTBL VALUES (1, 'First', '오후', 720, 7, 20, '수목토', 3, 20, 18, 4, 0, 0)")
+        sqlDB.execSQL("INSERT INTO drugTBL VALUES (2, 'Second', '오전', 840, 8, 40, '월화', 3, 8, 5, 4, 0, 0)")
+        sqlDB.execSQL("INSERT INTO drugTBL VALUES (3, 'Third', '오후', 930, 9, 30, '금일', 3, 40, 38, 4, 0, 0)")*/
 
         // 알람 조회
         val selectAll = "select * from drugTBL where goalDone=0;"

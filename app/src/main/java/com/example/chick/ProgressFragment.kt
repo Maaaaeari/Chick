@@ -62,7 +62,7 @@ class ProgressFragment : Fragment() {
         //읽기전용 데이터베이스 변수
         sqlDB = dbManager.readableDatabase
         //데이터를 받아줌
-        var cursor = sqlDB.rawQuery("select * from drugTBL ORDER BY goalDone;", null)
+        var cursor = sqlDB.rawQuery("select * from drugTBL ORDER BY goalDone, medId DESC;", null)
 
         //반복문을 사용하여 list 에 데이터를 넘겨 줍시다.
         while (cursor.moveToNext()) {
