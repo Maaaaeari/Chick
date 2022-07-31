@@ -22,6 +22,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
+            android:id="@+id/medEditBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -73,6 +74,7 @@
                     android:layout_height="50dp"
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="10dp"
+                    android:maxLength="12"
                     android:background="@drawable/yellow_rounding_box"
                     android:fontFamily="@font/jejugothic"
                     android:hint="약 이름"
@@ -143,20 +145,20 @@
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btnMainVideo"
-                android:layout_width="wrap_content"
-                android:layout_height="16dp"
-                android:layout_gravity="center_vertical|right"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="25dp"
-                android:background="@null"
-                android:drawableLeft="@drawable/size_ic_alarm_plus"
-                android:fontFamily="@font/jejugothic"
-                android:foregroundTint="#FFFFFF"
-                android:text="시간추가"
-                android:textColor="#7B7B7B"
-                android:textSize="16sp" />
+<!--            <Button-->
+<!--                android:id="@+id/btnMainVideo"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="16dp"-->
+<!--                android:layout_gravity="center_vertical|right"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginRight="25dp"-->
+<!--                android:background="@null"-->
+<!--                android:drawableLeft="@drawable/size_ic_alarm_plus"-->
+<!--                android:fontFamily="@font/jejugothic"-->
+<!--                android:foregroundTint="#FFFFFF"-->
+<!--                android:text="시간추가"-->
+<!--                android:textColor="#7B7B7B"-->
+<!--                android:textSize="16sp" />-->
 
             <TextView
                 android:id="@+id/medWhenQ"

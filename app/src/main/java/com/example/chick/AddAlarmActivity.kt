@@ -1,26 +1,21 @@
 package com.example.chick
 
-import android.app.Application
 import android.app.Dialog
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.database.sqlite.SQLiteDatabase
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.icu.util.Calendar
 import android.os.Build
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.util.Log
 import android.view.WindowManager
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class AddAlarmActivity : AppCompatActivity() {
@@ -34,7 +29,7 @@ class AddAlarmActivity : AppCompatActivity() {
     lateinit var medChoice: ImageButton
     //몇 시에 복용하나요?
     var ampm: String =""
-    var alarmTime : Int = 0
+    var alarmTime: Int = 0
     var alarmHour: Int = -1
     var alarmMin: Int = -1
     lateinit var choiceAmPm: Button
@@ -53,8 +48,12 @@ class AddAlarmActivity : AppCompatActivity() {
     //총 목표 복용 개수는 몇 정인가요?
     lateinit var totalNumberData: EditText
     var totalNumber: Int = -1
+    //이전 버튼
+    lateinit var medEditBack: ImageButton
     //확인 버튼
     lateinit var medEditConfirm: Button
+    //취소 버튼
+    lateinit var medEditCancel: Button
 
     //DB
     lateinit var sqlDB: SQLiteDatabase
@@ -84,13 +83,17 @@ class AddAlarmActivity : AppCompatActivity() {
         btnFri = findViewById<Button>(R.id.btnFri)
         btnSat = findViewById<Button>(R.id.btnSat)
         btnSun = findViewById<Button>(R.id.btnSun)
+        //이전 버튼
+        medEditBack = findViewById(R.id.medEditBack)
         //확인 버튼
-        medEditConfirm = findViewById<Button>(R.id.medEditConfirm)
+        medEditConfirm = findViewById(R.id.medEditConfirm)
+        //취소 버튼
+        medEditCancel = findViewById(R.id.medEditCancel)
 
         //약 아이콘
         val dialog = CustomDialogAdd(this)
         medChoice.setOnClickListener {
-            dialog.myDig()
+            dialog.medDig()
         }
         dialog.setOnClickedListener(object : CustomDialogAdd.ButtonClickListener {
             override fun onClicked(myName: Int) {
@@ -118,12 +121,13 @@ class AddAlarmActivity : AppCompatActivity() {
                 alarmHour = hour.toInt()
                 alarmMin = minute.toInt()
 
-                if(hour >= 12) {
+                if(hour >= 13) {
                     ampm = "오후"
-                    button.text = SimpleDateFormat("오후                HH       :       mm").format(cal.time)
+                    var textPmH = alarmHour - 12
+                    button.text = "오후                  " + textPmH.toString() + "       :       " + alarmMin.toString()
                 } else {
                     ampm = "오전"
-                    button.text = SimpleDateFormat("오전                HH       :       mm").format(cal.time)
+                    button.text = "오전                  " + alarmHour.toString() + "       :       " + alarmMin.toString()
                 }
             }
 
@@ -158,6 +162,13 @@ class AddAlarmActivity : AppCompatActivity() {
         btnSun?.setOnClickListener {
             btnSun?.isSelected = btnSun?.isSelected != true
         }
+
+        //이전 버튼
+        medEditBack.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
         //확인 버튼
         medEditConfirm.setOnClickListener {
             //아이디
@@ -165,7 +176,6 @@ class AddAlarmActivity : AppCompatActivity() {
             val dateFormat = SimpleDateFormat("yyyyMMddHHmmss")
             val curTime: String = dateFormat.format(Date(currentTime)).toString()
             val numberTime = curTime.replace("[^0-9]".toRegex(), "")
-            Log.d("testtttt", numberTime)
             medId = numberTime.toLong()
             //무슨 약인가요?
             medName = medNameData.text.toString()
@@ -192,54 +202,72 @@ class AddAlarmActivity : AppCompatActivity() {
                 daysOfWeek += "일"
             } else{}
             //1회당 몇 정씩 복용하나요?
-            eatNumber = Integer.parseInt(eatNumberData.text.toString())
+            val eatNumberS = eatNumberData.text.toString()
             //총 목표 복용 개수는 몇 정인가요?
-            totalNumber = Integer.parseInt(totalNumberData.text.toString())
-
-            Log.d("testmedId", medId.toString())
-            Log.d("testmedName", medName)
-            Log.d("testampm", ampm)
-            Log.d("testalarmHour", alarmHour.toString())
-            Log.d("testalarmMin", alarmMin.toString())
-            Log.d("testdaysOfWeek", daysOfWeek)
-            Log.d("testeatNumber", eatNumber.toString())
-            Log.d("testtotalNumber", totalNumber.toString())
-            Log.d("testmedIcon", medIcon.toString())
+            val totalNumberS = totalNumberData.text.toString()
 
             if(medName == "") {
-
+                daysOfWeek = ""
+                Toast.makeText(this, "약 이름을 입력해주세요.", Toast.LENGTH_LONG).show()
             } else if(ampm == "") {
-
+                daysOfWeek = ""
+                Toast.makeText(this, "알람 시간을 입력해주세요.", Toast.LENGTH_LONG).show()
             } else if(alarmHour == -1) {
-
+                daysOfWeek = ""
+                Toast.makeText(this, "알람 시간을 입력해주세요.", Toast.LENGTH_LONG).show()
             } else if(alarmMin == -1) {
-
+                daysOfWeek = ""
+                Toast.makeText(this, "알람 시간을 입력해주세요.", Toast.LENGTH_LONG).show()
             } else if(daysOfWeek == "") {
-
-            } else if(eatNumber == -1) {
-
-            } else if(totalNumber == -1) {
-
-            } else if(eatNumber > totalNumber) {
-
+                daysOfWeek = ""
+                Toast.makeText(this, "알람 요일을 입력해주세요.", Toast.LENGTH_LONG).show()
+            } else if(eatNumberS == "") {
+                daysOfWeek = ""
+                Toast.makeText(this, "1회당 복용 개수를 입력해주세요.", Toast.LENGTH_LONG).show()
+            } else if(totalNumberS == "") {
+                daysOfWeek = ""
+                Toast.makeText(this, "총 목표 개수를 입력해주세요.", Toast.LENGTH_LONG).show()
             } else {
+                //1회당 몇 정씩 복용하나요?
+                eatNumber = eatNumberS.toInt()
+                //총 목표 복용 개수는 몇 정인가요?
+                totalNumber = totalNumberS.toInt()
 
-                if(alarmHour>=13){
-                    alarmHour = alarmHour-12
+                if(eatNumber > totalNumber) {
+                    daysOfWeek = ""
+                    Toast.makeText(this, "총 목표 개수를 1회당 복용 개수 이상으로\n입력해주세요.", Toast.LENGTH_LONG).show()
+                } else {
+                    Log.d("testmedId", medId.toString())
+                    Log.d("testmedName", medName)
+                    Log.d("testampm", ampm)
+                    Log.d("testalarmHour", alarmHour.toString())
+                    Log.d("testalarmMin", alarmMin.toString())
+                    Log.d("testdaysOfWeek", daysOfWeek)
+                    Log.d("testeatNumber", eatNumber.toString())
+                    Log.d("testtotalNumber", totalNumber.toString())
+                    Log.d("testmedIcon", medIcon.toString())
+
+                    alarmTime = (alarmHour.toString()+alarmMin.toString()).toInt()
+                    if(alarmHour>=13){
+                        alarmHour = alarmHour-12
+                    }
+
+                    //DB 생성
+                    dbManager = DBManager(this, "drugDB", null, 1)
+                    sqlDB = dbManager.writableDatabase
+                    sqlDB.execSQL("INSERT INTO drugTBL VALUES ('"+medId+"', '"+medName+"','"+ampm+"','"+alarmTime+"','"+alarmHour+"','"+alarmMin+"','"+daysOfWeek+"','"+eatNumber+"','"+totalNumber+"',0,'"+medIcon+"',0,0);")
+                    sqlDB.close()
+
+                    //화면 전환
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
                 }
-                alarmTime = (alarmHour.toString()+alarmMin.toString()).toInt()
-
-                //DB 생성
-                dbManager = DBManager(this, "drugDB", null, 1)
-                sqlDB = dbManager.writableDatabase
-                sqlDB.execSQL("INSERT INTO drugTBL VALUES ('"+medId+"', '"+medName+"','"+ampm+"','"+alarmTime+"','"+alarmHour+"','"+alarmMin+"','"+daysOfWeek+"','"+eatNumber+"','"+totalNumber+"',0,'"+medIcon+"',0,0);")
-                //sqlDB.execSQL("INSERT INTO drugTBL VALUES ('${medId}', '${medName}', '${ampm}', ${alarmTime}, ${alarmHour}, ${alarmMin}, '${daysOfWeek}', ${eatNumber}, ${totalNumber}, 0, ${medIcon}, 0, 0")
-                sqlDB.close()
-
-                //화면 전환
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
             }
+        }
+
+        //취소 버튼
+        medEditCancel.setOnClickListener {
+            dialog.cancleDig(this)
         }
     }
 }
@@ -247,7 +275,7 @@ class AddAlarmActivity : AppCompatActivity() {
 class CustomDialogAdd(context: Context) {
     private val dialog = Dialog(context)
 
-    fun myDig() {
+    fun medDig() {
         dialog.setContentView(R.layout.dialog_med_choice)
 
         dialog.window!!.setLayout(
@@ -300,6 +328,30 @@ class CustomDialogAdd(context: Context) {
         drugs8.setOnClickListener {
             onClickedListener.onClicked(8)
             dialog.dismiss()
+        }
+    }
+
+    fun cancleDig(context: Context) {
+        dialog.setContentView(R.layout.dialog_cancle)
+
+        dialog.window!!.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT)
+        dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setCanceledOnTouchOutside(false)
+        dialog.setCancelable(true)
+
+        dialog.show()
+
+        val cancleN = dialog.findViewById<Button>(R.id.btnDialogCancleN)
+        val cancleY = dialog.findViewById<Button>(R.id.btnDialogCancleY)
+
+        cancleN.setOnClickListener {
+            dialog.dismiss()
+        }
+        cancleY.setOnClickListener {
+            val intent = Intent(context, MainActivity::class.java)
+            context.startActivity(intent)
         }
     }
 
