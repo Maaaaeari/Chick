@@ -228,7 +228,7 @@ class MainFragment : Fragment() {
         }
 
         // 복용 완료 update 메소드
-        fun eatDrug(medId : Long, preStatus : Int, eatNumber: Int, preNumber : Int, totalNumber : Int){
+        fun eatDrug(medId : Long, medName:String, preStatus : Int, eatNumber: Int, preNumber : Int, totalNumber : Int){
             var dbManager: DBManager=DBManager(MainFragment.ApplicationContext(), "drugDB", null, 1)
             var sqlDB: SQLiteDatabase
             var preNum : Int
@@ -251,7 +251,7 @@ class MainFragment : Fragment() {
                     sqlDB.execSQL(goalUpdate)
                     Handler(Looper.getMainLooper()).postDelayed({
                         //실행할 코드
-                        showDialogGoalDone()
+                        showDialogGoalDone(medName)
                     }, 500)
                 }
             }else if(preStatus==1){
@@ -261,7 +261,7 @@ class MainFragment : Fragment() {
         }
 
         // 목표 복용 달성 다이얼로그
-        fun showDialogGoalDone(){
+        fun showDialogGoalDone(medName: String){
             dialog = Dialog(ApplicationContext())
             dialog.setContentView(R.layout.dialog_complete)
 
@@ -274,6 +274,9 @@ class MainFragment : Fragment() {
             dialog.setCancelable(true)
 
             dialog.show()
+
+            val txtDialogCompleteName = dialog.findViewById<TextView>(R.id.txtDialogCompleteName)
+            txtDialogCompleteName.text = medName
 
             val btnComplete = dialog.findViewById<Button>(R.id.btnDialogComplete)
             btnComplete.setOnClickListener {
