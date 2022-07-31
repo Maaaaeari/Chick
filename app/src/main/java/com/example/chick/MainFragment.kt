@@ -97,7 +97,6 @@ class MainFragment : Fragment() {
     // select 메소드
     @SuppressLint("Range")
     private fun selectDrug(){
-유산
 
         // 알람 조회
         val selectAll = "select * from drugTBL where goalDone=0 order by alarmTime;"
