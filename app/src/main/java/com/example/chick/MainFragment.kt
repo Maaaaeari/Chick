@@ -55,6 +55,7 @@ class MainFragment : Fragment() {
         instance = this
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -85,6 +86,7 @@ class MainFragment : Fragment() {
         recyclerViewDrugAll.setHasFixedSize(true)
         // 리사이클러 뷰 어댑터 연결
         recyclerViewDrugAll.adapter = DrugViewAdapter(drugAllList)
+        recyclerViewDrugAll.adapter?.notifyDataSetChanged()
 
 
         // 알람생성 버튼
@@ -264,6 +266,8 @@ class MainFragment : Fragment() {
             }
             sqlDB.close()
             dbManager.close()
+
+
         }
 
         // 목표 복용 달성 다이얼로그
