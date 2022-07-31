@@ -100,7 +100,6 @@ class MainFragment : Fragment() {
     // select 메소드
     @SuppressLint("Range")
     private fun selectDrug(){
-
 //        sqlDB = dbManager.writableDatabase
 //        sqlDB.execSQL("INSERT INTO drugTBL VALUES (5, '바바ㅏㅂ', '오전', 11, 3, 30, '월수금', 3, 30, 28, 4, 0, 0)")
 
@@ -147,8 +146,11 @@ class MainFragment : Fragment() {
         val tMM_dateFormat = SimpleDateFormat("mm", Locale("ko", "KR"))
         // 현재 시간을 dateFormat 에 선언한 형태의 String 으로 변환
         val tDaysOfWeek = tDaysOfWeek_dateFormat.format(t_date)     // 요일
-        val tKKString = tKK_dateFormat.format(t_date)  // 시간
+        var tKKString = tKK_dateFormat.format(t_date)  // 시간
         val tMMString = tMM_dateFormat.format(t_date)    // 분
+        if(tKKString=="24"){
+            tKKString = "00"
+        }
         val tKKMMString = tKKString+tMMString
         val tKKMM = tKKMMString.toInt()
 
