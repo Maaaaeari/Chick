@@ -16,6 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/ThemeChick"
         tools:targetApi="31">
+        <activity android:name=".MainActivity"
+            android:exported="true"/>
         <activity
             android:name=".AddAlarmActivity"
             android:exported="false" />
@@ -28,8 +30,8 @@
             android:parentActivityName=".MainActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".MainActivity"
-            android:theme="@style/SplashTheme"
+            android:name=".SplashActivity"
+            android:theme="@style/ThemeChick"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
