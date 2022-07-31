@@ -2,7 +2,9 @@ package com.example.chick
 
 import DrugViewAdapter
 import android.annotation.SuppressLint
+import android.app.AlarmManager
 import android.app.Dialog
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
@@ -20,6 +22,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
@@ -257,7 +260,8 @@ class MainFragment : Fragment() {
             }else if(preStatus==1){
                 sqlDB.execSQL(unEatUpdate)
             }
-
+            sqlDB.close()
+            dbManager.close()
         }
 
         // 목표 복용 달성 다이얼로그
@@ -282,6 +286,26 @@ class MainFragment : Fragment() {
             btnComplete.setOnClickListener {
                 dialog.dismiss()
             }
+        }
+
+        // 자정이 지날 시 복용 버튼 리셋
+        fun resetEatdoneBtn(){
+            var dbManager: DBManager=DBManager(MainFragment.ApplicationContext(), "drugDB", null, 1)
+            var sqlDB: SQLiteDatabase
+
+            // 쓰기전용 데이터베이스 변수
+            sqlDB = dbManager.writableDatabase
+
+            // 복용 초기화
+            val eatDoneUpdate = "update drugTBL set eatDone=0;"
+            sqlDB.execSQL(eatDoneUpdate)
+
+            sqlDB.close()
+            dbManager.close()
+
+            val intent = Intent(ApplicationContext(), MainActivity::class.java)
+            intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            ApplicationContext().startActivity(intent)
         }
     }
 

@@ -1,6 +1,9 @@
 package com.example.chick
 
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +16,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     lateinit var bottom_navigation: BottomNavigationView
+
+    private val br: BroadcastReceiver = ResetEatdone()
 
     override fun onCreate(savedInstanceState: Bundle?) {
        //setTheme(R.style.ThemeChick)
@@ -45,5 +50,13 @@ class MainActivity : AppCompatActivity() {
 
         val mainFragment = MainFragment()
         supportFragmentManager.beginTransaction().add(R.id.main_content, mainFragment).commit()
+    }
+
+    // 브로드캐스트리시버 필터 추가 & 등록
+    override fun onResume() {
+        super.onResume()
+        var filter = IntentFilter()
+        filter.addAction(Intent.ACTION_DATE_CHANGED)
+        registerReceiver(br, filter)
     }
 }
