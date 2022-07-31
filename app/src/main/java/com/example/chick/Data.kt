@@ -9,9 +9,11 @@ data class DrugAll(
     var alarmMin :  Int? =  null,
     var daysOfWeek :  String? =  null,
     var eatNumber :  Int? =  null,
+    var totalNumber : Int? = null,
     var currentNumber : Int? = null,
     var medIcon :  Int? =  null,
-    var eatDone : Int? = null
+    var eatDone : Int? = null,
+    var goalDone: Int? = null
 )
 
 data class ProDrugAll(

@@ -5,6 +5,8 @@ import android.content.ClipData
 import android.content.Context
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +22,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chick.*
+import com.example.chick.MainFragment.Companion.showDialogGoalDone
 import kotlin.math.log
 
 
@@ -51,8 +54,28 @@ class DrugViewAdapter(val drugAllList: ArrayList<DrugAll>): RecyclerView.Adapter
             btnEat.setOnClickListener {
                 var curPos : Int = adapterPosition      // 터치된 어댑터의 포지션
                 var drug : DrugAll = drugAllList.get(curPos)        // 터치된 위치의 데이터 가져오기
-                MainFragment?.eatDrug(drug.medId!!, drug.eatDone!!,drug.eatNumber!!, drug.currentNumber!!)
+                MainFragment?.eatDrug(drug.medId!!, drug.eatDone!!,drug.eatNumber!!, drug.currentNumber!!, drug.totalNumber!!)
 
+//                Handler(Looper.getMainLooper()).postDelayed({
+//                    //실행할 코드
+//                    if(drug.goalDone == 1){
+//                        showDialogGoalDone()
+//                    }
+//                }, 500)
+
+//                if(drug.currentNumber==0 && (drug.totalNumber!! <= (drug.currentNumber!!+drug.eatNumber!!))){
+//                    Handler(Looper.getMainLooper()).postDelayed({
+//                    //실행할 코드
+//                        showDialogGoalDone()
+//                    }, 500)
+//                }
+                drug = drugAllList.get(curPos)
+                if(drug.goalDone ==1){
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        //실행할 코드
+                        showDialogGoalDone()
+                    }, 500)
+                }
                 val intent = Intent(MainFragment.ApplicationContext(), MainActivity::class.java)
                 intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 MainFragment.ApplicationContext().startActivity(intent)

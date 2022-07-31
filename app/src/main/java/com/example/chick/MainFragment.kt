@@ -2,18 +2,25 @@ package com.example.chick
 
 import DrugViewAdapter
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.os.Build.VERSION_CODES.M
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.view.isInvisible
@@ -92,7 +99,7 @@ class MainFragment : Fragment() {
     private fun selectDrug(){
 
 //        sqlDB = dbManager.writableDatabase
-//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (13, '비타민민민', '오전', 11, 3, 30, '월수금', 3, 30, 28, 4, 0, 0)")
+//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (5, '바바ㅏㅂ', '오전', 11, 3, 30, '월수금', 3, 30, 28, 4, 0, 0)")
 
         // 알람 조회
         val selectAll = "select * from drugTBL where goalDone=0 order by alarmTime;"
@@ -110,11 +117,13 @@ class MainFragment : Fragment() {
             var alarmMin = cursor.getInt(cursor.getColumnIndex("alarmMin"))
             var daysOfWeek = cursor.getString(cursor.getColumnIndex("daysOfWeek")).toString()
             var eatNumber = cursor.getInt(cursor.getColumnIndex("eatNumber"))
+            var totalNumber = cursor.getInt(cursor.getColumnIndex("totalNumber"))
             var currentNumber = cursor.getInt(cursor.getColumnIndex("currentNumber"))
             var medIcon = cursor.getInt(cursor.getColumnIndex("medIcon"))
             var eatDone = cursor.getInt(cursor.getColumnIndex("eatDone"))
+            var goalDone = cursor.getInt(cursor.getColumnIndex("goalDone"))
 
-            drugAllList.add(DrugAll(medId,medName,ampm,alarmHour,alarmMin,daysOfWeek,eatNumber,currentNumber,medIcon,eatDone))
+            drugAllList.add(DrugAll(medId,medName,ampm,alarmHour,alarmMin,daysOfWeek,eatNumber,totalNumber, currentNumber,medIcon,eatDone, goalDone))
         }
 
         cursor.close()
@@ -144,52 +153,41 @@ class MainFragment : Fragment() {
 
 
         // 현재 요일의 알람 조회
-        val selectAll = "select * from drugTBL where goalDone=0 AND daysOfWeek LIKE '%${tDaysOfWeek}%';"
+        val selectAll = "select * from drugTBL where goalDone=0 AND daysOfWeek LIKE '%${tDaysOfWeek}%' AND eatDone=0;"
         // 읽기전용 데이터베이스 변수
         sqlDB = dbManager.readableDatabase
         // 데이터를 받아줌
         var cursor = sqlDB.rawQuery(selectAll,null)
 
         var gapAlaram : Int = 2500
+        var trial_name : String = ""
+        var trial_ampm : String = ""
+        var trial_hour : Int = 0
+        var trial_min : Int = 0
 
         //반복문을 사용하여 list 에 데이터를 넘겨 줍시다.
         while(cursor.moveToNext()){
-            var medId = cursor.getLong(cursor.getColumnIndex("medId"))
             var medName = cursor.getString(cursor.getColumnIndex("medName")).toString()
             var ampm = cursor.getString(cursor.getColumnIndex("ampm"))
+            var alarmTime = cursor.getInt(cursor.getColumnIndex("alarmTime"))
             var alarmHour = cursor.getInt(cursor.getColumnIndex("alarmHour"))
             var alarmMin = cursor.getInt(cursor.getColumnIndex("alarmMin"))
 
-            // 알람 시간분
-            var alaramHourMinString = alarmHour.toString()+alarmMin.toString()
-            var alaramHourMin = alaramHourMinString.toInt()
-
-            Log.d("44444", alaramHourMinString)
-
-            // 오후라면 시간에 12 더함
-            if(ampm == "pm") {alarmHour = alarmHour+12}
-
-            if(tKKMM<=alaramHourMin){
+            if(tKKMM<=alarmTime){
                 // 현재 시간 이후의 알람이 있으면
-                if(gapAlaram>=(alaramHourMin-tKKMM)){
-                    gapAlaram=alaramHourMin-tKKMM
+                if(gapAlaram>=(alarmTime-tKKMM)){
                     // 기존 시간 갭보다 작다면
-                    // 배너 이름 변경
-                    txtMainBannerContent1.text = "곧 "
-                    txtBannerName.text = medName
-                    txtMainBannerContent2.text = "를 복용할 시간이에요."
-                    // 배너 시간 변경
-                    var allTime : String
-                    if(alarmMin < 10 ){
-                        allTime = ampm+" "+alarmHour+":0"+alarmMin
-                    }
-                    else{
-                        allTime = ampm+" "+alarmHour+":"+alarmMin
-                    }
-                    txtBannerTime.text = allTime
+                    gapAlaram=alarmTime-tKKMM
+                    trial_name = medName
+                    trial_ampm = ampm
+                    trial_hour = alarmHour
+                    trial_min = alarmMin
+                }else{
+                    gapAlaram = gapAlaram
                 }
             }else{
                 // 현재 시간 이후의 알람이 없으면
+                gapAlaram = gapAlaram
                 txtMainBannerContent1.text = "병아리가 먹는 약은?"
                 txtBannerName.text = ""
                 txtMainBannerContent2.text = ""
@@ -198,22 +196,39 @@ class MainFragment : Fragment() {
 
         }
 
-
+        if(trial_name != ""){
+            // 알람이 있는 경우에만
+            // 배너 이름 변경
+            txtMainBannerContent1.text = "곧 "
+            txtBannerName.text = trial_name
+            txtMainBannerContent2.text = "를 복용할 시간이에요."
+            // 배너 시간 변경
+            var allTime : String
+            if(trial_min < 10 ){
+                allTime = trial_ampm+" "+trial_hour+":0"+trial_min
+            }
+            else{
+                allTime = trial_ampm+" "+trial_hour+":"+trial_min
+            }
+            txtBannerTime.text = allTime
+        }
 
         cursor.close()
         sqlDB.close()
     }
 
+
     companion object{
 
         lateinit var instance: MainFragment
+        lateinit var dialog : Dialog
 
         fun ApplicationContext() : Context {
             return instance.requireContext()
         }
 
         // 복용 완료 update 메소드
-        fun eatDrug(medId : Long, preStatus : Int, eatNumber: Int, preNumber : Int){
+        fun eatDrug(medId : Long, preStatus : Int, eatNumber: Int, preNumber : Int, totalNumber : Int){
             var dbManager: DBManager=DBManager(MainFragment.ApplicationContext(), "drugDB", null, 1)
             var sqlDB: SQLiteDatabase
             var preNum : Int
@@ -232,12 +247,38 @@ class MainFragment : Fragment() {
             // 데이터 수정
             if(preStatus==0){
                 sqlDB.execSQL(eatUpdate)
-                sqlDB.execSQL(goalUpdate)
+                if(totalNumber<=(preNumber+eatNumber)){
+                    sqlDB.execSQL(goalUpdate)
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        //실행할 코드
+                        showDialogGoalDone()
+                    }, 500)
+                }
             }else if(preStatus==1){
                 sqlDB.execSQL(unEatUpdate)
             }
 
+        }
 
+        // 목표 복용 달성 다이얼로그
+        fun showDialogGoalDone(){
+            dialog = Dialog(ApplicationContext())
+            dialog.setContentView(R.layout.dialog_complete)
+
+            dialog.window!!.setLayout(
+                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.MATCH_PARENT)
+            //배경 투명으로 지정(모서리 둥근 배경 보이게 하기)
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.setCanceledOnTouchOutside(false)
+            dialog.setCancelable(true)
+
+            dialog.show()
+
+            val btnComplete = dialog.findViewById<Button>(R.id.btnDialogComplete)
+            btnComplete.setOnClickListener {
+                dialog.dismiss()
+            }
         }
     }
 
