@@ -12,10 +12,10 @@ import androidx.core.text.toSpannable
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
-
     lateinit var bottom_navigation: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.ThemeChick)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 

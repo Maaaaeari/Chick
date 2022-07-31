@@ -223,6 +223,7 @@ class AddAlarmActivity : AppCompatActivity() {
             } else if(eatNumber > totalNumber) {
 
             } else {
+                alarmTime = (alarmHour.toString()+alarmMin.toString()).toInt()
 
                 alarmTime = (alarmHour.toString()+alarmMin.toString()).toInt()
                 if(alarmHour>=13){
