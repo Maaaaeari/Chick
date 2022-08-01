@@ -21,8 +21,5 @@ class AlarmReceiver: BroadcastReceiver(){
 
         // 알림 호출
         notificationHelper.getManager().notify(1, nb.build())
-//        if(Intent.ACTION_DATE_CHANGED == intent!!.action) {
-//            Toast.makeText(context!!, "알람입니다.",  Toast.LENGTH_SHORT).show()
-//        }
     }
 }

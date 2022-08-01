@@ -1,7 +1,9 @@
 package com.example.chick
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +12,8 @@ import android.view.ViewGroup
 import android.widget.Switch
 import android.widget.TextView
 import android.widget.Toast
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class MypageFragment : Fragment() {
@@ -17,8 +21,18 @@ class MypageFragment : Fragment() {
     lateinit var switchAlaram : Switch
     lateinit var txtAlramOnOff : TextView
 
+    lateinit var dbManager: DBManager
+    lateinit var sqlDB: SQLiteDatabase
+    // Data에 있는 DrugAll
+    lateinit var alramAllList: ArrayList<AlramAll>
+
     // 다른 액티비티 함수 호출
     lateinit var mainActivity : MainActivity
+
+    init{
+        MypageFragment.instance = this
+    }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
@@ -35,15 +49,27 @@ class MypageFragment : Fragment() {
         switchAlaram = view.findViewById(R.id.switchAlaram)
         txtAlramOnOff = view.findViewById(R.id.txtAlramOnOff)
 
+        // DB 생성
+        dbManager = DBManager(applicationContext(), "drugDB", null, 1)
+
+        // 약 알람 조회
+        alramAllList = arrayListOf<AlramAll>()
+
         // 스위치 체크 상태 변화
         switchAlaram.setOnCheckedChangeListener { button, isChecked ->
             if(isChecked){
                 Toast.makeText(context, "약 알람이 켜졌어요.", Toast.LENGTH_SHORT).show()
                 txtAlramOnOff.text = "현재 전체 약 알람이 켜져있어요."
-                mainActivity.onTimeSet()
+                // 요일별 알람 리스트 조회
+                selectAlram()
+
+//                mainActivity.onTimeSet()
             }else{
                 Toast.makeText(context, "약 알람이 꺼졌어요.", Toast.LENGTH_SHORT).show()
                 txtAlramOnOff.text = "현재 전체 약 알람이 꺼져있어요."
+                if(alramAllList != null){
+//                    mainActivity.stopAlarm()
+                }
             }
         }
 
@@ -51,6 +77,51 @@ class MypageFragment : Fragment() {
         return view
         // Inflate the layout for this fragment
         // return inflater.inflate(R.layout.fragment_mypage, container, false)
+    }
+
+    // 요일별 알람 select 메소드
+    @SuppressLint("Range")
+    private fun selectAlram(){
+        // 현재시간을 가져오기
+        val long_now = System.currentTimeMillis()
+        // 현재 시간을 Date 타입으로 변환
+        val t_date = Date(long_now)
+        // 날짜, 시간을 가져오고 싶은 형태 선언
+        val tDaysOfWeek_dateFormat = SimpleDateFormat("E", Locale("ko", "KR"))
+        // 현재 시간을 dateFormat 에 선언한 형태의 String 으로 변환
+        val tDaysOfWeek = tDaysOfWeek_dateFormat.format(t_date)     // 요일
+
+        // 현재 요일 알람 조회
+        val selectAlarm = "select * from drugTBL where goalDone=0 AND daysOfWeek LIKE '%${tDaysOfWeek}%' order by alarmTime;"
+        // 읽기전용 데이터베이스 변수
+        sqlDB = dbManager.readableDatabase
+        // 데이터를 받아줌
+        var cursor = sqlDB.rawQuery(selectAlarm,null)
+
+        //반복문을 사용하여 list 에 데이터를 넘겨 줍시다.
+        while(cursor.moveToNext()){
+            var medId = cursor.getLong(cursor.getColumnIndex("medId"))
+            var medName = cursor.getString(cursor.getColumnIndex("medName")).toString()
+            var alarmHour = cursor.getInt(cursor.getColumnIndex("alarmHour"))
+            var alarmMin = cursor.getInt(cursor.getColumnIndex("alarmMin"))
+
+            if(alarmHour==0){
+                alarmHour = 24
+            }
+            mainActivity.onTimeSet(alarmHour, alarmMin)
+//            alramAllList.add(AlramAll(medId,medName,alarmHour,alarmMin))
+        }
+
+        cursor.close()
+        sqlDB.close()
+    }
+
+    companion object{
+        lateinit var instance: MypageFragment
+
+        fun applicationContext() : Context {
+            return instance.requireContext()
+        }
     }
 
 }

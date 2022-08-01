@@ -98,11 +98,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     // 시간 정하는 함수
-    fun onTimeSet(){
+    fun onTimeSet(alarmHour : Int, alarmMin: Int){
         var c = Calendar.getInstance()
 
-        c.set(Calendar.HOUR_OF_DAY, 4)  //시간
-        c.set(Calendar.MINUTE, 0)  //분
+        c.set(Calendar.HOUR_OF_DAY, alarmHour)  //시간
+        c.set(Calendar.MINUTE, alarmMin)  //분
         c.set(Calendar.SECOND, 0)  //초
 
         Log.i("time", c.toString())
@@ -124,5 +124,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.timeInMillis, pendingIntent)
+    }
+
+    // 전체 알람 끄기
+    fun stopAlarm(){
+        // 알람매니저 선언
+        var alarmManager : AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        var intent = Intent(MainFragment.ApplicationContext(), AlarmReceiver::class.java)
+        var pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0)
+
+        alarmManager.cancel(pendingIntent)
     }
 }

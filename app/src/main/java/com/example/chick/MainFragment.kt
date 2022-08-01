@@ -45,7 +45,7 @@ class MainFragment : Fragment() {
     lateinit var drugAllList: ArrayList<DrugAll>
 
     init{
-        instance = this
+        MainFragment.instance = this
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -313,58 +313,7 @@ class MainFragment : Fragment() {
             ApplicationContext().startActivity(intent)
         }
 
-//        // 시간 정하는 함수
-//        fun onTimeSet(hourOfDay : Int, minute: Int){
-//            var c = Calendar.getInstance()
-//
-////            c.set(Calendar.HOUR_OF_DAY, hourOfDay)  //시간
-////            c.set(Calendar.MINUTE, minute)  //분
-////            c.set(Calendar.SECOND, 0)  //초
-//
-//            c.set(Calendar.HOUR_OF_DAY, 4)  //시간
-//            c.set(Calendar.MINUTE, 0)  //분
-//            c.set(Calendar.SECOND, 0)  //초
-//
-//            startAlarm(c)
-//        }
 
-//        // 시간 정하는 함수2
-//        fun onTimeSet(){
-//            var c = Calendar.getInstance()
-//
-//            c.set(Calendar.HOUR_OF_DAY, 4)  //시간
-//            c.set(Calendar.MINUTE, 0)  //분
-//            c.set(Calendar.SECOND, 0)  //초
-//
-//            Log.i("time", c.toString())
-//
-//            startAlarm(c)
-//        }
-//        // 전체 알람 켜기
-//        fun startAlarm(c: Calendar){
-//
-//            // 알람매니저 선언
-//            var alarmManager : AlarmManager = applicationContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
-//            var intent = Intent(applicationContext(), AlarmReceiver::class.java)
-//            var pendingIntent = PendingIntent.getBroadcast(applicationContext(), 1, intent, 0)
-//
-//            // 설정 시간이 현재 시간보다 이전이면 +1일
-//            if(c.before(Calendar.getInstance())){
-//                c.add(Calendar.DATE, 1)
-//            }
-//
-//            alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.timeInMillis, pendingIntent)
-//        }
-
-        // 전체 알람 끄기
-        fun stopAlarm(){
-            // 알람매니저 선언
-            var alarmManager : AlarmManager = ApplicationContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
-            var intent = Intent(ApplicationContext(), AlarmReceiver::class.java)
-            var pendingIntent = PendingIntent.getBroadcast(ApplicationContext(), 1, intent, 0)
-
-            alarmManager.cancel(pendingIntent)
-        }
     }
 
 
