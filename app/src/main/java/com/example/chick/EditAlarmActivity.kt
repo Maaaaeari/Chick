@@ -1,5 +1,6 @@
 package com.example.chick
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.app.TimePickerDialog
 import android.content.Context
@@ -15,12 +16,22 @@ import android.view.WindowManager
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import java.text.SimpleDateFormat
-import java.util.*
 
 class EditAlarmActivity : AppCompatActivity() {
-    //아이디
-    var medId: Long = 0
+    //기존 데이터
+    var medIdF: Long = 0
+    var medNameF: String = ""
+    var ampmF: String = ""
+    var alarmHourF: Int = -1
+    var alarmMinF: Int = -1
+    var daysOfWeekF: String = ""
+    var eatNumberF: Int = -1
+    var totalNumberF: Int = -1
+    var currentNumberF: Int = -1
+    var medIconF: Int = 1
+    var eatDoneF: Int = -1
+    var goalDoneF: Int = -1
+
     //무슨 약인가요?
     var medName: String = ""
     lateinit var medNameData: EditText
@@ -28,7 +39,7 @@ class EditAlarmActivity : AppCompatActivity() {
     var medIcon: Int = 1
     lateinit var medChoice: ImageButton
     //몇 시에 복용하나요?
-    var ampm: String =""
+    var ampm: String = ""
     var alarmTime: Int = 0
     var alarmHour: Int = -1
     var alarmMin: Int = -1
@@ -50,6 +61,8 @@ class EditAlarmActivity : AppCompatActivity() {
     var totalNumber: Int = -1
     //이전 버튼
     lateinit var medEditBack: ImageButton
+    //삭제 버튼
+    lateinit var medEditDelete: ImageButton
     //확인 버튼
     lateinit var medEditConfirm: Button
     //취소 버튼
@@ -60,10 +73,16 @@ class EditAlarmActivity : AppCompatActivity() {
     lateinit var dbManager: DBManager
 
     @RequiresApi(Build.VERSION_CODES.N)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_alarm)
+
+        //아이디 불러오기
+        val intent = intent
+        medIdF = intent.getLongExtra("intent_id", 0)
+
+        //다이얼로그클래스
+        val dialog = CustomDialogEdit(this)
 
         //무슨 약인가요?
         medNameData = findViewById<EditText>(R.id.medName)
@@ -85,13 +104,92 @@ class EditAlarmActivity : AppCompatActivity() {
         btnSun = findViewById<Button>(R.id.btnSun)
         //이전 버튼
         medEditBack = findViewById(R.id.medEditBack)
+        //삭제 버튼
+        medEditDelete = findViewById(R.id.medEditDelete)
         //확인 버튼
         medEditConfirm = findViewById(R.id.medEditConfirm)
         //취소 버튼
         medEditCancel = findViewById(R.id.medEditCancel)
 
+        //기존 데이터 입력
+        selectDrug()
+        medName= medNameF
+        medNameData.setText(medName)
+        medNameData.setSelection(medNameData.length())
+        ampm = ampmF
+        alarmHour = alarmHourF
+        alarmMin = alarmMinF
+        if(alarmHour >= 13) {
+            ampm = "오후"
+            var textPmH: Int = alarmHour - 12
+            if (textPmH < 10 && alarmMin < 10) {
+                choiceAmPm.text = "오후                  " + "0" + textPmH.toString() + "       :       " + "0" + alarmMin.toString()
+            } else if (textPmH < 10) {
+                choiceAmPm.text = "오후                  " + "0" + textPmH.toString() + "       :       " + alarmMin.toString()
+            } else if (alarmMin < 10) {
+                choiceAmPm.text = "오후                  " + textPmH.toString() + "       :       " + "0" + alarmMin.toString()
+            } else {
+                choiceAmPm.text = "오후                  " + textPmH.toString() + "       :       " + alarmMin.toString()
+            }
+        } else {
+            ampm = "오전"
+            if(alarmHour == 0) {
+                if(alarmMin < 10) {
+                    choiceAmPm.text = "오전                  " + "12" + "       :       " + "0" + alarmMin.toString()
+                } else {
+                    choiceAmPm.text = "오전                  " + "12" + "       :       " + alarmMin.toString()
+                }
+            } else if(alarmHour < 10 && alarmMin < 10) {
+                choiceAmPm.text = "오전                  " + "0" + alarmHour.toString() + "       :       " + "0" + alarmMin.toString()
+            } else if (alarmHour < 10) {
+                choiceAmPm.text = "오전                  " + "0" + alarmHour.toString() + "       :       " + alarmMin.toString()
+            } else if (alarmMin < 10) {
+                choiceAmPm.text = "오전                  " + alarmHour.toString() + "       :       " + "0" + alarmMin.toString()
+            } else {
+                choiceAmPm.text = "오전                  " + alarmHour.toString() + "       :       " + alarmMin.toString()
+            }
+        }
+        daysOfWeek = daysOfWeekF
+        if(daysOfWeek.contains("월")) {
+            btnMon.isSelected = true
+        }
+        if(daysOfWeek.contains("화")) {
+            btnTue.isSelected = true
+        }
+        if(daysOfWeek.contains("수")) {
+            btnWed.isSelected = true
+        }
+        if(daysOfWeek.contains("목")) {
+            btnThu.isSelected = true
+        }
+        if(daysOfWeek.contains("금")) {
+            btnFri.isSelected = true
+        }
+        if(daysOfWeek.contains("토")) {
+            btnSat.isSelected = true
+        }
+        if(daysOfWeek.contains("일")) {
+            btnSun.isSelected = true
+        }
+        eatNumber = eatNumberF
+        eatNumberData.setText(""+eatNumber)
+        eatNumberData.setSelection(eatNumberData.length())
+        totalNumber = totalNumberF
+        totalNumberData.setText(""+totalNumber)
+        totalNumberData.setSelection(totalNumberData.length())
+        medIcon = medIconF
+        when(medIcon) {
+            1 -> medChoice.setImageResource(R.drawable.size_drugs_b_1)
+            2 -> medChoice.setImageResource(R.drawable.size_drugs_b_2)
+            3 -> medChoice.setImageResource(R.drawable.size_drugs_b_3)
+            4 -> medChoice.setImageResource(R.drawable.size_drugs_b_4)
+            5 -> medChoice.setImageResource(R.drawable.size_drugs_b_5)
+            6 -> medChoice.setImageResource(R.drawable.size_drugs_b_6)
+            7 -> medChoice.setImageResource(R.drawable.size_drugs_b_7)
+            8 -> medChoice.setImageResource(R.drawable.size_drugs_b_8)
+        }
+
         //약 아이콘
-        val dialog = CustomDialogEdit(this)
         medChoice.setOnClickListener {
             dialog.medDig()
         }
@@ -123,11 +221,33 @@ class EditAlarmActivity : AppCompatActivity() {
 
                 if(hour >= 13) {
                     ampm = "오후"
-                    var textPmH = alarmHour - 12
-                    button.text = "오후                  " + textPmH.toString() + "       :       " + alarmMin.toString()
+                    var textPmH: Int = alarmHour - 12
+                    if (textPmH < 10 && alarmMin < 10) {
+                        button.text = "오후                  " + "0" + textPmH.toString() + "       :       " + "0" + alarmMin.toString()
+                    } else if (textPmH < 10) {
+                        button.text = "오후                  " + "0" + textPmH.toString() + "       :       " + alarmMin.toString()
+                    } else if (alarmMin < 10) {
+                        button.text = "오후                  " + textPmH.toString() + "       :       " + "0" + alarmMin.toString()
+                    } else {
+                        button.text = "오후                  " + textPmH.toString() + "       :       " + alarmMin.toString()
+                    }
                 } else {
                     ampm = "오전"
-                    button.text = "오전                  " + alarmHour.toString() + "       :       " + alarmMin.toString()
+                    if(alarmHour == 0) {
+                        if(alarmMin < 10) {
+                            button.text = "오전                  " + "12" + "       :       " + "0" + alarmMin.toString()
+                        } else {
+                            button.text = "오전                  " + "12" + "       :       " + alarmMin.toString()
+                        }
+                    } else if(alarmHour < 10 && alarmMin < 10) {
+                        button.text = "오전                  " + "0" + alarmHour.toString() + "       :       " + "0" + alarmMin.toString()
+                    } else if (alarmHour < 10) {
+                        button.text = "오전                  " + "0" + alarmHour.toString() + "       :       " + alarmMin.toString()
+                    } else if (alarmMin < 10) {
+                        button.text = "오전                  " + alarmHour.toString() + "       :       " + "0" + alarmMin.toString()
+                    } else {
+                        button.text = "오전                  " + alarmHour.toString() + "       :       " + alarmMin.toString()
+                    }
                 }
             }
 
@@ -169,17 +289,17 @@ class EditAlarmActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        //삭제 버튼
+        medEditDelete.setOnClickListener {
+            dialog.deleteDig(this, medIdF)
+        }
+
         //확인 버튼
         medEditConfirm.setOnClickListener {
-            //아이디
-            val currentTime : Long = System.currentTimeMillis()
-            val dateFormat = SimpleDateFormat("yyyyMMddHHmmss")
-            val curTime: String = dateFormat.format(Date(currentTime)).toString()
-            val numberTime = curTime.replace("[^0-9]".toRegex(), "")
-            medId = numberTime.toLong()
             //무슨 약인가요?
             medName = medNameData.text.toString()
             //언제마다 복용하나요?
+            daysOfWeek = ""
             if(btnMon.isSelected) {
                 daysOfWeek += "월"
             } else{}
@@ -237,25 +357,32 @@ class EditAlarmActivity : AppCompatActivity() {
                     daysOfWeek = ""
                     Toast.makeText(this, "총 목표 개수를 1회당 복용 개수 이상으로\n입력해주세요.", Toast.LENGTH_LONG).show()
                 } else {
-                    Log.d("testmedId", medId.toString())
-                    Log.d("testmedName", medName)
-                    Log.d("testampm", ampm)
-                    Log.d("testalarmHour", alarmHour.toString())
-                    Log.d("testalarmMin", alarmMin.toString())
-                    Log.d("testdaysOfWeek", daysOfWeek)
-                    Log.d("testeatNumber", eatNumber.toString())
-                    Log.d("testtotalNumber", totalNumber.toString())
-                    Log.d("testmedIcon", medIcon.toString())
-
-                    alarmTime = (alarmHour.toString()+alarmMin.toString()).toInt()
-                    if(alarmHour>=13){
-                        alarmHour = alarmHour-12
+                    var alarmMinTime = alarmMin.toString()
+                    if(alarmMin < 10) {
+                        alarmMinTime = "0" + alarmMin.toString()
+                    } else {
+                        alarmMinTime = alarmMin.toString()
+                    }
+                    alarmTime = (alarmHour.toString()+alarmMinTime).toInt()
+                    if(alarmHour >= 13){
+                        alarmHour -= 12
+                    } else if(alarmHour == 0) {
+                        alarmHour = 12
                     }
 
                     //DB 생성
                     dbManager = DBManager(this, "drugDB", null, 1)
                     sqlDB = dbManager.writableDatabase
-                    sqlDB.execSQL("INSERT INTO drugTBL VALUES ('"+medId+"', '"+medName+"','"+ampm+"','"+alarmTime+"','"+alarmHour+"','"+alarmMin+"','"+daysOfWeek+"','"+eatNumber+"','"+totalNumber+"',0,'"+medIcon+"',0,0);")
+                    sqlDB.execSQL("UPDATE drugTBL SET medName = '"+medName+"'," +
+                            "medIcon = '"+medIcon+"'," +
+                            "ampm = '"+ampm+"'," +
+                            "alarmTime = '"+alarmTime+"'," +
+                            "alarmHour = '"+alarmHour+"'," +
+                            "alarmMin = '"+alarmMin+"'," +
+                            "daysOfWeek = '"+daysOfWeek+"'," +
+                            "eatNumber = '"+eatNumber+"'," +
+                            "totalNumber = '"+totalNumber+"' " +
+                            "WHERE medId="+medIdF+";")
                     sqlDB.close()
 
                     //화면 전환
@@ -270,10 +397,42 @@ class EditAlarmActivity : AppCompatActivity() {
             dialog.cancleDig(this)
         }
     }
+
+    // select 메소드
+    @SuppressLint("Range")
+    private fun selectDrug(){
+        // 알람 조회
+        val selectAll = "SELECT * FROM drugTBL WHERE medId=${medIdF};"
+        // 읽기전용 데이터베이스 변수
+        dbManager = DBManager(this, "drugDB", null, 1)
+        sqlDB = dbManager.readableDatabase
+        // 데이터를 받아줌
+        var cursor = sqlDB.rawQuery(selectAll,null)
+
+        while(cursor.moveToNext()){
+            medNameF = cursor.getString(cursor.getColumnIndex("medName")).toString()
+            ampmF = cursor.getString(cursor.getColumnIndex("ampm")).toString()
+            alarmHourF = cursor.getInt(cursor.getColumnIndex("alarmHour"))
+            alarmMinF = cursor.getInt(cursor.getColumnIndex("alarmMin"))
+            daysOfWeekF = cursor.getString(cursor.getColumnIndex("daysOfWeek")).toString()
+            eatNumberF = cursor.getInt(cursor.getColumnIndex("eatNumber"))
+            totalNumberF = cursor.getInt(cursor.getColumnIndex("totalNumber"))
+            currentNumberF = cursor.getInt(cursor.getColumnIndex("currentNumber"))
+            medIconF = cursor.getInt(cursor.getColumnIndex("medIcon"))
+            eatDoneF = cursor.getInt(cursor.getColumnIndex("eatDone"))
+            goalDoneF = cursor.getInt(cursor.getColumnIndex("goalDone"))
+        }
+        cursor.close()
+        sqlDB.close()
+    }
 }
 
 class CustomDialogEdit(context: Context) {
     private val dialog = Dialog(context)
+
+    //DB
+    lateinit var sqlDB: SQLiteDatabase
+    lateinit var dbManager: DBManager
 
     fun medDig() {
         dialog.setContentView(R.layout.dialog_med_choice)
@@ -350,6 +509,36 @@ class CustomDialogEdit(context: Context) {
             dialog.dismiss()
         }
         cancleY.setOnClickListener {
+            val intent = Intent(context, MainActivity::class.java)
+            context.startActivity(intent)
+        }
+    }
+
+    fun deleteDig(context: Context, medIdF: Long) {
+        dialog.setContentView(R.layout.dialog_delete)
+
+        dialog.window!!.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT)
+        dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setCanceledOnTouchOutside(false)
+        dialog.setCancelable(true)
+
+        dialog.show()
+
+        val cancleN = dialog.findViewById<Button>(R.id.btnDialogDelN)
+        val cancleY = dialog.findViewById<Button>(R.id.btnDialogDelY)
+
+        cancleN.setOnClickListener {
+            dialog.dismiss()
+        }
+        cancleY.setOnClickListener {
+            //DB 생성
+            dbManager = DBManager(context, "drugDB", null, 1)
+            sqlDB = dbManager.writableDatabase
+            sqlDB.execSQL("DELETE FROM drugTBL WHERE medId="+medIdF+";")
+            sqlDB.close()
+
             val intent = Intent(context, MainActivity::class.java)
             context.startActivity(intent)
         }

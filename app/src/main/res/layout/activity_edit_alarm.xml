@@ -19,10 +19,10 @@
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/menu_top_delete">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
+            android:id="@+id/medEditBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -40,6 +40,15 @@
             android:textSize="20sp"
             tools:layout_editor_absoluteX="173dp"
             tools:layout_editor_absoluteY="16dp" />
+
+        <ImageButton
+            android:id="@+id/medEditDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="20dp"
+            android:background="@null"
+            android:src="@drawable/size_ic_delete" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -70,10 +79,11 @@
 
                 <EditText
                     android:id="@+id/medName"
-                    android:layout_width="290dp"
+                    android:layout_width="280dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="10dp"
+                    android:maxLength="7"
                     android:background="@drawable/yellow_rounding_box"
                     android:fontFamily="@font/jejugothic"
                     android:hint="약 이름"
