@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="drugEatDoneN">#F5F5F5</color>
     <color name="drugEatDoneY">#BFE0FF</color>
+    <color name="switchOn">#F3D358</color>
 </resources>

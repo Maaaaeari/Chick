@@ -315,6 +315,9 @@ class MainFragment : Fragment() {
             intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION)
             ApplicationContext().startActivity(intent)
         }
+
+        // 전체 알람 켜기끄기
+
     }
 
 
