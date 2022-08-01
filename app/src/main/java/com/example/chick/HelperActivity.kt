@@ -28,7 +28,6 @@ class HelperActivity : AppCompatActivity() {
         btn_helperclose.setOnClickListener{
             onBackPressed()
         }
-
     }
 
     class CustomPagerAdapter(fm: FragmentManager): FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
