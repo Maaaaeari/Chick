@@ -356,6 +356,12 @@ class EditAlarmActivity : AppCompatActivity() {
                 if(eatNumber > totalNumber) {
                     daysOfWeek = ""
                     Toast.makeText(this, "총 목표 개수를 1회당 복용 개수 이상으로\n입력해주세요.", Toast.LENGTH_LONG).show()
+                } else if(eatNumber >= 50) {
+                    daysOfWeek = ""
+                    Toast.makeText(this, "약을 과다복용하면 좋지 않아요.", Toast.LENGTH_LONG).show()
+                } else if(totalNumber >= 10000) {
+                    daysOfWeek = ""
+                    Toast.makeText(this, "약을 과다복용하면 좋지 않아요.", Toast.LENGTH_LONG).show()
                 } else {
                     var alarmMinTime = alarmMin.toString()
                     if(alarmMin < 10) {
@@ -441,7 +447,6 @@ class CustomDialogEdit(context: Context) {
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.MATCH_PARENT)
         dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.getWindow()?.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
         dialog.setCanceledOnTouchOutside(false)
         dialog.setCancelable(true)
 
