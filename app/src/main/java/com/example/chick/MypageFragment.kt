@@ -8,7 +8,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.database.sqlite.SQLiteDatabase
 import android.os.Build.VERSION_CODES.S
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -67,10 +66,6 @@ class MypageFragment : Fragment() {
             val intent = Intent(activity, HelperActivity::class.java)
             startActivity(intent)
         }
-
-        return view
-
-        var view = LayoutInflater.from(activity).inflate(R.layout.fragment_mypage, container, false)
 
         // 바인딩
         switchAlaram = view.findViewById(R.id.switchAlaram)
