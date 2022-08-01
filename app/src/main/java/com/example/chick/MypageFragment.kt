@@ -1,5 +1,6 @@
 package com.example.chick
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,6 +16,13 @@ class MypageFragment : Fragment() {
 
     lateinit var switchAlaram : Switch
     lateinit var txtAlramOnOff : TextView
+
+    // 다른 액티비티 함수 호출
+    lateinit var mainActivity : MainActivity
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mainActivity = context as MainActivity
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +40,7 @@ class MypageFragment : Fragment() {
             if(isChecked){
                 Toast.makeText(context, "약 알람이 켜졌어요.", Toast.LENGTH_SHORT).show()
                 txtAlramOnOff.text = "현재 전체 약 알람이 켜져있어요."
+                mainActivity.onTimeSet()
             }else{
                 Toast.makeText(context, "약 알람이 꺼졌어요.", Toast.LENGTH_SHORT).show()
                 txtAlramOnOff.text = "현재 전체 약 알람이 꺼져있어요."

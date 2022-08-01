@@ -29,6 +29,11 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    // Minjeong add
+    buildFeatures{
+        dataBinding = true
+    }
 }
 
 dependencies {
@@ -44,4 +49,5 @@ dependencies {
 
     // minjeong add
     implementation 'com.google.android.material:material:1.1.0-beta01'
+    implementation 'androidx.work:work-runtime-ktx:2.7.1'
 }

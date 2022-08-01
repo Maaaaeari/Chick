@@ -2,19 +2,16 @@ package com.example.chick
 
 import DrugViewAdapter
 import android.annotation.SuppressLint
-import android.app.AlarmManager
-import android.app.Dialog
-import android.app.PendingIntent
+import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.os.Build.VERSION_CODES.M
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.provider.CalendarContract
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -22,16 +19,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.*
-import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.widget.AppCompatButton
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat
-import androidx.core.view.isInvisible
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import java.lang.reflect.Executable
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -98,6 +90,7 @@ class MainFragment : Fragment() {
 
         return view
     }
+
 
 
     // select 메소드
@@ -231,6 +224,10 @@ class MainFragment : Fragment() {
         lateinit var instance: MainFragment
         lateinit var dialog : Dialog
 
+        lateinit var Alarm : AlarmReceiver
+        lateinit var notificationManager : NotificationManager
+        lateinit var builder : NotificationCompat
+
         fun ApplicationContext() : Context {
             return instance.requireContext()
         }
@@ -316,8 +313,58 @@ class MainFragment : Fragment() {
             ApplicationContext().startActivity(intent)
         }
 
-        // 전체 알람 켜기끄기
+//        // 시간 정하는 함수
+//        fun onTimeSet(hourOfDay : Int, minute: Int){
+//            var c = Calendar.getInstance()
+//
+////            c.set(Calendar.HOUR_OF_DAY, hourOfDay)  //시간
+////            c.set(Calendar.MINUTE, minute)  //분
+////            c.set(Calendar.SECOND, 0)  //초
+//
+//            c.set(Calendar.HOUR_OF_DAY, 4)  //시간
+//            c.set(Calendar.MINUTE, 0)  //분
+//            c.set(Calendar.SECOND, 0)  //초
+//
+//            startAlarm(c)
+//        }
 
+//        // 시간 정하는 함수2
+//        fun onTimeSet(){
+//            var c = Calendar.getInstance()
+//
+//            c.set(Calendar.HOUR_OF_DAY, 4)  //시간
+//            c.set(Calendar.MINUTE, 0)  //분
+//            c.set(Calendar.SECOND, 0)  //초
+//
+//            Log.i("time", c.toString())
+//
+//            startAlarm(c)
+//        }
+//        // 전체 알람 켜기
+//        fun startAlarm(c: Calendar){
+//
+//            // 알람매니저 선언
+//            var alarmManager : AlarmManager = applicationContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
+//            var intent = Intent(applicationContext(), AlarmReceiver::class.java)
+//            var pendingIntent = PendingIntent.getBroadcast(applicationContext(), 1, intent, 0)
+//
+//            // 설정 시간이 현재 시간보다 이전이면 +1일
+//            if(c.before(Calendar.getInstance())){
+//                c.add(Calendar.DATE, 1)
+//            }
+//
+//            alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.timeInMillis, pendingIntent)
+//        }
+
+        // 전체 알람 끄기
+        fun stopAlarm(){
+            // 알람매니저 선언
+            var alarmManager : AlarmManager = ApplicationContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            var intent = Intent(ApplicationContext(), AlarmReceiver::class.java)
+            var pendingIntent = PendingIntent.getBroadcast(ApplicationContext(), 1, intent, 0)
+
+            alarmManager.cancel(pendingIntent)
+        }
     }
 
 
