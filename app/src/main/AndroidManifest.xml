@@ -27,8 +27,7 @@
         <activity
             android:name=".EditAlarmActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/ThemeChick"

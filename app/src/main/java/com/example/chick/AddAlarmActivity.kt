@@ -28,7 +28,7 @@ class AddAlarmActivity : AppCompatActivity() {
     var medIcon: Int = 1
     lateinit var medChoice: ImageButton
     //몇 시에 복용하나요?
-    var ampm: String =""
+    var ampm: String = ""
     var alarmTime: Int = 0
     var alarmHour: Int = -1
     var alarmMin: Int = -1
@@ -123,11 +123,33 @@ class AddAlarmActivity : AppCompatActivity() {
 
                 if(hour >= 13) {
                     ampm = "오후"
-                    var textPmH = alarmHour - 12
-                    button.text = "오후                  " + textPmH.toString() + "       :       " + alarmMin.toString()
+                    var textPmH: Int = alarmHour - 12
+                    if (textPmH < 10 && alarmMin < 10) {
+                        button.text = "오후                  " + "0" + textPmH.toString() + "       :       " + "0" + alarmMin.toString()
+                    } else if (textPmH < 10) {
+                        button.text = "오후                  " + "0" + textPmH.toString() + "       :       " + alarmMin.toString()
+                    } else if (alarmMin < 10) {
+                        button.text = "오후                  " + textPmH.toString() + "       :       " + "0" + alarmMin.toString()
+                    } else {
+                        button.text = "오후                  " + textPmH.toString() + "       :       " + alarmMin.toString()
+                    }
                 } else {
                     ampm = "오전"
-                    button.text = "오전                  " + alarmHour.toString() + "       :       " + alarmMin.toString()
+                    if(alarmHour == 0) {
+                        if(alarmMin < 10) {
+                            button.text = "오전                  " + "12" + "       :       " + "0" + alarmMin.toString()
+                        } else {
+                            button.text = "오전                  " + "12" + "       :       " + alarmMin.toString()
+                        }
+                    } else if(alarmHour < 10 && alarmMin < 10) {
+                        button.text = "오전                  " + "0" + alarmHour.toString() + "       :       " + "0" + alarmMin.toString()
+                    } else if (alarmHour < 10) {
+                        button.text = "오전                  " + "0" + alarmHour.toString() + "       :       " + alarmMin.toString()
+                    } else if (alarmMin < 10) {
+                        button.text = "오전                  " + alarmHour.toString() + "       :       " + "0" + alarmMin.toString()
+                    } else {
+                        button.text = "오전                  " + alarmHour.toString() + "       :       " + alarmMin.toString()
+                    }
                 }
             }
 
@@ -247,9 +269,17 @@ class AddAlarmActivity : AppCompatActivity() {
                     Log.d("testtotalNumber", totalNumber.toString())
                     Log.d("testmedIcon", medIcon.toString())
 
-                    alarmTime = (alarmHour.toString()+alarmMin.toString()).toInt()
-                    if(alarmHour>=13){
-                        alarmHour = alarmHour-12
+                    var alarmMinTime = alarmMin.toString()
+                    if(alarmMin < 10) {
+                        alarmMinTime = "0" + alarmMin.toString()
+                    } else {
+                        alarmMinTime = alarmMin.toString()
+                    }
+                    alarmTime = (alarmHour.toString()+alarmMinTime).toInt()
+                    if(alarmHour >= 13){
+                        alarmHour -= 12
+                    } else if(alarmHour == 0) {
+                        alarmHour = 12
                     }
 
                     //DB 생성
