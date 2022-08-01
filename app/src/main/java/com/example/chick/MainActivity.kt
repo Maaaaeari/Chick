@@ -130,8 +130,8 @@ class MainActivity : AppCompatActivity() {
     fun stopAlarm(){
         // 알람매니저 선언
         var alarmManager : AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        var intent = Intent(MainFragment.ApplicationContext(), AlarmReceiver::class.java)
-        var pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0)
+        var intent = Intent(this, AlarmReceiver::class.java)
+        var pendingIntent = PendingIntent.getBroadcast(this, 1, intent, PendingIntent.FLAG_IMMUTABLE)
 
         alarmManager.cancel(pendingIntent)
     }

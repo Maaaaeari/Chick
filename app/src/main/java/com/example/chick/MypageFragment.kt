@@ -75,7 +75,7 @@ class MypageFragment : Fragment() {
                 Toast.makeText(context, "약 알람이 꺼졌어요.", Toast.LENGTH_SHORT).show()
                 txtAlramOnOff.text = "현재 전체 약 알람이 꺼져있어요."
                 if(alramAllList != null){
-//                    mainActivity.stopAlarm()
+                    mainActivity.stopAlarm()
                 }
             }
         }
