@@ -9,15 +9,15 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="130dp"
+        android:layout_height="125dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="15dp"
         app:cardElevation="@null"
         app:cardMaxElevation="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
             android:id="@+id/cardPro"
@@ -31,8 +31,8 @@
                 android:layout_height="23dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="18dp"
                 app:srcCompat="@drawable/ic_drugs_1" />
 
             <TextView
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="27dp"
+                android:layout_marginTop="20dp"
                 android:layout_toEndOf="@+id/Promedicon1"
                 android:layout_weight="1"
                 android:fontFamily="@font/jejugothic"
@@ -56,7 +56,7 @@
                 android:layout_below="@+id/txtProDrugName"
                 android:layout_alignStart="@+id/txtProDrugName"
                 android:layout_marginStart="0dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="12dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/jejugothic"
                 android:gravity="center_vertical"
@@ -67,18 +67,18 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txtProDrugRotation"
-                android:layout_alignStart="@+id/txtProDrugRotation"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="10dp"
+                android:layout_below="@+id/txtProPercent"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="11dp"
+                android:layout_marginEnd="25dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/Promedicon2"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="23dp"
+                    android:layout_height="match_parent"
                     android:paddingRight="5dp"
                     app:srcCompat="@drawable/ic_main_alaram" />
 
@@ -97,32 +97,37 @@
                 android:id="@+id/txtProPercent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="25dp"
                 android:fontFamily="@font/jejugothic"
                 android:text="50%"
                 android:textColor="#000000"
                 android:textSize="20sp" />
 
             <ImageView
-                android:layout_width="159dp"
-                android:layout_height="40dp"
-                android:layout_below="@+id/txtProPercent"
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_below="@+id/txtProDrugRotation"
+                android:layout_alignStart="@+id/txtProDrugRotation"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="15dp"
-                android:src="@drawable/shadow_medpro" />
+                android:layout_marginStart="-4dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="21dp"
+                android:src="@drawable/shadow_medpro2" />
 
             <ProgressBar
                 android:id="@+id/MedprogressBar"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="150dp"
-                android:layout_height="20dp"
-                android:layout_below="@+id/txtProPercent"
+                android:layout_height="22dp"
+                android:layout_below="@+id/txtProDrugRotation"
+                android:layout_alignStart="@+id/txtProDrugRotation"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="13dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="25dp"
                 android:max="100"
                 android:progress="20"
                 android:progressDrawable="@drawable/design_medprogressbar" />
@@ -131,15 +136,18 @@
                 android:id="@+id/txtProCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/MedprogressBar"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="14dp"
-                android:layout_marginEnd="20dp"
+                android:layout_alignStart="@+id/MedprogressBar"
 
+                android:layout_alignTop="@+id/MedprogressBar"
+                android:layout_alignBottom="@+id/MedprogressBar"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="0dp"
                 android:fontFamily="@font/jejugothic"
-                android:text="100/200정 복용"
+                android:gravity="center_vertical"
+                android:text="100/200"
                 android:textColor="#7B7B7B"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

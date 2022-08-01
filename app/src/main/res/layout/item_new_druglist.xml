@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="155dp"
+    android:layout_height="140dp"
     android:backgroundTint="#00FFFFFF"
     android:foregroundTint="#00FFFFFF">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/mainCard"
         android:layout_width="match_parent"
-        android:layout_height="135dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="15dp"
         app:cardCornerRadius="25dp"
         app:cardElevation="@null"
         app:cardMaxElevation="@null"
@@ -32,7 +32,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="25dp"
-                android:layout_marginTop="23dp"
+                android:layout_marginTop="18dp"
                 app:srcCompat="@drawable/ic_drugs_1" />
 
             <TextView
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="20dp"
                 android:layout_toEndOf="@+id/icMainDrug"
                 android:layout_weight="1"
                 android:fontFamily="@font/jejugothic"
@@ -56,7 +56,7 @@
                 android:layout_below="@+id/txtMainDrugName"
                 android:layout_alignStart="@+id/txtMainDrugName"
                 android:layout_marginStart="0dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="11dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/jejugothic"
                 android:gravity="center_vertical"
@@ -70,7 +70,7 @@
                 android:layout_below="@+id/txtMainDrugRotation"
                 android:layout_alignStart="@+id/txtMainDrugRotation"
                 android:layout_marginStart="0dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="11dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
@@ -110,12 +110,12 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnMainEat"
-                android:layout_width="155dp"
-                android:layout_height="42dp"
+                android:layout_width="132dp"
+                android:layout_height="36dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginEnd="18dp"
-                android:layout_marginBottom="18dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp"
                 android:layout_weight="1"
                 android:background="@drawable/ic_main_eatbtn1"
                 android:scaleType="centerCrop"
