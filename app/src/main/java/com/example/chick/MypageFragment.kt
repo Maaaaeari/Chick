@@ -15,6 +15,7 @@ import android.view.ViewGroup
 import android.widget.Switch
 import android.widget.TextView
 import android.widget.Toast
+import com.example.chick.MainFragment.Companion.instance
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -93,29 +94,36 @@ class MypageFragment : Fragment() {
         val t_date = Date(long_now)
         // 날짜, 시간을 가져오고 싶은 형태 선언
         val tDaysOfWeek_dateFormat = SimpleDateFormat("E", Locale("ko", "KR"))
+        val tKK_dateFormat = SimpleDateFormat("kk", Locale("ko", "KR"))
+        val tMM_dateFormat = SimpleDateFormat("mm", Locale("ko", "KR"))
         // 현재 시간을 dateFormat 에 선언한 형태의 String 으로 변환
         val tDaysOfWeek = tDaysOfWeek_dateFormat.format(t_date)     // 요일
+        var tKKString = tKK_dateFormat.format(t_date)  // 시간
+        val tMMString = tMM_dateFormat.format(t_date)    // 분
+        if(tKKString=="24"){
+            tKKString = "00"
+        }
+        val tKKMMString = tKKString+tMMString
+        val tKKMM = tKKMMString.toInt()
 
         // 현재 요일 알람 조회
-        val selectAlarm = "select * from drugTBL where goalDone=0 AND daysOfWeek LIKE '%${tDaysOfWeek}%' order by alarmTime;"
+        val selectAlarm = "select * from drugTBL where goalDone=0 AND ${tKKMM} <= alarmTime AND daysOfWeek LIKE '%${tDaysOfWeek}%' order by alarmTime;"
         // 읽기전용 데이터베이스 변수
         sqlDB = dbManager.readableDatabase
         // 데이터를 받아줌
         var cursor = sqlDB.rawQuery(selectAlarm,null)
 
-        //반복문을 사용하여 list 에 데이터를 넘겨 줍시다.
-        while(cursor.moveToNext()){
-            var medId = cursor.getLong(cursor.getColumnIndex("medId"))
-            var medName = cursor.getString(cursor.getColumnIndex("medName")).toString()
-            var alarmHour = cursor.getInt(cursor.getColumnIndex("alarmHour"))
-            var alarmMin = cursor.getInt(cursor.getColumnIndex("alarmMin"))
+        // 리스트에 가장 최신 데이터 넘겨줌
+        cursor.moveToNext()
+        var medId = cursor.getLong(cursor.getColumnIndex("medId"))
+        var medName = cursor.getString(cursor.getColumnIndex("medName")).toString()
+        var alarmHour = cursor.getInt(cursor.getColumnIndex("alarmHour"))
+        var alarmMin = cursor.getInt(cursor.getColumnIndex("alarmMin"))
 
-            if(alarmHour==0){
-                alarmHour = 24
-            }
-            mainActivity.onTimeSet(alarmHour, alarmMin, medName)
-//            alramAllList.add(AlramAll(medId,medName,alarmHour,alarmMin))
+        if(alarmHour==0){
+            alarmHour = 24
         }
+        mainActivity.onTimeSet(alarmHour, alarmMin, medName)
 
         cursor.close()
         sqlDB.close()
