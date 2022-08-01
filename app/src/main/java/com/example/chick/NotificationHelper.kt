@@ -9,6 +9,7 @@ import android.content.Context
 import android.content.ContextWrapper
 import android.graphics.Color
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 
@@ -42,10 +43,10 @@ class NotificationHelper(base: Context?) : ContextWrapper(base) {
     }
 
     // Notificaiton 설정
-    fun getChannelNotification(): NotificationCompat.Builder{
+    fun getChannelNotification(drugName: String): NotificationCompat.Builder{
         return NotificationCompat.Builder(applicationContext, channelID)
-            .setContentTitle("약을 복용할 시간이에요")
-            .setContentText("삐약삐약")
-            .setSmallIcon(R.drawable.ic_alarm_logo)
+            .setContentTitle("삐약삐약")
+            .setContentText(drugName+"을(를) 복용할 시간이에요!")
+            .setSmallIcon(R.drawable.ic_alarm)
     }
 }

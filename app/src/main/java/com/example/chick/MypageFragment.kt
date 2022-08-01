@@ -113,7 +113,7 @@ class MypageFragment : Fragment() {
             if(alarmHour==0){
                 alarmHour = 24
             }
-            mainActivity.onTimeSet(alarmHour, alarmMin)
+            mainActivity.onTimeSet(alarmHour, alarmMin, medName)
 //            alramAllList.add(AlramAll(medId,medName,alarmHour,alarmMin))
         }
 

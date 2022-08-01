@@ -18,20 +18,10 @@ import androidx.core.text.set
 import androidx.core.text.toSpannable
 import com.example.chick.MainFragment.Companion.instance
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.text.DateFormat
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
-//    init{
-//        instance = this
-//    }
-//
-//    companion object {
-//        private var instance: MainActivity? = null
-//
-//        fun applicationContext() : Context {
-//            return instance!!.applicationContext
-//        }
-//    }
 
     lateinit var bottom_navigation: BottomNavigationView
 
@@ -98,7 +88,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // 시간 정하는 함수
-    fun onTimeSet(alarmHour : Int, alarmMin: Int){
+    fun onTimeSet(alarmHour : Int, alarmMin: Int, drugName: String){
         var c = Calendar.getInstance()
 
         c.set(Calendar.HOUR_OF_DAY, alarmHour)  //시간
@@ -107,16 +97,21 @@ class MainActivity : AppCompatActivity() {
 
         Log.i("time", c.toString())
 
-        startAlarm(c)
+        startAlarm(c, drugName)
     }
 
     // 전체 알람 켜기
-    fun startAlarm(c: Calendar){
+    fun startAlarm(c: Calendar, drugName: String){
 
         // 알람매니저 선언
         var alarmManager : AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         var intent = Intent(this, AlarmReceiver::class.java)
-        var pendingIntent = PendingIntent.getBroadcast(this, 1, intent, PendingIntent.FLAG_IMMUTABLE)
+
+        // 데이터 담기
+        var drugName= drugName
+        intent.putExtra("drugName", drugName)
+
+        var pendingIntent = PendingIntent.getBroadcast(this, 1, intent, PendingIntent.FLAG_MUTABLE)
 
         // 설정 시간이 현재 시간보다 이전이면 +1일
         if(c.before(Calendar.getInstance())){

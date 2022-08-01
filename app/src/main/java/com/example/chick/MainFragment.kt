@@ -202,7 +202,7 @@ class MainFragment : Fragment() {
             // 배너 이름 변경
             txtMainBannerContent1.text = "곧 "
             txtBannerName.text = trial_name
-            txtMainBannerContent2.text = "를 복용할 시간이에요."
+            txtMainBannerContent2.text = "을(를) 복용할 시간이에요."
             // 배너 시간 변경
             var allTime : String
             if(trial_min < 10 ){
