@@ -88,26 +88,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     // 시간 정하는 함수
-    fun onTimeSet(alarmHour : Int, alarmMin: Int, drugName: String){
+    fun onTimeSet(){
         var c = Calendar.getInstance()
 
-        c.set(Calendar.HOUR_OF_DAY, alarmHour)  //시간
-        c.set(Calendar.MINUTE, alarmMin)  //분
+        c.set(Calendar.HOUR_OF_DAY, 21)  //시간
+        c.set(Calendar.MINUTE, 0)  //분
         c.set(Calendar.SECOND, 0)  //초
 
-        startAlarm(c, drugName)
+        startAlarm(c)
     }
 
     // 전체 알람 켜기
-    fun startAlarm(c: Calendar, drugName: String){
+    fun startAlarm(c: Calendar){
 
         // 알람매니저 선언
         var alarmManager : AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         var intent = Intent(this, AlarmReceiver::class.java)
-
-        // 데이터 담기
-        Log.d("제발되라돼", drugName)
-        intent.putExtra("drugName", drugName)
 
         var pendingIntent = PendingIntent.getBroadcast(this, 1, intent, PendingIntent.FLAG_MUTABLE)
 

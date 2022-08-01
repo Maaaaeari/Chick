@@ -5,13 +5,16 @@ package com.example.chick
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.ContextWrapper
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
+import com.example.chick.MainFragment.Companion.builder
 
 class NotificationHelper(base: Context?) : ContextWrapper(base) {
     private val channelID = "channelID"
@@ -29,10 +32,11 @@ class NotificationHelper(base: Context?) : ContextWrapper(base) {
     private fun createChannel(){
         var channel = NotificationChannel(channelID, channelNm, NotificationManager.IMPORTANCE_DEFAULT)
 
-        channel.enableLights(true)
-        channel.enableVibration(true)
-        channel.lightColor = Color.GREEN
+        channel.enableLights(true)      // Unit 불빛 표시
+        channel.enableVibration(true)   // 진동
+        channel.lightColor = Color.GREEN    // 불빛 색상
         channel.lockscreenVisibility = Notification.VISIBILITY_PRIVATE
+        channel.setShowBadge(false)     // 배지 아이콘 출력 없음
 
         getManager().createNotificationChannel(channel)
     }
@@ -43,10 +47,15 @@ class NotificationHelper(base: Context?) : ContextWrapper(base) {
     }
 
     // Notificaiton 설정
-    fun getChannelNotification(drugName: String?): NotificationCompat.Builder{
+    fun getChannelNotification(): NotificationCompat.Builder{
+        val intent = Intent(this, MedAlarmActivity::class.java)
+//        val pendingIntent = PendingIntent.getActivity(this, 10, intent, PendingIntent.FLAG_MUTABLE)
+
         return NotificationCompat.Builder(applicationContext, channelID)
             .setContentTitle("삐약삐약")
-            .setContentText(drugName+"을(를) 복용할 시간이에요!")
+            .setContentText("오늘 약을 모두 복용하셨나요?")
             .setSmallIcon(R.drawable.ic_alarm)
+//            .setWhen(System.currentTimeMillis())
+//            .setContentIntent(pendingIntent)
     }
 }
