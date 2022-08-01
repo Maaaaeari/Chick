@@ -16,6 +16,14 @@ data class DrugAll(
     var goalDone: Int? = null
 )
 
+// 약 알람 리스트
+data class AlramAll(
+    var medId :  Long? =  null,
+    var medName :  String? =  null,
+    var alarmHour :  Int? =  null,
+    var alarmMin :  Int? =  null,
+)
+
 data class ProDrugAll(
     var medId :  Int? =  null,
     var medName :  String? =  null,

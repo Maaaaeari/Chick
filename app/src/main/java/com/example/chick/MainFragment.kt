@@ -2,17 +2,16 @@ package com.example.chick
 
 import DrugViewAdapter
 import android.annotation.SuppressLint
-import android.app.Dialog
+import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.os.Build.VERSION_CODES.M
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.provider.CalendarContract
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -20,14 +19,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.*
-import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat
-import androidx.core.view.isInvisible
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import java.lang.reflect.Executable
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -49,9 +45,10 @@ class MainFragment : Fragment() {
     lateinit var drugAllList: ArrayList<DrugAll>
 
     init{
-        instance = this
+        MainFragment.instance = this
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -82,6 +79,7 @@ class MainFragment : Fragment() {
         recyclerViewDrugAll.setHasFixedSize(true)
         // 리사이클러 뷰 어댑터 연결
         recyclerViewDrugAll.adapter = DrugViewAdapter(drugAllList)
+        recyclerViewDrugAll.adapter?.notifyDataSetChanged()
 
 
         // 알람생성 버튼
@@ -94,9 +92,12 @@ class MainFragment : Fragment() {
     }
 
 
+
     // select 메소드
     @SuppressLint("Range")
     private fun selectDrug(){
+//        sqlDB = dbManager.writableDatabase
+//        sqlDB.execSQL("INSERT INTO drugTBL VALUES (5, '바바ㅏㅂ', '오전', 11, 3, 30, '월수금', 3, 30, 28, 4, 0, 0)")
 
         // 알람 조회
         val selectAll = "select * from drugTBL where goalDone=0 order by alarmTime;"
@@ -141,15 +142,18 @@ class MainFragment : Fragment() {
         val tMM_dateFormat = SimpleDateFormat("mm", Locale("ko", "KR"))
         // 현재 시간을 dateFormat 에 선언한 형태의 String 으로 변환
         val tDaysOfWeek = tDaysOfWeek_dateFormat.format(t_date)     // 요일
-        val tKKString = tKK_dateFormat.format(t_date)  // 시간
+        var tKKString = tKK_dateFormat.format(t_date)  // 시간
         val tMMString = tMM_dateFormat.format(t_date)    // 분
+        if(tKKString=="24"){
+            tKKString = "00"
+        }
         val tKKMMString = tKKString+tMMString
         val tKKMM = tKKMMString.toInt()
 
         Log.d("44444", tKKMMString)
 
 
-        // 현재 요일의 알람 조회
+        // 현재 요일의 현재 시간 이후의 가장 최근 알람 조회
         val selectAll = "select * from drugTBL where goalDone=0 AND daysOfWeek LIKE '%${tDaysOfWeek}%' AND eatDone=0;"
         // 읽기전용 데이터베이스 변수
         sqlDB = dbManager.readableDatabase
@@ -198,7 +202,7 @@ class MainFragment : Fragment() {
             // 배너 이름 변경
             txtMainBannerContent1.text = "곧 "
             txtBannerName.text = trial_name
-            txtMainBannerContent2.text = "를 복용할 시간이에요."
+            txtMainBannerContent2.text = "을(를) 복용할 시간이에요."
             // 배너 시간 변경
             var allTime : String
             if(trial_min < 10 ){
@@ -219,6 +223,10 @@ class MainFragment : Fragment() {
 
         lateinit var instance: MainFragment
         lateinit var dialog : Dialog
+
+        lateinit var Alarm : AlarmReceiver
+        lateinit var notificationManager : NotificationManager
+        lateinit var builder : NotificationCompat
 
         fun ApplicationContext() : Context {
             return instance.requireContext()
@@ -244,16 +252,20 @@ class MainFragment : Fragment() {
             // 데이터 수정
             if(preStatus==0){
                 sqlDB.execSQL(eatUpdate)
+                // 복용률 100% 달성했다면
                 if(totalNumber<=(preNumber+eatNumber)){
                     sqlDB.execSQL(goalUpdate)
                     Handler(Looper.getMainLooper()).postDelayed({
-                        //실행할 코드
+                        // 복용완료 다이얼로그 실행
                         showDialogGoalDone(medName)
                     }, 500)
                 }
             }else if(preStatus==1){
                 sqlDB.execSQL(unEatUpdate)
             }
+            sqlDB.close()
+            dbManager.close()
+
 
         }
 
@@ -280,6 +292,28 @@ class MainFragment : Fragment() {
                 dialog.dismiss()
             }
         }
+
+        // 자정이 지날 시 복용 버튼 리셋
+        fun resetEatdoneBtn(){
+            var dbManager: DBManager=DBManager(MainFragment.ApplicationContext(), "drugDB", null, 1)
+            var sqlDB: SQLiteDatabase
+
+            // 쓰기전용 데이터베이스 변수
+            sqlDB = dbManager.writableDatabase
+
+            // 복용 초기화
+            val eatDoneUpdate = "update drugTBL set eatDone=0;"
+            sqlDB.execSQL(eatDoneUpdate)
+
+            sqlDB.close()
+            dbManager.close()
+
+            val intent = Intent(ApplicationContext(), MainActivity::class.java)
+            intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            ApplicationContext().startActivity(intent)
+        }
+
+
     }
 
 

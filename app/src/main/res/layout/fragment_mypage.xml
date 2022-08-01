@@ -116,11 +116,11 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/txtAlramOnOff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/jejugothic"
-                android:text="현재 전체 약 알림이 켜져있어요."
+                android:text="현재 전체 약 알림이 꺼져있어요."
                 android:textColor="#7B7B7B" />
 
             <Button
@@ -145,7 +145,12 @@
             android:layout_marginTop="50dp"
             android:layout_marginRight="25dp"
             android:layout_weight="1"
+            android:checked="false"
+            android:minHeight="30dp"
+            android:scaleX="1.2"
+            android:scaleY="1.2"
             android:switchMinWidth="55dp"
+            android:theme="@style/sw_mainColor"
             tools:ignore="TouchTargetSizeCheck" />
 
     </LinearLayout>
