@@ -2,8 +2,11 @@ package com.example.chick
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
+import android.content.SharedPreferences
 import android.database.sqlite.SQLiteDatabase
+import android.os.Build.VERSION_CODES.S
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -29,6 +32,7 @@ class MypageFragment : Fragment() {
     // 다른 액티비티 함수 호출
     lateinit var mainActivity : MainActivity
 
+
     init{
         MypageFragment.instance = this
     }
@@ -48,6 +52,9 @@ class MypageFragment : Fragment() {
         // 바인딩
         switchAlaram = view.findViewById(R.id.switchAlaram)
         txtAlramOnOff = view.findViewById(R.id.txtAlramOnOff)
+
+        // 저장되었던 스위치 값을 가져옴
+        loadData()
 
         // DB 생성
         dbManager = DBManager(applicationContext(), "drugDB", null, 1)
@@ -75,8 +82,6 @@ class MypageFragment : Fragment() {
 
 
         return view
-        // Inflate the layout for this fragment
-        // return inflater.inflate(R.layout.fragment_mypage, container, false)
     }
 
     // 요일별 알람 select 메소드
@@ -115,6 +120,40 @@ class MypageFragment : Fragment() {
         cursor.close()
         sqlDB.close()
     }
+
+    // 앱이 종료되는 시점이 다가올 때 호출
+    override fun onDestroy() {
+        super.onDestroy()
+
+        saveData()  // 값을 저장하는 함수
+    }
+
+    // 앱 종료 전 스위치 값 저장
+    fun saveData(){
+        val pref = mainActivity.getSharedPreferences("pref", 0)
+        val edit = pref.edit()  // 수정모드
+
+        var switchStatus = "ON"
+        if (switchAlaram.isChecked == true){
+            switchStatus = "ON"
+        }else{
+            switchStatus = "OFF"
+        }
+
+        edit.putString("switch", switchStatus)
+        edit.apply()        // 저장완료
+    }
+
+    // 앱 로딩 후 이전의 스위치 값 불러옴
+    fun loadData(){
+        val pref = mainActivity.getSharedPreferences("pref", 0)
+        if(pref.getString("switch", "OFF")=="ON"){
+            switchAlaram.isChecked = true
+        }else{
+            switchAlaram.isChecked = false
+        }
+    }
+
 
     companion object{
         lateinit var instance: MypageFragment
