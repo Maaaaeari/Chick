@@ -49,13 +49,13 @@ class NotificationHelper(base: Context?) : ContextWrapper(base) {
     // Notificaiton 설정
     fun getChannelNotification(): NotificationCompat.Builder{
         val intent = Intent(this, MedAlarmActivity::class.java)
-//        val pendingIntent = PendingIntent.getActivity(this, 10, intent, PendingIntent.FLAG_MUTABLE)
+        val pendingIntent = PendingIntent.getActivity(this, 10, intent, PendingIntent.FLAG_MUTABLE)
 
         return NotificationCompat.Builder(applicationContext, channelID)
             .setContentTitle("삐약삐약")
             .setContentText("오늘 약을 모두 복용하셨나요?")
             .setSmallIcon(R.drawable.ic_alarm)
 //            .setWhen(System.currentTimeMillis())
-//            .setContentIntent(pendingIntent)
+            .setContentIntent(pendingIntent)
     }
 }
