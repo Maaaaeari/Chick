@@ -1,6 +1,7 @@
 package com.example.chick
 
 import android.annotation.SuppressLint
+import kotlin.concurrent.timer
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
@@ -8,6 +9,8 @@ import android.content.SharedPreferences
 import android.database.sqlite.SQLiteDatabase
 import android.os.Build.VERSION_CODES.S
 import android.os.Bundle
+import android.os.Handler
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +21,7 @@ import android.widget.Toast
 import com.example.chick.MainFragment.Companion.instance
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.concurrent.fixedRateTimer
 
 
 class MypageFragment : Fragment() {
@@ -70,8 +74,6 @@ class MypageFragment : Fragment() {
                 txtAlramOnOff.text = "현재 전체 약 알람이 켜져있어요."
                 // 요일별 알람 리스트 조회
                 selectAlram()
-
-//                mainActivity.onTimeSet()
             }else{
                 Toast.makeText(context, "약 알람이 꺼졌어요.", Toast.LENGTH_SHORT).show()
                 txtAlramOnOff.text = "현재 전체 약 알람이 꺼져있어요."
@@ -106,25 +108,33 @@ class MypageFragment : Fragment() {
         val tKKMMString = tKKString+tMMString
         val tKKMM = tKKMMString.toInt()
 
-        // 현재 요일 알람 조회
+        // 현재 요일의 가장 최근 알람 조회
         val selectAlarm = "select * from drugTBL where goalDone=0 AND ${tKKMM} <= alarmTime AND daysOfWeek LIKE '%${tDaysOfWeek}%' order by alarmTime;"
         // 읽기전용 데이터베이스 변수
         sqlDB = dbManager.readableDatabase
         // 데이터를 받아줌
         var cursor = sqlDB.rawQuery(selectAlarm,null)
 
-        // 리스트에 가장 최신 데이터 넘겨줌
-        cursor.moveToNext()
-        var medId = cursor.getLong(cursor.getColumnIndex("medId"))
-        var medName = cursor.getString(cursor.getColumnIndex("medName")).toString()
-        var alarmHour = cursor.getInt(cursor.getColumnIndex("alarmHour"))
-        var alarmMin = cursor.getInt(cursor.getColumnIndex("alarmMin"))
 
-        if(alarmHour==0){
-            alarmHour = 24
+        // 데이터가 있을 경우에
+        if (cursor.moveToFirst()){
+            // 리스트에 가장 최신 데이터 넘겨줌
+            var medId = cursor.getLong(cursor.getColumnIndex("medId"))
+            var medName = cursor.getString(cursor.getColumnIndex("medName")).toString()
+            var alarmHour = cursor.getInt(cursor.getColumnIndex("alarmHour"))
+            var alarmMin = cursor.getInt(cursor.getColumnIndex("alarmMin"))
+
+            if(alarmHour==0){
+                alarmHour = 24
+            }
+
+            Log.d("timeee", medName)
+            mainActivity.onTimeSet(alarmHour, alarmMin, medName)
+
+        }else{
+            // 데이터가 없다면
+            Toast.makeText(context, "오늘은 알람이 더 이상 없습니다.", Toast.LENGTH_SHORT).show()
         }
-        mainActivity.onTimeSet(alarmHour, alarmMin, medName)
-
         cursor.close()
         sqlDB.close()
     }
@@ -161,6 +171,29 @@ class MypageFragment : Fragment() {
             switchAlaram.isChecked = false
         }
     }
+
+//    fun run(){
+//        fixedRateTimer(period = 10000, initialDelay = 1000){
+//            // SomethingToDo..
+//            selectAlram()
+//            if (switchAlaram.isChecked == false)
+//                cancel()
+//        }
+//    }
+
+//    private val mDelayHandler: Handler by lazy {
+//        Handler()
+//    }
+//
+//    private fun waitGuest(){
+//        mDelayHandler.postDelayed(::showGuest, 10000) // 10초 후에 showGuest 함수를 실행한다.
+//    }
+//
+//    private fun showGuest(){
+//        selectAlram()
+//        Log.d("infinity", "으으아ㅡ아ㅡ아으ㅏ으아으")
+//        waitGuest() // 코드 실행뒤에 계속해서 반복하도록 작업한다.
+//    }
 
 
     companion object{

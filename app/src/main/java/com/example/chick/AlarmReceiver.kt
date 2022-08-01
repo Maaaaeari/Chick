@@ -20,10 +20,10 @@ class AlarmReceiver: BroadcastReceiver(){
         var notificationHelper: NotificationHelper = NotificationHelper(context)
 
         // 넘어온 데이터
-        var drugName = intent?.getStringExtra("drugName").toString()
+        var drugName = intent?.extras?.getString("drugName").toString()
 
 
-        var nb : NotificationCompat.Builder = notificationHelper.getChannelNotification(drugName!!)
+        var nb : NotificationCompat.Builder = notificationHelper.getChannelNotification(drugName)
 
         // 알림 호출
         notificationHelper.getManager().notify(1, nb.build())

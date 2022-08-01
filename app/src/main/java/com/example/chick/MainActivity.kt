@@ -95,8 +95,6 @@ class MainActivity : AppCompatActivity() {
         c.set(Calendar.MINUTE, alarmMin)  //분
         c.set(Calendar.SECOND, 0)  //초
 
-        Log.i("time", c.toString())
-
         startAlarm(c, drugName)
     }
 
@@ -108,7 +106,7 @@ class MainActivity : AppCompatActivity() {
         var intent = Intent(this, AlarmReceiver::class.java)
 
         // 데이터 담기
-        var drugName= drugName
+        Log.d("제발되라돼", drugName)
         intent.putExtra("drugName", drugName)
 
         var pendingIntent = PendingIntent.getBroadcast(this, 1, intent, PendingIntent.FLAG_MUTABLE)

@@ -43,7 +43,7 @@ class NotificationHelper(base: Context?) : ContextWrapper(base) {
     }
 
     // Notificaiton 설정
-    fun getChannelNotification(drugName: String): NotificationCompat.Builder{
+    fun getChannelNotification(drugName: String?): NotificationCompat.Builder{
         return NotificationCompat.Builder(applicationContext, channelID)
             .setContentTitle("삐약삐약")
             .setContentText(drugName+"을(를) 복용할 시간이에요!")
