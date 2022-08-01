@@ -9,8 +9,10 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="135dp"
-        android:layout_margin="18dp"
+        android:layout_height="130dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="15dp"
         app:cardElevation="@null"
         app:cardMaxElevation="@null"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,7 +31,7 @@
                 android:layout_height="23dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginStart="22dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="25dp"
                 app:srcCompat="@drawable/ic_drugs_1" />
 
@@ -97,30 +99,30 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="25dp"
-                android:layout_marginEnd="22dp"
+                android:layout_marginEnd="20dp"
                 android:fontFamily="@font/jejugothic"
                 android:text="50%"
                 android:textColor="#000000"
                 android:textSize="20sp" />
 
             <ImageView
-                android:layout_width="164dp"
+                android:layout_width="159dp"
                 android:layout_height="40dp"
                 android:layout_below="@+id/txtProPercent"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="4dp"
-                android:layout_marginEnd="17dp"
+                android:layout_marginEnd="15dp"
                 android:src="@drawable/shadow_medpro" />
 
             <ProgressBar
                 android:id="@+id/MedprogressBar"
                 style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="155dp"
+                android:layout_width="150dp"
                 android:layout_height="20dp"
                 android:layout_below="@+id/txtProPercent"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="13dp"
-                android:layout_marginEnd="22dp"
+                android:layout_marginEnd="20dp"
                 android:max="100"
                 android:progress="20"
                 android:progressDrawable="@drawable/design_medprogressbar" />
@@ -132,7 +134,7 @@
                 android:layout_below="@+id/MedprogressBar"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="14dp"
-                android:layout_marginEnd="22dp"
+                android:layout_marginEnd="20dp"
 
                 android:fontFamily="@font/jejugothic"
                 android:text="100/200정 복용"
