@@ -24,6 +24,7 @@ import android.view.WindowManager
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.view.isInvisible
@@ -254,10 +255,11 @@ class MainFragment : Fragment() {
             // 데이터 수정
             if(preStatus==0){
                 sqlDB.execSQL(eatUpdate)
+                // 복용률 100% 달성했다면
                 if(totalNumber<=(preNumber+eatNumber)){
                     sqlDB.execSQL(goalUpdate)
                     Handler(Looper.getMainLooper()).postDelayed({
-                        //실행할 코드
+                        // 복용완료 다이얼로그 실행
                         showDialogGoalDone(medName)
                     }, 500)
                 }

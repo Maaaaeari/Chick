@@ -50,6 +50,7 @@ class DrugViewAdapter(val drugAllList: ArrayList<DrugAll>): RecyclerView.Adapter
                 intent.putExtra("intent_id", drug.medId)
                 MainFragment.ApplicationContext().startActivity(intent)
             }
+
             // 복용 버튼
             btnEat.setOnClickListener {
                 var curPos : Int = adapterPosition      // 터치된 어댑터의 포지션
