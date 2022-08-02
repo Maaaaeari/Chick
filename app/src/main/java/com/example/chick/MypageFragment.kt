@@ -89,8 +89,6 @@ class MypageFragment : Fragment() {
             var hTime = hour.toInt()
             var mTime = minute.toInt()
 
-            Log.d("test", hour.toString())
-
             var hTimeT: String = ""
             var mTimeT: String = ""
 
@@ -157,9 +155,9 @@ class MypageFragment : Fragment() {
     // 앱 로딩 후 이전의 스위치 값 불러옴
     fun loadData(){
         val pref = mainActivity.getSharedPreferences("pref", 0)
-        if(pref.getString("switch", "OFF")=="ON"){
+        if(pref.getString("switch", "ON")=="ON"){
             switchAlaram.isChecked = true
-            txtAlramOnOff.text = pref.getString("time", "알람이 꺼져있어요.")
+            txtAlramOnOff.text = pref.getString("time", "알람이 켜져있어요.")
         }else{
             switchAlaram.isChecked = false
             txtAlramOnOff.text = "알람이 꺼져있어요."

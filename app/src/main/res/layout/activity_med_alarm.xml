@@ -65,35 +65,51 @@
             android:src="@drawable/ic_alarm_logo2" />
 
         <LinearLayout
-            android:id="@+id/layoutMed1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_marginStart="0dp"
             android:layout_marginTop="30dp"
-            android:layout_marginEnd="0dp"
-            android:orientation="vertical">
+            android:layout_marginEnd="0dp">
 
-            <TextView
-                android:id="@+id/txtMedDrugName1"
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:id="@+id/layoutMed1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="@font/jejugothic"
-                android:text="비타민C"
-                android:textAlignment="center"
-                android:textColor="#BE9700"
-                android:textSize="22dp" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txtMedDrugName2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="@font/jejugothic"
-                android:text="모두 복용하셨나요?"
-                android:textColor="#000000"
-                android:textSize="22dp" />
+                <TextView
+                    android:id="@+id/txtMedDrugName1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/jejugothic"
+                    android:text="비타민C"
+                    android:textAlignment="center"
+                    android:textColor="#BE9700"
+                    android:textSize="22dp" />
+
+                <TextView
+                    android:id="@+id/txtMedDrugName2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/jejugothic"
+                    android:text="모두 복용하셨나요?"
+                    android:textColor="#000000"
+                    android:textSize="22dp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
 
         </LinearLayout>
 
