@@ -24,6 +24,7 @@ data class AlramAll(
     var alarmMin :  Int? =  null,
 )
 
+
 data class ProDrugAll(
     var medId :  Int? =  null,
     var medName :  String? =  null,
