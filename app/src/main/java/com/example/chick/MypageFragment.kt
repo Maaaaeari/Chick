@@ -33,11 +33,6 @@ class MypageFragment : Fragment() {
     lateinit var switchAlaram : Switch
     lateinit var txtAlramOnOff : TextView
 
-    lateinit var dbManager: DBManager
-    lateinit var sqlDB: SQLiteDatabase
-    // Data에 있는 DrugAll
-    lateinit var alramAllList: ArrayList<AlramAll>
-
     // 다른 액티비티 함수 호출
     lateinit var mainActivity : MainActivity
 
@@ -120,8 +115,10 @@ class MypageFragment : Fragment() {
         val pref = mainActivity.getSharedPreferences("pref", 0)
         if(pref.getString("switch", "OFF")=="ON"){
             switchAlaram.isChecked = true
+            txtAlramOnOff.text = "현재 저녁 약 알람이 켜져있어요."
         }else{
             switchAlaram.isChecked = false
+            txtAlramOnOff.text = "현재 저녁 약 알람이 꺼져있어요."
         }
     }
 
