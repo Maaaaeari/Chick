@@ -95,9 +95,6 @@ class MainActivity : AppCompatActivity() {
         c.set(Calendar.MINUTE, mTime)  //분
         c.set(Calendar.SECOND, 0)  //초
 
-        Log.d("testCal", hTime.toString())
-        Log.d("testCal", mTime.toString())
-
         startAlarm(c)
     }
 

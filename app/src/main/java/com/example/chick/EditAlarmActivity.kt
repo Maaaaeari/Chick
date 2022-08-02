@@ -119,17 +119,16 @@ class EditAlarmActivity : AppCompatActivity() {
         ampm = ampmF
         alarmHour = alarmHourF
         alarmMin = alarmMinF
-        if(alarmHour >= 13) {
+        if(ampmF == "오후") {
             ampm = "오후"
-            var textPmH: Int = alarmHour - 12
-            if (textPmH < 10 && alarmMin < 10) {
-                choiceAmPm.text = "오후                  " + "0" + textPmH.toString() + "       :       " + "0" + alarmMin.toString()
-            } else if (textPmH < 10) {
-                choiceAmPm.text = "오후                  " + "0" + textPmH.toString() + "       :       " + alarmMin.toString()
+            if (alarmHour < 10 && alarmMin < 10) {
+                choiceAmPm.text = "오후                  " + "0" + alarmHour.toString() + "       :       " + "0" + alarmMin.toString()
+            } else if (alarmHour < 10) {
+                choiceAmPm.text = "오후                  " + "0" + alarmHour.toString() + "       :       " + alarmMin.toString()
             } else if (alarmMin < 10) {
-                choiceAmPm.text = "오후                  " + textPmH.toString() + "       :       " + "0" + alarmMin.toString()
+                choiceAmPm.text = "오후                  " + alarmHour.toString() + "       :       " + "0" + alarmMin.toString()
             } else {
-                choiceAmPm.text = "오후                  " + textPmH.toString() + "       :       " + alarmMin.toString()
+                choiceAmPm.text = "오후                  " + alarmHour.toString() + "       :       " + alarmMin.toString()
             }
         } else {
             ampm = "오전"
@@ -356,10 +355,10 @@ class EditAlarmActivity : AppCompatActivity() {
                 if(eatNumber > totalNumber) {
                     daysOfWeek = ""
                     Toast.makeText(this, "총 목표 개수를 1회당 복용 개수 이상으로\n입력해주세요.", Toast.LENGTH_LONG).show()
-                } else if(eatNumber >= 50) {
+                } else if(eatNumber > 50) {
                     daysOfWeek = ""
                     Toast.makeText(this, "약을 과다복용하면 좋지 않아요.", Toast.LENGTH_LONG).show()
-                } else if(totalNumber >= 10000) {
+                } else if(totalNumber > 10000) {
                     daysOfWeek = ""
                     Toast.makeText(this, "약을 과다복용하면 좋지 않아요.", Toast.LENGTH_LONG).show()
                 } else {
