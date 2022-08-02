@@ -68,7 +68,6 @@ class MypageFragment : Fragment() {
                 Toast.makeText(context, "알람이 켜졌어요.", Toast.LENGTH_SHORT).show()
                 // 타임피커
                 getTimeP()
-                saveData(txtAlramOnOff.text as String)  // 값을 저장하는 함수
             }else{
                 Toast.makeText(context, "알람이 꺼졌어요.", Toast.LENGTH_SHORT).show()
                 txtAlramOnOff.text = "알람이 꺼져있어요."
@@ -106,6 +105,8 @@ class MypageFragment : Fragment() {
             }
 
             txtAlramOnOff.text = hTimeT+":"+mTimeT+"에 알람이 설정되었어요."
+
+            saveData(txtAlramOnOff.text as String)  // 값을 저장하는 함수
 
             mainActivity.onTimeSet(hTime, mTime)
         }
@@ -159,7 +160,7 @@ class MypageFragment : Fragment() {
     // 앱 로딩 후 이전의 스위치 값 불러옴
     fun loadData(){
         val pref = mainActivity.getSharedPreferences("pref", 0)
-        if(pref.getString("switch", "ON")=="ON"){
+        if(pref.getString("switch", "OFF")=="ON"){
             switchAlaram.isChecked = true
             txtAlramOnOff.text = pref.getString("time", "알람이 켜져있어요.")
         }else{
