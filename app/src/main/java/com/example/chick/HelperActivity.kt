@@ -26,9 +26,8 @@ class HelperActivity : AppCompatActivity() {
         //닫기버튼 클릭시 마이페이지 화면 전환
         val btn_helperclose = findViewById<LinearLayout>(R.id.linearClose)
         btn_helperclose.setOnClickListener{
-            supportFragmentManager.beginTransaction().replace(R.id.abc, MypageFragment()).commit()
+            onBackPressed()
         }
-
     }
 
     class CustomPagerAdapter(fm: FragmentManager): FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
