@@ -56,46 +56,11 @@ class NotificationHelper(base: Context?) : ContextWrapper(base) {
         val intent = Intent(this, MedAlarmActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(this, 10, intent, PendingIntent.FLAG_MUTABLE)
 
-
-
-//        val uri: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-//        val audioAttributes = AudioAttributes.Builder()
-//            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-//            .setUsage(AudioAttributes.USAGE_ALARM)
-//            .build()
-
-//        val player: MediaPlayer = MediaPlayer.create(this, R.raw.sound_chick)
-//        player.start()
-//
-//        val builder : NotificationCompat.Builder = NotificationCompat.Builder(applicationContext, channelID)
-//
-//        builder.setContentTitle("삐약삐약")
-//        builder.setContentText("오늘 약을 모두 복용하셨나요?")
-//        builder.setSmallIcon(R.drawable.ic_alarm)
-//        builder.setContentIntent(pendingIntent)
-//        builder.setAutoCancel(true)
-//        builder.setSound(Uri.parse("android.resource://"+this.packageName+"/"+R.raw.sound_chick))
-//
-//        return builder
-
-
-
-//        val path : Uri = Uri.parse("android.resource://"+packageName+"/raw/sound_chick.mp3")
-//        val r3 : Ringtone = RingtoneManager.getRingtone(this, path)
-//        r3.play()
-
-
         return NotificationCompat.Builder(applicationContext, channelID)
-//            .setDefaults(0)
             .setContentTitle("삐약삐약")
             .setContentText("오늘 약을 모두 복용하셨나요?")
             .setSmallIcon(R.drawable.ic_alarm)
-//            .setWhen(System.currentTimeMillis())
             .setContentIntent(pendingIntent)
-//            .setSound(Uri.parse("android.resource://"+packageName+"/"+R.raw.sound_chick))
-//            .setSound(uri, audioAttributes)
-//            .setSound(Uri.parse("android.resource://"+packageName+"/raw/sound_chick.mp3"))
-
             .setAutoCancel(true)
     }
 }
