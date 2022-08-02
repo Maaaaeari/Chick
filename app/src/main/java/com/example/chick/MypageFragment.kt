@@ -1,12 +1,15 @@
 package com.example.chick
 
 import android.annotation.SuppressLint
+import android.app.TimePickerDialog
 import kotlin.concurrent.timer
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.content.SharedPreferences
 import android.database.sqlite.SQLiteDatabase
+import android.icu.util.Calendar
+import android.os.Build
 import android.os.Build.VERSION_CODES.S
 import android.os.Bundle
 import android.os.Handler
@@ -21,6 +24,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import android.widget.Switch
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.example.chick.MainFragment.Companion.instance
 import java.text.SimpleDateFormat
 import java.util.*
@@ -41,7 +45,6 @@ class MypageFragment : Fragment() {
     // 다른 액티비티 함수 호출
     lateinit var mainActivity : MainActivity
 
-
     init{
         MypageFragment.instance = this
     }
@@ -51,6 +54,7 @@ class MypageFragment : Fragment() {
         mainActivity = context as MainActivity
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -78,18 +82,51 @@ class MypageFragment : Fragment() {
         switchAlaram.setOnCheckedChangeListener { button, isChecked ->
             if(isChecked){
                 Toast.makeText(context, "알람이 켜졌어요.", Toast.LENGTH_SHORT).show()
-                txtAlramOnOff.text = "현재 저녁 약 알람이 켜져있어요."
-                // 요일별 알람 리스트 조회
-                mainActivity.onTimeSet()
+                // 타임피커
+                getTimeP()
             }else{
                 Toast.makeText(context, "알람이 꺼졌어요.", Toast.LENGTH_SHORT).show()
-                txtAlramOnOff.text = "현재 저녁 약 알람이 꺼져있어요."
+                txtAlramOnOff.text = "알람이 꺼져있어요."
                 mainActivity.stopAlarm()
             }
         }
 
-
         return view
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun getTimeP() {
+        val cal = Calendar.getInstance()
+
+        val timeSetListener = TimePickerDialog.OnTimeSetListener {timePicker, hour, minute ->
+            cal.set(Calendar.HOUR_OF_DAY, hour)
+            cal.set(Calendar.MINUTE, minute)
+
+            var hTime = hour.toInt()
+            var mTime = minute.toInt()
+
+            var hTimeT: String = ""
+            var mTimeT: String = ""
+
+            if(hTime < 10) {
+                hTimeT = "0"+hTime.toString()
+            } else {
+                hTimeT = hTime.toString()
+            }
+            if(mTime < 10) {
+                mTimeT = "0"+mTime.toString()
+            } else {
+                mTimeT = mTime.toString()
+            }
+
+            txtAlramOnOff.text = hTimeT+":"+mTimeT+"에 알람이 설정되었어요."
+
+            mainActivity.onTimeSet(hTime, mTime)
+        }
+
+        val timeP = TimePickerDialog(context, android.R.style.Theme_Holo_Light_Dialog_NoActionBar, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), false)
+        timeP.getWindow()?.setBackgroundDrawableResource(android.R.color.transparent)
+        timeP.show()
     }
 
     // 앱이 종료되는 시점이 다가올 때 호출

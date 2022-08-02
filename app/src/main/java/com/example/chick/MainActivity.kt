@@ -88,12 +88,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     // 시간 정하는 함수
-    fun onTimeSet(){
+    fun onTimeSet(hTime: Int, mTime: Int){
         var c = Calendar.getInstance()
 
-        c.set(Calendar.HOUR_OF_DAY, 21)  //시간
-        c.set(Calendar.MINUTE, 0)  //분
+        c.set(Calendar.HOUR_OF_DAY, hTime)  //시간
+        c.set(Calendar.MINUTE, mTime)  //분
         c.set(Calendar.SECOND, 0)  //초
+
+        Log.d("testCal", hTime.toString())
+        Log.d("testCal", mTime.toString())
 
         startAlarm(c)
     }
