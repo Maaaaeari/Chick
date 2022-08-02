@@ -128,22 +128,27 @@ class MypageFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
 
-        saveData()  // 값을 저장하는 함수
+        saveData(txtAlramOnOff.text as String)  // 값을 저장하는 함수
     }
 
     // 앱 종료 전 스위치 값 저장
-    fun saveData(){
+    fun saveData(txtAlramOnOff: String){
         val pref = mainActivity.getSharedPreferences("pref", 0)
         val edit = pref.edit()  // 수정모드
 
         var switchStatus = "ON"
+        var txtAlramTime = txtAlramOnOff
+
         if (switchAlaram.isChecked == true){
             switchStatus = "ON"
+            txtAlramTime = txtAlramOnOff
         }else{
             switchStatus = "OFF"
+            txtAlramTime = "알람이 꺼져있어요."
         }
 
         edit.putString("switch", switchStatus)
+        edit.putString("time", txtAlramTime)
         edit.apply()        // 저장완료
     }
 
@@ -152,10 +157,10 @@ class MypageFragment : Fragment() {
         val pref = mainActivity.getSharedPreferences("pref", 0)
         if(pref.getString("switch", "OFF")=="ON"){
             switchAlaram.isChecked = true
-            txtAlramOnOff.text = "현재 저녁 약 알람이 켜져있어요."
+            txtAlramOnOff.text = pref.getString("time", "알람이 꺼져있어요.")
         }else{
             switchAlaram.isChecked = false
-            txtAlramOnOff.text = "현재 저녁 약 알람이 꺼져있어요."
+            txtAlramOnOff.text = "알람이 꺼져있어요."
         }
     }
 
