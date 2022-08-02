@@ -1,34 +1,23 @@
 package com.example.chick
 
-import android.annotation.SuppressLint
 import android.app.TimePickerDialog
-import kotlin.concurrent.timer
 import android.content.Context
-import android.content.Context.MODE_PRIVATE
+import android.content.DialogInterface
 import android.content.Intent
-import android.content.SharedPreferences
-import android.database.sqlite.SQLiteDatabase
 import android.icu.util.Calendar
 import android.os.Build
-import android.os.Build.VERSION_CODES.S
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.fragment.app.FragmentTransaction
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import android.widget.Switch
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import com.example.chick.MainFragment.Companion.instance
-import java.text.SimpleDateFormat
+import androidx.fragment.app.Fragment
 import java.util.*
-import kotlin.concurrent.fixedRateTimer
 
 
 class MypageFragment : Fragment() {
@@ -100,6 +89,8 @@ class MypageFragment : Fragment() {
             var hTime = hour.toInt()
             var mTime = minute.toInt()
 
+            Log.d("test", hour.toString())
+
             var hTimeT: String = ""
             var mTimeT: String = ""
 
@@ -121,6 +112,17 @@ class MypageFragment : Fragment() {
 
         val timeP = TimePickerDialog(context, android.R.style.Theme_Holo_Light_Dialog_NoActionBar, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), false)
         timeP.getWindow()?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        timeP.setButton(TimePickerDialog.BUTTON_POSITIVE, "확인",
+            DialogInterface.OnClickListener { dialogInterface, i ->
+
+            })
+
+        timeP.setButton(TimePickerDialog.BUTTON_NEGATIVE, "취소",
+            DialogInterface.OnClickListener { dialogInterface, i ->
+                switchAlaram.isChecked = false
+            })
+
         timeP.show()
     }
 
