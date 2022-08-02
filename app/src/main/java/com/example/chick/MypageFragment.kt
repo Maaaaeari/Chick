@@ -166,30 +166,6 @@ class MypageFragment : Fragment() {
         }
     }
 
-//    fun run(){
-//        fixedRateTimer(period = 10000, initialDelay = 1000){
-//            // SomethingToDo..
-//            selectAlram()
-//            if (switchAlaram.isChecked == false)
-//                cancel()
-//        }
-//    }
-
-//    private val mDelayHandler: Handler by lazy {
-//        Handler()
-//    }
-//
-//    private fun waitGuest(){
-//        mDelayHandler.postDelayed(::showGuest, 10000) // 10초 후에 showGuest 함수를 실행한다.
-//    }
-//
-//    private fun showGuest(){
-//        selectAlram()
-//        Log.d("infinity", "으으아ㅡ아ㅡ아으ㅏ으아으")
-//        waitGuest() // 코드 실행뒤에 계속해서 반복하도록 작업한다.
-//    }
-
-
     companion object{
         lateinit var instance: MypageFragment
 
