@@ -64,7 +64,7 @@ class MypageFragment : Fragment() {
 
         // 스위치 체크 상태 변화
         switchAlaram.setOnCheckedChangeListener { button, isChecked ->
-            if(isChecked){
+            if(isChecked == true){
                 Toast.makeText(context, "알람이 켜졌어요.", Toast.LENGTH_SHORT).show()
                 // 타임피커
                 getTimeP()
@@ -121,6 +121,8 @@ class MypageFragment : Fragment() {
         timeP.setButton(TimePickerDialog.BUTTON_NEGATIVE, "취소",
             DialogInterface.OnClickListener { dialogInterface, i ->
                 switchAlaram.isChecked = false
+                txtAlramOnOff.text = "알람이 꺼져있어요."
+                mainActivity.stopAlarm()
             })
 
         timeP.show()
@@ -157,9 +159,9 @@ class MypageFragment : Fragment() {
     // 앱 로딩 후 이전의 스위치 값 불러옴
     fun loadData(){
         val pref = mainActivity.getSharedPreferences("pref", 0)
-        if(pref.getString("switch", "OFF")=="ON"){
+        if(pref.getString("switch", "ON")=="ON"){
             switchAlaram.isChecked = true
-            txtAlramOnOff.text = pref.getString("time", "알람이 꺼져있어요.")
+            txtAlramOnOff.text = pref.getString("time", "알람이 켜져있어요.")
         }else{
             switchAlaram.isChecked = false
             txtAlramOnOff.text = "알람이 꺼져있어요."

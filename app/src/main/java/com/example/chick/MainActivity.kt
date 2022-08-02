@@ -103,7 +103,7 @@ class MainActivity : AppCompatActivity() {
         var alarmManager : AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         var intent = Intent(this, AlarmReceiver::class.java)
 
-        var pendingIntent = PendingIntent.getBroadcast(this, 1, intent, PendingIntent.FLAG_MUTABLE)
+        var pendingIntent = PendingIntent.getBroadcast(this, 1, intent, PendingIntent.FLAG_IMMUTABLE)
 
         // 설정 시간이 현재 시간보다 이전이면 +1일
         if(c.before(Calendar.getInstance())){
@@ -113,7 +113,7 @@ class MainActivity : AppCompatActivity() {
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.timeInMillis, pendingIntent)
     }
 
-    // 전체 알람 끄기
+    // 알람 취소
     fun stopAlarm(){
         // 알람매니저 선언
         var alarmManager : AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
