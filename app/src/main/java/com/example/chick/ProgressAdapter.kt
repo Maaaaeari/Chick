@@ -71,7 +71,7 @@ class ProgressAdapter(val druglist:ArrayList<ProDrugAll>) : RecyclerView.Adapter
         holder.prbbar.progress = percent
 
         //리사이클러뷰 복용 개수 데이터 출력
-        holder.txtProCount.text = "" + druglist!![position].currentNumber + "/" + druglist!![position].totalNumber + "정 복용"
+        holder.txtProCount.text = "" + druglist!![position].currentNumber + "/" + druglist!![position].totalNumber
 
         // 약 아이콘 변경
         var img = druglist!![position].medIcon
