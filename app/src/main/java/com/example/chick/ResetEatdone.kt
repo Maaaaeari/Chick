@@ -11,7 +11,7 @@ import com.example.chick.MainFragment.Companion.resetEatdoneBtn
 class ResetEatdone : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
         if(Intent.ACTION_DATE_CHANGED == intent!!.action) {
-            Toast.makeText(context!!, "날이 바뀌었다.",  Toast.LENGTH_SHORT).show()
+            Toast.makeText(context!!, "복용 여부를 초기화합니다.",  Toast.LENGTH_SHORT).show()
             resetEatdoneBtn()
         }
     }
