@@ -6,6 +6,7 @@ import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.content.ContentResolver
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
@@ -43,6 +44,23 @@ class NotificationHelper(base: Context?) : ContextWrapper(base) {
         channel.lockscreenVisibility = Notification.VISIBILITY_PRIVATE
         channel.setShowBadge(false)     // 배지 아이콘 출력 없음
 
+        //
+        channel.setSound(
+            Uri.parse("${ContentResolver.SCHEME_ANDROID_RESOURCE}://com.example.chick/${R.raw.sound_chick}"),
+            Notification.AUDIO_ATTRIBUTES_DEFAULT
+        )
+
+        // +
+//        val sound: Uri =
+//            Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://com.example.chick/" + R.raw.sound_chick)
+//
+//        val audioAttributes = AudioAttributes.Builder()
+//            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+//            .setUsage(AudioAttributes.USAGE_ALARM)
+//            .build()
+//        channel.setSound(sound, audioAttributes)
+//        //
+
         getManager().createNotificationChannel(channel)
     }
 
@@ -56,11 +74,17 @@ class NotificationHelper(base: Context?) : ContextWrapper(base) {
         val intent = Intent(this, MedAlarmActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(this, 10, intent, PendingIntent.FLAG_MUTABLE)
 
+        //
+        // 알림 소리
+        val notificationSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+
+
         return NotificationCompat.Builder(applicationContext, channelID)
             .setContentTitle("삐약삐약")
             .setContentText("오늘 약을 모두 복용하셨나요?")
             .setSmallIcon(R.drawable.ic_alarm)
             .setContentIntent(pendingIntent)
+            .setSound(notificationSound)
             .setAutoCancel(true)
     }
 }
