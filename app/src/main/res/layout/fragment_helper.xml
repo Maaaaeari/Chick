@@ -5,14 +5,14 @@
     android:id="@+id/helperLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HelperFragment1">
+    tools:context=".HelperFragment1"
+    app:layout_constraintTop_toTopOf="parent">
 
     <ImageView
         android:id="@+id/helperimg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/img_helper1"
-
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

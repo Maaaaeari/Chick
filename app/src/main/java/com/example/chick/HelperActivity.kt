@@ -1,9 +1,8 @@
 package com.example.chick
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.LinearLayout
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
@@ -15,6 +14,7 @@ class HelperActivity : AppCompatActivity() {
     private var viewpager : ViewPager? = null
     private var vpAdapter: FragmentStatePagerAdapter? = null
 
+    @SuppressLint("WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_helper)
@@ -24,7 +24,11 @@ class HelperActivity : AppCompatActivity() {
         viewpager?.adapter = vpAdapter as CustomPagerAdapter
 
         //닫기버튼 클릭시 마이페이지 화면 전환
-        val btn_helperclose = findViewById<LinearLayout>(R.id.linearClose)
+        val btnclose = findViewById<LinearLayout>(R.id.linearClose)
+        btnclose.setOnClickListener {
+            onBackPressed()
+        }
+        val btn_helperclose = findViewById<ImageButton>(R.id.btnhelpclose)
         btn_helperclose.setOnClickListener{
             onBackPressed()
         }

@@ -57,5 +57,6 @@ class NotificationHelper(base: Context?) : ContextWrapper(base) {
             .setSmallIcon(R.drawable.ic_alarm)
 //            .setWhen(System.currentTimeMillis())
             .setContentIntent(pendingIntent)
+            .setAutoCancel(true)
     }
 }
