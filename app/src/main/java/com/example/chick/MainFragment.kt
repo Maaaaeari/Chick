@@ -150,9 +150,6 @@ class MainFragment : Fragment() {
         val tKKMMString = tKKString+tMMString
         val tKKMM = tKKMMString.toInt()
 
-        Log.d("44444", tKKMMString)
-
-
         // 현재 요일의 현재 시간 이후의 가장 최근 알람 조회
         val selectAll = "select * from drugTBL where goalDone=0 AND daysOfWeek LIKE '%${tDaysOfWeek}%' AND eatDone=0;"
         // 읽기전용 데이터베이스 변수
