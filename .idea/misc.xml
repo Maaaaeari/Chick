@@ -29,8 +29,6 @@
         <entry key="..\:/Users/duswn/GURU2_Chick/UsersduswnGURU2_Chick/app/src/main/res/drawable/size_ic_alarm_plus.xml" value="0.1935" />
         <entry key="..\:/Users/duswn/GURU2_Chick/UsersduswnGURU2_Chick/app/src/main/res/drawable/size_ic_back.xml" value="0.183" />
         <entry key="..\:/Users/duswn/GURU2_Chick/UsersduswnGURU2_Chick/app/src/main/res/drawable/size_ic_delete.xml" value="0.183" />
-        <entry key="..\:/Users/duswn/GURU2_Chick/UsersduswnGURU2_Chick/app/src/main/res/drawable/size_ic_back.xml" value="0.193" />
-        <entry key="..\:/Users/duswn/GURU2_Chick/UsersduswnGURU2_Chick/app/src/main/res/drawable/size_ic_delete.xml" value="0.183" />
         <entry key="..\:/Users/duswn/GURU2_Chick/UsersduswnGURU2_Chick/app/src/main/res/drawable/week_c_back.xml" value="0.165" />
         <entry key="..\:/Users/duswn/GURU2_Chick/UsersduswnGURU2_Chick/app/src/main/res/drawable/week_nc_back.xml" value="0.1955" />
         <entry key="..\:/Users/duswn/GURU2_Chick/UsersduswnGURU2_Chick/app/src/main/res/drawable/yellow_circle.xml" value="0.1935" />
@@ -47,7 +45,6 @@
         <entry key="..\:/Users/duswn/GURU2_Chick/UsersduswnGURU2_Chick/app/src/main/res/layout/dialog_med_choice.xml" value="0.18465045592705168" />
         <entry key="..\:/Users/duswn/GURU2_Chick/UsersduswnGURU2_Chick/app/src/main/res/layout/dialog_timep.xml" value="0.35190217391304346" />
         <entry key="..\:/Users/duswn/GURU2_Chick/UsersduswnGURU2_Chick/app/src/main/res/layout/edit_alarm_toolbar.xml" value="0.353713768115942" />
-        <entry key="..\:/Users/duswn/GURU2_Chick/UsersduswnGURU2_Chick/app/src/main/res/layout/exam.xml" value="0.35190217391304346" />
         <entry key="..\:/Users/duswn/GURU2_Chick/UsersduswnGURU2_Chick/app/src/main/res/layout/fragment_main.xml" value="0.353713768115942" />
         <entry key="..\:/Users/duswn/GURU2_Chick/UsersduswnGURU2_Chick/app/src/main/res/layout/fragment_mypage.xml" value="0.17037037037037037" />
         <entry key="..\:/Users/duswn/GURU2_Chick/UsersduswnGURU2_Chick/app/src/main/res/layout/fragment_progress.xml" value="0.353713768115942" />
@@ -74,16 +71,11 @@
         <entry key="..\:/Users/serak/project/Chick/app/src/main/res/layout/activity_med_alarm.xml" value="0.196875" />
         <entry key="..\:/Users/serak/project/Chick/app/src/main/res/layout/dialog_alarmpush.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/serak/project/Chick/app/src/main/res/layout/dialog_cancle.xml" value="0.4" />
-        <entry key="..\:/Users/serak/project/Chick/app/src/main/res/layout/dialog_complete.xml" value="0.264" />
-        <entry key="..\:/Users/serak/project/Chick/app/src/main/res/layout/dialog_delete.xml" value="0.264" />
-        <entry key="..\:/Users/serak/project/Chick/app/src/main/res/layout/dialog_cancle.xml" value="0.4" />
         <entry key="..\:/Users/serak/project/Chick/app/src/main/res/layout/dialog_complete.xml" value="0.4" />
         <entry key="..\:/Users/serak/project/Chick/app/src/main/res/layout/dialog_delete.xml" value="0.4" />
         <entry key="..\:/Users/serak/project/Chick/app/src/main/res/layout/dialog_med_choice.xml" value="0.23385416666666667" />
         <entry key="..\:/Users/serak/project/Chick/app/src/main/res/layout/edit_alarm_toolbar.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/serak/project/Chick/app/src/main/res/layout/exam.xml" value="0.536" />
-        <entry key="..\:/Users/serak/project/Chick/app/src/main/res/layout/fragment_main.xml" value="0.4" />
-        <entry key="..\:/Users/serak/project/Chick/app/src/main/res/layout/fragment_mypage.xml" value="0.264" />
         <entry key="..\:/Users/serak/project/Chick/app/src/main/res/layout/fragment_main.xml" value="0.264" />
         <entry key="..\:/Users/serak/project/Chick/app/src/main/res/layout/fragment_mypage.xml" value="0.4" />
         <entry key="..\:/Users/serak/project/Chick/app/src/main/res/layout/fragment_progress.xml" value="0.23489583333333333" />
@@ -107,12 +99,12 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/Chick/app/src/main/res/drawable/yellow_rounding_box.xml" value="0.3005" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Chick/app/src/main/res/layout/activity_add_alarm.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Chick/app/src/main/res/layout/activity_edit_alarm.xml" value="0.22" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Chick/app/src/main/res/layout/activity_helper.xml" value="0.4416184971098266" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Chick/app/src/main/res/layout/activity_helper.xml" value="0.25" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Chick/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Chick/app/src/main/res/layout/activity_med_alarm.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Chick/app/src/main/res/layout/activity_splash.xml" value="0.16" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Chick/app/src/main/res/layout/exam.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Chick/app/src/main/res/layout/fragment_helper.xml" value="0.25" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Chick/app/src/main/res/layout/fragment_helper.xml" value="0.16" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Chick/app/src/main/res/layout/fragment_helper2.xml" value="0.3515625" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Chick/app/src/main/res/layout/fragment_helper3.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Chick/app/src/main/res/layout/fragment_helper4.xml" value="0.33" />
