@@ -11,13 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="125dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="15dp"
         android:layout_marginRight="20dp"
+        android:layout_marginBottom="15dp"
         app:cardElevation="@null"
         app:cardMaxElevation="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <RelativeLayout
             android:id="@+id/cardPro"

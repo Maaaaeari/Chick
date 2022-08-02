@@ -81,6 +81,7 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/jejugothic"
                 android:text="비타민C"
+                android:textAlignment="center"
                 android:textColor="#BE9700"
                 android:textSize="22dp" />
 
