@@ -12,7 +12,7 @@
         android:id="@+id/helperimg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/img_helper"
+        android:src="@drawable/img_helper1"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
