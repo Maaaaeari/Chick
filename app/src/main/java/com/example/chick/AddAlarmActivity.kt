@@ -65,6 +65,7 @@ class AddAlarmActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_alarm)
 
+
         //무슨 약인가요?
         medNameData = findViewById<EditText>(R.id.medName)
         //약 아이콘

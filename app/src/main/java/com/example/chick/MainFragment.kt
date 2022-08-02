@@ -240,6 +240,9 @@ class MainFragment : Fragment() {
             val eatUpdate = "update drugTBL set eatDone=1, currentNumber=${preNum} where medId="+medId+";"
             // 복용취소
             preNum = preNumber-eatNumber
+            if(preNum < 0) {
+                preNum = 0
+            }
             val unEatUpdate = "update drugTBL set eatDone=0, currentNumber=${preNum} where medId="+medId+";"
             // 목표달성
             val goalUpdate = "update drugTBL set goalDone=1 where medId="+medId+" AND totalNumber<=currentNumber;"
