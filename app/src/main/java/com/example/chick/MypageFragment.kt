@@ -68,10 +68,12 @@ class MypageFragment : Fragment() {
                 Toast.makeText(context, "알람이 켜졌어요.", Toast.LENGTH_SHORT).show()
                 // 타임피커
                 getTimeP()
+                saveData(txtAlramOnOff.text as String)  // 값을 저장하는 함수
             }else{
                 Toast.makeText(context, "알람이 꺼졌어요.", Toast.LENGTH_SHORT).show()
                 txtAlramOnOff.text = "알람이 꺼져있어요."
                 mainActivity.stopAlarm()
+                saveData(txtAlramOnOff.text as String)  // 값을 저장하는 함수
             }
         }
 
