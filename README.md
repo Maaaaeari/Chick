@@ -2,7 +2,7 @@
 지속적인 약 복용을 위한 약 알림 앱  
 youtube: https://youtu.be/Gq3mfqNu-2A
 
-# :house: 메인
+## :house: 메인
 <p>
   <img src="https://user-images.githubusercontent.com/63528205/182601894-833d1bd8-effd-4191-9639-a2cac4d0e8f3.png"  width="200"/>
   <img src="https://user-images.githubusercontent.com/63528205/182601984-93361843-15dc-4b22-810c-1ea70d1553c0.png"  width="200"/>
@@ -10,13 +10,13 @@ youtube: https://youtu.be/Gq3mfqNu-2A
   <img src="https://user-images.githubusercontent.com/63528205/182863190-4439c475-6715-4f06-ab16-aca9c8472394.png"  width="200"/>
 </p>
 
-# :bar_chart: 복용률
+## :bar_chart: 복용률
 <p>
   <img src="https://user-images.githubusercontent.com/63528205/182602107-321ee567-3bc7-4400-a65d-2d6c51c28b9d.png"  width="200"/>
 </p>
 
 
-# :alarm_clock: 마이페이지
+## :alarm_clock: 마이페이지
 <p>
   <img src="https://user-images.githubusercontent.com/63528205/182602190-3c438d07-b8b1-4e36-adbd-b121cc634947.png"  width="200"/>
   <img src="https://user-images.githubusercontent.com/63528205/182861603-88124ae3-01de-4634-9411-be502b219aa9.png"  width="200"/>
@@ -31,7 +31,7 @@ youtube: https://youtu.be/Gq3mfqNu-2A
 </p>
 
 ---
-# :busts_in_silhouette: 제작  
+## :busts_in_silhouette: 제작  
 2022 여름 GURU 2 Android 메아리 팀 '삐약삐약'  
 Developer - 김민정, 전지현, 김연주  
 Design - 김민서
