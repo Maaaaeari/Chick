@@ -31,7 +31,7 @@ youtube: https://youtu.be/Gq3mfqNu-2A
 </p>
 
 ---
-# 제작  
+# :busts_in_silhouette: 제작  
 2022 여름 GURU 2 Android 메아리 팀 '삐약삐약'  
 Developer - 김민정, 전지현, 김연주  
 Design - 김민서
