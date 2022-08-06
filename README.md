@@ -22,12 +22,14 @@ youtube: https://youtu.be/Gq3mfqNu-2A
 </p>
 
 
-## :alarm_clock: 마이페이지
+## :alarm_clock: 마이페이지-알람설정  
 <p>
   <img src="https://user-images.githubusercontent.com/63528205/182602190-3c438d07-b8b1-4e36-adbd-b121cc634947.png"  width="200"/>
   <img src="https://user-images.githubusercontent.com/63528205/182861603-88124ae3-01de-4634-9411-be502b219aa9.png"  width="200"/>
   <img src="https://user-images.githubusercontent.com/63528205/182864687-5c1aba96-f324-4c69-9a41-9d4d442e23e0.png"  width="200"/>
 </p>
+
+## :question: 마이페이지-도움말  
 <p>
   <img src="https://user-images.githubusercontent.com/63528205/182862025-731a6d5c-d144-4558-afa9-ccdc2b0a44c4.png"  width="200"/>
   <img src="https://user-images.githubusercontent.com/63528205/182862069-310a03f3-56da-48c8-a41b-5675423b9239.png"  width="200"/>
