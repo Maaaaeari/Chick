@@ -10,6 +10,9 @@ youtube: https://youtu.be/Gq3mfqNu-2A
 
 ## :house: 메인
 <p>
+  <img src="https://user-images.githubusercontent.com/63528205/183263443-d52efafe-0d60-4c93-9e4c-4f8f1bebe054.png"  width="200"/>
+</p>
+<p>
   <img src="https://user-images.githubusercontent.com/63528205/182601894-833d1bd8-effd-4191-9639-a2cac4d0e8f3.png"  width="200"/>
   <img src="https://user-images.githubusercontent.com/63528205/182601984-93361843-15dc-4b22-810c-1ea70d1553c0.png"  width="200"/>
   <img src="https://user-images.githubusercontent.com/63528205/182863723-2933862c-e860-4669-aba9-0de73a0317c6.png"  width="200"/>
